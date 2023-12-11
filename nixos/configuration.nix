@@ -9,7 +9,7 @@ in
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      /etc/nixos/hardware-configuration.nix
       ./daily-driver.nix
       ./greetd.nix
       (import "${home-manager}/nixos")
