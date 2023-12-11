@@ -1,0 +1,261 @@
+[settings]
+# pseudo-transparency = true
+
+# format-background = #7F000000
+
+[bar/shareddata]
+
+height = 3%:+4
+# border-top-size = 
+
+separator = " ║ "
+
+font-0 = "Terminus (TTF):style=Medium:size=15"
+font-1 = "Symbols Nerd Font:style=2048-em:size=15"
+
+enable-ipc = true
+
+# border-top-size = 5
+
+pseudo-transparency = true
+
+fixed-center = true
+
+padding = 2
+
+# background = #6F000000
+
+# radius = 12.0
+
+underline-size = 3
+
+
+[bar/mainbar]
+inherit = bar/shareddata
+monitor = eDP-1
+monitor-fallback = eDP-1-1
+bottom = true
+
+modules-left = temp1 temp2 filesystem cpu memory network-eth network-wl
+modules-center = i3
+modules-right = pulseaudio battery date
+
+tray-position = right
+tray-offset-y = 0
+# tray-scale = 0.9
+
+
+[bar/sidebar]
+inherit = bar/shareddata
+monitor = HDMI-0
+monitor-fallback = HDMI-1-0
+bottom = true
+
+modules-left = currentlyplaying
+modules-center = i3
+modules-right = weather temp1 temp2 date 
+
+[module/date]
+type = internal/date
+date = %a %d %b %I:%M:%S
+
+[bar/othersidebar]
+inherit = bar/shareddata
+monitor = DP-1-0
+bottom = true
+
+modules-left = currentlyplaying temp1 temp2 tempGPU
+modules-center = i3
+modules-right = weather date 
+
+[module/i3]
+type = internal/i3
+pin-workspaces = true
+index-sort = true
+strip-wsnumbers = true
+
+background = #dd000000
+
+ws-icon-0 = 1: Misc;
+ws-icon-1 = 2: Work;
+ws-icon-2 = 3: Browser;
+ws-icon-3 = 4: Communication;
+ws-icon-4 = 5: File Manager;
+ws-icon-5 = 6: Gaming;
+ws-icon-6 = 7: Music;
+ws-icon-7 = 8: Notetaking;
+
+label-focused = %index%: %name% 
+label-focused-foreground = #53E675
+# label-focused-background = #dd000000
+
+label-unfocused = %index%: %icon% 
+# label-unfocused-background = #dd000000
+
+label-visible = %index%: %name% 
+label-visible-foreground = #16A0F0
+
+label-urgent =  %index%: %icon%
+label-urgent-foreground = #000000
+label-urgent-background = #bd2c40
+
+label-separator = │
+label-separator-padding = 1
+# label-separator 
+
+[module/battery]
+type = internal/battery
+full-at = 98
+
+time-format = %H:%M
+
+format-charging = <ramp-capacity> <label-charging>
+# format-charging-underline = #FFDD0000
+label-charging = %percentage%% ﲗ ⣿ %time%
+
+format-discharging = <ramp-capacity> <label-discharging>
+label-discharging = %percentage%% ﲔ ⣿ %time%
+
+label-full = Full Charge
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+battery = BAT0
+adapter = ADP0
+
+poll-interval = 15
+
+[module/temperature]
+type = internal/temperature
+
+interval = 15
+
+# thermal-zone = 3
+
+format = <ramp> <label>
+# format-underline = #FFF8FF1F
+label = %temperature-c%
+
+format-warn = <ramp> <label-warn>
+label-warn = %temperature-c%
+label-warn-foreground = #f00
+
+base-temperature = 30
+warn-temperature = 70
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = #55
+
+[module/temp1]
+inherit = module/temperature
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon5/temp1_input
+
+[module/temp2]
+inherit = module/temperature
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input
+
+[module/tempGPU]
+inherit = module/temperature
+thermal-zone=4
+format = GPU <ramp> <label>
+
+[module/filesystem]
+type = internal/fs
+
+fixed-values = true
+
+mount-0 = /
+
+interval = 60
+
+format-mounted = <label-mounted>
+# bar-width = 5
+label-mounted =  %percentage_used%%
+
+[module/cpu]
+type = internal/cpu
+interval = 5
+
+format = <label> <ramp-load>
+label =  %percentage%%
+
+ramp-load-spacing = 1
+ramp-load-0 = ▁
+ramp-load-1 = ▂
+ramp-load-2 = ▃
+ramp-load-3 = ▄
+ramp-load-4 = ▅
+ramp-load-5 = ▆
+ramp-load-6 = ▇
+ramp-load-7 = █
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
+
+label-muted = 婢 MUTED
+label-muted-foreground = #666
+
+ramp-volume-0 = 奄
+ramp-volume-1 = 奔
+ramp-volume-2 = 墳
+
+click-right = pavucontrol
+
+
+[module/memory]
+type = internal/memory
+interval = 10
+
+format = <label> <ramp-used>
+label =  %percentage_used%%
+
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+[module/network-eth]
+type = internal/network
+interval = 5
+interface = enp8s0
+
+label-connected =  %upspeed%╱%downspeed%
+label-disconnected = 
+label-disconnected-foreground = #ff6666
+
+[module/network-wl]
+type = internal/network
+interval = 5
+interface = wlan0
+
+label-connected = 直 %upspeed%╱%downspeed%
+label-disconnected = 睊
+label-disconnected-foreground = #ff6666
+
+[module/currentlyplaying]
+type = custom/script
+
+exec = ~/.scripts/truncated_playing.sh
+tail = true
+
+label =  %output%
+
+[module/weather]
+type = custom/script
+
+exec = ~/.scripts/polybarweather.sh
+interval = 600

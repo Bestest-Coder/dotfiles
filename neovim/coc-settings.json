@@ -1,0 +1,11 @@
+{
+  "suggest.noselect": true,
+  "java.jdt.ls.java.home": "/usr/lib/jvm/java-21-openjdk/",
+  "languageserver" : {
+      "godot": {
+          "host": "127.0.0.1",
+          "filetypes": ["gdscript"],
+          "port": 6008
+        }
+    }
+}
