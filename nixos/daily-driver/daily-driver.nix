@@ -6,6 +6,7 @@
     ./productivity.nix
     ./utility.nix
     ./fun.nix
+    ./desktop.nix
   ];
 
   system.autoUpgrade = {
