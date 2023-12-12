@@ -11,6 +11,8 @@
     swaylock
     fuzzel
     waybar
+    dunst
+    hyprpaper
   ];
 
   fonts.fonts = with pkgs; [
