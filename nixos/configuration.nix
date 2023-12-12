@@ -53,7 +53,7 @@ in
   users.users.bestest = {
     isNormalUser = true;
     description = "jason funderberger";
-    extraGroups = [ "networkmanager" "wheel", "libvirtd" ];
+    extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [];
   };
 
