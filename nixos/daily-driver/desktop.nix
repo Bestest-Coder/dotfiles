@@ -10,7 +10,7 @@
     pipewire
     swaylock
     fuzzel
-  ]
+  ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = ["Terminus"]; })
