@@ -4,7 +4,7 @@
     "height": 30,
     "_width": 1280,
     "spacing": 4,
-    "modules-left": ["temperature","cpu","memory","network"],
+    "modules-left": ["temperature","cpu","memory","network","network#2"],
     "modules-center": ["hyprland/window"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "keyboard-state", "battery", "clock", "tray"],
     "keyboard-state": {
@@ -16,31 +16,18 @@
             "unlocked": ""
         }
     },
-    "mpd": {
-        "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ",
-        "format-disconnected": "Disconnected ",
-        "format-stopped": "{consumeIcon}{randomIcon}{repeatIcon}{singleIcon}Stopped ",
-        "unknown-tag": "N/A",
-        "interval": 2,
-        "consume-icons": {
-            "on": " "
+    "mpris": {
+        "interval": 15,
+        "format": "{player_icon} {dynamic}",
+        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "player-icons": {
+            "default": "▶",
+            "spotify": "",
+            "firefox": "󰈹"
         },
-        "random-icons": {
-            "off": "<span color=\"#f53c3c\"></span> ",
-            "on": " "
-        },
-        "repeat-icons": {
-            "on": " "
-        },
-        "single-icons": {
-            "on": "1 "
-        },
-        "state-icons": {
-            "paused": "",
-            "playing": ""
-        },
-        "tooltip-format": "MPD (connected)",
-        "tooltip-format-disconnected": "MPD (disconnected)"
+        "status-icons": {
+            "paused": "⏸"
+        }
     },
     "idle_inhibitor": {
         "format": "{icon}",
@@ -95,11 +82,14 @@
     "network": {
         "_interface": "wlp2*",
         "format-wifi": "{essid} ({signalStrength}%) ",
-        "format-ethernet": "{ipaddr}/{cidr} ",
-        "tooltip-format": "{ifname} via {gwaddr} ",
+        "format-ethernet": "Wired: {ifname}",
+        "tooltip-format": "{ipaddr}/{cidr}",
         "format-linked": "{ifname} (No IP) ",
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
+    },
+    "network#2": {
+        "format": "{bandwidthUpBytes}/{bandwidthDownBytes}"
     },
     "pulseaudio": {
         "scroll-step": 1,
