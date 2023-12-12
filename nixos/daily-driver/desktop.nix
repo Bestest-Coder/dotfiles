@@ -33,4 +33,8 @@
     ];
   };
   security.polkit.enable = true;
+
+  home-manager.users.bestest = {
+    xdg.configFile."fuzzel".source = ../../fuzzel;
+  };
 }
