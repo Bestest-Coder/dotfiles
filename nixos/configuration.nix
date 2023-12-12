@@ -65,6 +65,7 @@ in
     btop
   ];
 
+  home-manager.backupFileExtension = "bak";
   home-manager.users.bestest = {
     home.stateVersion = "23.05";
     xdg.configFile."nvim".recursive = true;
