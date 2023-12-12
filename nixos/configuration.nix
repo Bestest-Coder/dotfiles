@@ -10,8 +10,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
-      ./daily-driver.nix
-      ./greetd.nix
+      ./daily-driver/daily-driver.nix
       (import "${home-manager}/nixos")
     ];
 
@@ -65,6 +64,11 @@ in
     git
     btop
   ];
+
+  home-manager.users.bestest = {
+    home.stateVersion = "23.05";
+    xdg.configFile."nvim".source = ../neovim;
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
