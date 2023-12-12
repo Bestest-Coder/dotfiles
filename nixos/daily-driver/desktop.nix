@@ -10,6 +10,7 @@
     pipewire
     swaylock
     fuzzel
+    waybar
   ];
 
   fonts.fonts = with pkgs; [
@@ -25,6 +26,7 @@
   home-manager.users.bestest = {
     xdg.configFile."hypr".source = ../../hyprland;
     xdg.configFile."fuzzel".source = ../../fuzzel;
+    xdg.configFile."waybar".source = ../../waybar;
   };
 
   xdg.portal = {
