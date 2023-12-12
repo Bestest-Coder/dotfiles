@@ -53,7 +53,7 @@ in
   users.users.bestest = {
     isNormalUser = true;
     description = "jason funderberger";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel", "libvirtd" ];
     packages = with pkgs; [];
   };
 
@@ -67,6 +67,7 @@ in
 
   home-manager.users.bestest = {
     home.stateVersion = "23.05";
+    xdg.configFile."nvim".recursive = true;
     xdg.configFile."nvim".source = ../neovim;
   };
 
