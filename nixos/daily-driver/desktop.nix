@@ -24,6 +24,7 @@
 
   home-manager.users.bestest = {
     xdg.configFile."hypr".source = ../../hyprland;
+    xdg.configFile."fuzzel".source = ../../fuzzel;
   };
 
   xdg.portal = {
@@ -34,7 +35,4 @@
   };
   security.polkit.enable = true;
 
-  home-manager.users.bestest = {
-    xdg.configFile."fuzzel".source = ../../fuzzel;
-  };
 }
