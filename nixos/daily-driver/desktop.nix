@@ -12,7 +12,7 @@
     fuzzel
   ];
 
-  fonts.packages = with pkgs; [
+  fonts.fonts = with pkgs; [
     (nerdfonts.override { fonts = ["Terminus"]; })
   ];
     
