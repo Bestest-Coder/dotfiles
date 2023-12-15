@@ -12,5 +12,6 @@
     zathura
     python3
     scons
+    qalculate-gtk
   ];
 }
