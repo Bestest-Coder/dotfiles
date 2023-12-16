@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{config, pkgs, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.05.tar.gz";
 in
@@ -75,8 +75,9 @@ in
       shellAliases = {
         update = "sudo nixos-rebuild switch";
       };
-      histSize = 10000;
-      histFile = "${config.xdg.dataHome}/zsh/history";
+      history = {
+        size = 10000;
+      };
       initExtra = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
 %F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}>%F{white} \"";
     };
