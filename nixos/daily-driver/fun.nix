@@ -5,7 +5,14 @@
   environment.systemPackages = with pkgs; [
     steam
     spotify
-    obs
+    (wrapOBS {
+      plugins = with obs-studio-plugins; [
+        wlrobs
+        obs-backgroundremoval
+        obs-pipewire-audio-capture
+        obs-vkcapture
+      ];
+    })
   ];
 
   programs.steam = {

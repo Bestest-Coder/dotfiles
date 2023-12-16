@@ -14,7 +14,8 @@
     ack
     #virt-manager
     playerctl
-    flameshot
+    flameshot # screenshot tool
+    piper # mouse config
   ];
 
   home-manager.users.bestest = {
