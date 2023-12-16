@@ -4,6 +4,7 @@
   # i.e. window manager, task bar, audio systems, etc
   environment.systemPackages = with pkgs; [
     xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
     polkit
     polkit_gnome
     xdg-utils
@@ -33,12 +34,13 @@
     xdg.configFile."waybar".source = ../../waybar;
   };
 
-  #xdg.portal = {
-  #  enable = true;
-  #  extraPortals = with pkgs; [
-  #    xdg-desktop-portal-hyprland
-  #  ];
-  #};
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-hyprland
+      xdg-desktop-portal-gtk
+    ];
+  };
   security.polkit.enable = true;
 
   security.pam.services.swaylock = {};
