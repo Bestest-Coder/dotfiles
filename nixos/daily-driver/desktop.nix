@@ -33,12 +33,12 @@
     xdg.configFile."waybar".source = ../../waybar;
   };
 
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
-    ];
-  };
+  #xdg.portal = {
+  #  enable = true;
+  #  extraPortals = with pkgs; [
+  #    xdg-desktop-portal-hyprland
+  #  ];
+  #};
   security.polkit.enable = true;
 
   security.pam.services.swaylock = {};
