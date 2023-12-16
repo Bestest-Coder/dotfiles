@@ -86,6 +86,8 @@ in
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
+  nix.settings.experimental-features = ["nix-command"];
+
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
