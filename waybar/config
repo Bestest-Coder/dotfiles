@@ -6,7 +6,7 @@
     "_width": 1280,
     "spacing": 4,
     "include": [
-        "./module-defs.json",
+        "~/.config/waybar/module-defs.json",
     ],
     "modules-left": ["temperature","cpu","memory","network","network#2"],
     "modules-center": ["hyprland/workspaces"],
@@ -17,7 +17,7 @@
     "position": "bottom",
     "output": ["!eDP-0", "!Virtual-1"],
     "include": [
-        "./module-defs.json",
+        "~/.config/waybar/module-defs.json",
     ],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["clock"]
