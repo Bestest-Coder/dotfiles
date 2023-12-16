@@ -70,7 +70,19 @@ in
     home.stateVersion = "23.05";
     xdg.configFile."nvim".recursive = true;
     xdg.configFile."nvim".source = ../neovim;
+    programs.zsh = {
+      enable = true;
+      shellAliases = {
+        update = "sudo nixos-rebuild switch";
+      };
+      histSize = 10000;
+      histFile = "${config.xdg.dataHome}/zsh/history";
+      initExtra = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
+%F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}>%F{white} \"";
+    };
   };
+
+  users.defaultUserShell = pkgs.zsh;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
