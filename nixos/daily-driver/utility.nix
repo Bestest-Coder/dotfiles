@@ -12,7 +12,9 @@
     audacity
     curl
     ack
-    virt-manager
+    #virt-manager
+    playerctl
+    flameshot
   ];
 
   home-manager.users.bestest = {
@@ -20,14 +22,14 @@
     xdg.configFile."kitty".source = ../../kitty;
   };
 
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
-  home-manager.users.bestest = {
-    dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
-      };
-    };
-  };
+  #virtualisation.libvirtd.enable = true;
+  #programs.dconf.enable = true;
+  #home-manager.users.bestest = {
+  #  dconf.settings = {
+  #    "org/virt-manager/virt-manager/connections" = {
+  #      autoconnect = ["qemu:///system"];
+  #      uris = ["qemu:///system"];
+  #    };
+  #  };
+  #};
 }

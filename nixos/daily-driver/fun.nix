@@ -4,6 +4,7 @@
   # i.e. games
   environment.systemPackages = with pkgs; [
     steam
+    spotify
   ];
 
   programs.steam = {

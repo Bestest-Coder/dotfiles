@@ -13,6 +13,7 @@
     waybar
     dunst
     hyprpaper
+    wireplumber
   ];
 
   fonts.fonts = with pkgs; [
