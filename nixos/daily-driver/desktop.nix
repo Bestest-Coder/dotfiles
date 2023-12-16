@@ -4,7 +4,7 @@
   # i.e. window manager, task bar, audio systems, etc
   environment.systemPackages = with pkgs; [
     xdg-desktop-portal-hyprland
-    xdg-desktop-portal-gtk
+    #xdg-desktop-portal-gtk
     polkit
     polkit_gnome
     xdg-utils
@@ -38,7 +38,7 @@
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-hyprland
-      xdg-desktop-portal-gtk
+      #xdg-desktop-portal-gtk
     ];
   };
   security.polkit.enable = true;
