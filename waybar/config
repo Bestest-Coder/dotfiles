@@ -9,7 +9,7 @@
         "./module-defs.json",
     ],
     "modules-left": ["temperature","cpu","memory","network","network#2"],
-    "modules-center": ["hyprland/window"],
+    "modules-center": ["hyprland/workspaces"],
     "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "keyboard-state", "battery", "clock", "tray"],
 },
 {
@@ -19,7 +19,7 @@
     "include": [
         "./module-defs.json",
     ],
-    "modules-center": ["hyprland/window"],
+    "modules-center": ["hyprland/workspaces"],
     "modules-right": ["clock"]
 },
 ]
