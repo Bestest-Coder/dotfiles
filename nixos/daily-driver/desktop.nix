@@ -14,6 +14,7 @@
     dunst
     hyprpaper
     wireplumber
+    pavucontrol
   ];
 
   fonts.fonts = with pkgs; [
