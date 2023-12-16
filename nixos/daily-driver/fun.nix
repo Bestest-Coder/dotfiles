@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{config, pkgs, ...}:
 {
   # everything that is purely for recreation
   # i.e. games
