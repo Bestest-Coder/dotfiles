@@ -6,6 +6,8 @@
     obsidian
     thunderbird
     libreoffice-fresh
+    hunspell #libreoffice spellcheck
+    hunspellDicts.en_US
     blender
     godot_4
     texlive.combined.scheme-medium

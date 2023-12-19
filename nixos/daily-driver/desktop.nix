@@ -45,4 +45,6 @@
 
   security.pam.services.swaylock = {};
 
+  services.pipewire.enable = true;
+
 }
