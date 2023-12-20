@@ -3,15 +3,11 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 {config, lib, pkgs, home-manager, ... }:
-#let
-#  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
-#in
 {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       ./daily-driver/daily-driver.nix
-      #(import "${home-manager}/nixos")
       home-manager.nixosModules.default
     ];
 
@@ -53,7 +49,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.bestest = {
     isNormalUser = true;
-    description = "jason funderberger";
+    description = "Bestest User";
     extraGroups = [ "networkmanager" "wheel" "libvirtd" ];
     packages = with pkgs; [];
   };
