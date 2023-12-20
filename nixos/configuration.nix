@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{config, lib, pkgs, attrs, ... }:
+{config, lib, pkgs, home-manager, ... }:
 #let
 #  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-23.11.tar.gz";
 #in
@@ -12,7 +12,7 @@
       /etc/nixos/hardware-configuration.nix
       ./daily-driver/daily-driver.nix
       #(import "${home-manager}/nixos")
-      attrs.home-manager.nixosModules.default
+      home-manager.nixosModules.default
     ];
 
   nixpkgs.config.allowUnfree = true;
