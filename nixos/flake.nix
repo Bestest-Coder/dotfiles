@@ -21,6 +21,7 @@
     in {
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = [home-manager];
         modules = [./configuration.nix] ++ overlayedPkgs;
     };
   };
