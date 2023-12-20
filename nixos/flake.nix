@@ -21,7 +21,7 @@
     in {
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = attrs;
+        specialArgs = {inherit attrs; };
         modules = [./configuration.nix] ++ overlayedPkgs;
     };
   };
