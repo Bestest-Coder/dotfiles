@@ -17,11 +17,10 @@
           config.allowUnfree = true;
         };
       };
-      overlayedPkgs = ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; });
+      overlayedPkgs = [({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })];
     in {
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = inputs;
         modules = [./configuration.nix] ++ overlayedPkgs;
     };
   };
