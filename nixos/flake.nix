@@ -6,6 +6,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+  };
 
   outputs = {self, nixpkgs, home-manager, ...}@attrs:
     let
@@ -23,6 +24,6 @@
         inherit system;
         specialArgs = {inherit home-manager; };
         modules = [./configuration.nix] ++ overlayedPkgs;
+      };
     };
-  };
 }
