@@ -7,7 +7,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-  outputs = {self, nixpkgs, home-manager, ...}:
+  outputs = {self, nixpkgs, home-manager, ...}@attrs:
     let
       system = "x86_64-linux";
       # adds pkgs.unstable
@@ -21,7 +21,7 @@
     in {
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = [home-manager];
+        specialArgs = attrs;
         modules = [./configuration.nix] ++ overlayedPkgs;
     };
   };
