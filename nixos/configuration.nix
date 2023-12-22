@@ -8,7 +8,7 @@
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       ./daily-driver/daily-driver.nix
-      home-manager.nixosModules.default
+      home-manager.nixosModules.home-manager
     ];
 
   nixpkgs.config.allowUnfree = true;

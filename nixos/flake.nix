@@ -24,6 +24,7 @@
         inherit system;
         specialArgs = {inherit home-manager; };
         modules = [./configuration.nix] ++ overlayedPkgs;
+        #home-manager.nixosModules.home-manager
       };
     };
 }
