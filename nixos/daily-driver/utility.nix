@@ -16,6 +16,7 @@
     playerctl
     flameshot # screenshot tool
     piper # mouse config
+    bitwarden
   ];
 
   services.tailscale.enable = true;
