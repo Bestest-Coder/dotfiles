@@ -2,13 +2,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{config, lib, pkgs, home-manager, ... }:
+{config, lib, pkgs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       /etc/nixos/hardware-configuration.nix
       ./daily-driver/daily-driver.nix
-      home-manager.nixosModules.home-manager
+      #home-manager.nixosModules.home-manager
     ];
 
   nixpkgs.config.allowUnfree = true;
