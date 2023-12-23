@@ -21,18 +21,11 @@
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = ["Terminus"]; })
   ];
-    
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
-
-  #home-manager.users.bestest = {
-  #  xdg.configFile."hypr".source = ../../hyprland;
-  #  xdg.configFile."fuzzel".source = ../../fuzzel;
-  #  xdg.configFile."waybar".source = ../../waybar;
-  #};
 
   xdg.portal = {
     enable = true;
@@ -51,5 +44,4 @@
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
 }

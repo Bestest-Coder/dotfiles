@@ -9,9 +9,4 @@
     ./desktop.nix
   ];
 
-  system.autoUpgrade = {
-    enable = true;
-    channel = "https://nixos.org/channels/nixos-stable";
-  };
-
 }
