@@ -18,6 +18,10 @@
     piper # mouse config
   ];
 
+  services.tailscale.enable = true;
+  services.mullvad-vpn.enable = true;
+  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+  services.systemd-resolved.enabled = true;
 
   #virtualisation.libvirtd.enable = true;
   #programs.dconf.enable = true;
