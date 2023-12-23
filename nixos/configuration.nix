@@ -62,28 +62,28 @@
     btop
   ];
 
-  home-manager.backupFileExtension = "bak";
-  home-manager.users.bestest = {
-    home.stateVersion = "23.11";
-    xdg.configFile."nvim".recursive = true;
-    xdg.configFile."nvim".source = ../neovim;
-    programs.zsh = {
-      enable = true;
-      shellAliases = {
-        update = "sudo nixos-rebuild switch";
-      };
-      history = {
-        size = 10000;
-      };
-      initExtra = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
+  #home-manager.backupFileExtension = "bak";
+  #home-manager.users.bestest = {
+  #  home.stateVersion = "23.11";
+  #  xdg.configFile."nvim".recursive = true;
+  #  xdg.configFile."nvim".source = ../neovim;
+  #  programs.zsh = {
+  #    enable = true;
+  #    shellAliases = {
+  #      update = "sudo nixos-rebuild switch";
+  #    };
+  #    history = {
+  #      size = 10000;
+  #    };
+  #    initExtra = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
 %F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}>%F{white} \"";
-    };
-  };
+  #  };
+  #};
 
   programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = "nix-command flakes";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

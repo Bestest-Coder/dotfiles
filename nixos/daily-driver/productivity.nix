@@ -15,6 +15,7 @@
     python3
     scons
     qalculate-gtk
+    libsForQt5.kdenlive
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

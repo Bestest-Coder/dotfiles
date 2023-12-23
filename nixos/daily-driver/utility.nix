@@ -18,10 +18,10 @@
     piper # mouse config
   ];
 
-  home-manager.users.bestest = {
-    xdg.configFile."kitty".recursive = true;
-    xdg.configFile."kitty".source = ../../kitty;
-  };
+  #home-manager.users.bestest = {
+  #  xdg.configFile."kitty".recursive = true;
+  #  xdg.configFile."kitty".source = ../../kitty;
+  #};
 
   #virtualisation.libvirtd.enable = true;
   #programs.dconf.enable = true;

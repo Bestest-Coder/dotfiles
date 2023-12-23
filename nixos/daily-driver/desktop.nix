@@ -28,11 +28,11 @@
     xwayland.enable = true;
   };
 
-  home-manager.users.bestest = {
-    xdg.configFile."hypr".source = ../../hyprland;
-    xdg.configFile."fuzzel".source = ../../fuzzel;
-    xdg.configFile."waybar".source = ../../waybar;
-  };
+  #home-manager.users.bestest = {
+  #  xdg.configFile."hypr".source = ../../hyprland;
+  #  xdg.configFile."fuzzel".source = ../../fuzzel;
+  #  xdg.configFile."waybar".source = ../../waybar;
+  #};
 
   xdg.portal = {
     enable = true;
