@@ -76,7 +76,7 @@
   #      size = 10000;
   #    };
   #    initExtra = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
-%F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}>%F{white} \"";
+#%F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}>%F{white} \"";
   #  };
   #};
 
