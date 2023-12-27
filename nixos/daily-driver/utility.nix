@@ -5,7 +5,7 @@
   environment.systemPackages = with pkgs; [
     firefox
     mpv
-    discord
+    unstable.discord
     kitty
     xfce.thunar
     gimp
@@ -21,7 +21,7 @@
 
   services.tailscale.enable = true;
   services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.mullvad-vpn;
+  services.mullvad-vpn.package = pkgs.unstable.mullvad-vpn;
   services.resolved.enable = true;
 
   #virtualisation.libvirtd.enable = true;

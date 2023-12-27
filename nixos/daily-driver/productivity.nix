@@ -3,13 +3,13 @@
   # things that are used to do work in
   # i.e. email client, notes software, compilers/interpreters
   environment.systemPackages = with pkgs; [
-    obsidian
+    unstable.obsidian
     thunderbird
     libreoffice-fresh
     hunspell #libreoffice spellcheck
     hunspellDicts.en_US
-    blender
-    godot_4
+    unstable.blender
+    unstable.godot_4
     texlive.combined.scheme-medium
     zathura
     python3
