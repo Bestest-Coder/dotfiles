@@ -29,7 +29,10 @@
     in {
       nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
         inherit system;
-        modules = [./configuration.nix] ++ overlayedPkgs ++ home-manager-config (import ./daily-driver/home.nix);
+        modules = [
+          ./configuration.nix
+          ./daily-driver/daily-driver.nix
+        ] ++ overlayedPkgs ++ home-manager-config (import ./daily-driver/home.nix);
 
       };
     };
