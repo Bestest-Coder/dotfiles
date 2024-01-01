@@ -1,6 +1,6 @@
 {
   imports = [
-    /etc/nixos/hardware-configuration
+    /etc/nixos/hardware-configuration.nix
     ../../daily-driver/daily-driver.nix
   ];
 

@@ -20,7 +20,7 @@
       };
       common-modules = [
         ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })
-        ./common-configuration.nix
+        ./configuration.nix
       ];
       home-manager-config = toplevel: [
         home-manager.nixosModules.home-manager
