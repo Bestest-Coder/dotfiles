@@ -6,14 +6,14 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      /etc/nixos/hardware-configuration.nix
+      #/etc/nixos/hardware-configuration.nix
     ];
 
   nixpkgs.config.allowUnfree = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;
-  boot.loader.grub.devices = ["/dev/vda"];
+  #boot.loader.grub.devices = ["/dev/vda"];
   boot.loader.grub.useOSProber = true;
 
   #networking.hostName = "nixos"; # Define your hostname.

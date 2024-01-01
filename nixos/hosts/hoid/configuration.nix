@@ -2,6 +2,7 @@
   imports = [
     /etc/nixos/hardware-configuration.nix
     ../../daily-driver/daily-driver.nix
+    ../../configuration.nix
   ];
 
   networking.hostName = "hoid";
