@@ -18,7 +18,10 @@
           config.allowUnfree = true;
         };
       };
-      overlayedPkgs = [({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })];
+      common-modules = [
+        ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })
+        ./common-configuration.nix
+      ];
       home-manager-config = toplevel: [
         home-manager.nixosModules.home-manager
         {
@@ -26,13 +29,13 @@
           home-manager.useUserPackages = true;
           home-manager.users.bestest = toplevel;
         }
+      ];
     in {
-      nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.hoid = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./configuration.nix
-          ./daily-driver/daily-driver.nix
-        ] ++ overlayedPkgs ++ home-manager-config (import ./daily-driver/home.nix);
+          ./hosts/hoid/configuration.nix
+        ] ++ common-modules ++ home-manager-config (import ./hosts/hoid/home.nix);
 
       };
     };

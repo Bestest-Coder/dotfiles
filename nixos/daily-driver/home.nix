@@ -8,7 +8,8 @@
     programs.zsh = {
       enable = true;
       shellAliases = {
-        update = "sudo nixos-rebuild switch";
+        update-s = "sudo nixos-rebuild switch";
+        update-b = "sudo nixos-rebuild boot";
       };
       history = {
         size = 10000;
