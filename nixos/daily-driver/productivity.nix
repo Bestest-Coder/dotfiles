@@ -3,7 +3,7 @@
   # things that are used to do work in
   # i.e. email client, notes software, compilers/interpreters
   environment.systemPackages = with pkgs; [
-    unstable.obsidian
+    #unstable.obsidian
     thunderbird
     libreoffice-fresh
     hunspell #libreoffice spellcheck
@@ -18,7 +18,7 @@
     libsForQt5.kdenlive
   ];
 
-  pkgs.config.permittedInsecurePackages = [
+  nixpkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
 }
