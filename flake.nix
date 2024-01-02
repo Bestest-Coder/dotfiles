@@ -33,8 +33,8 @@
       nixosConfigurations.hoid = nixpkgs.lib.nixosSystem {
         inherit system;
         modules = [
-          ./hosts/hoid/configuration.nix
-        ] ++ common-modules ++ home-manager-config (import ./hosts/hoid/home.nix);
+          ./nixos/hosts/hoid/configuration.nix
+        ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/hoid/home.nix);
 
       };
     };
