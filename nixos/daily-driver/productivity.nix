@@ -18,7 +18,7 @@
     libsForQt5.kdenlive
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
+  pkgs.config.permittedInsecurePackages = [
     "electron-25.9.0"
   ];
 }
