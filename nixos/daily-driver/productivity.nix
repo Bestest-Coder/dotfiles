@@ -16,6 +16,8 @@
     scons
     qalculate-gtk
     libsForQt5.kdenlive
+
+    nodejs_21
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
