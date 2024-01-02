@@ -42,6 +42,6 @@
         categories = ["Game"];
         mimeType = ["x-scheme-handler/steam" "x-scheme-handler/steamlink"];
       };
+    };
   };
-
 }
