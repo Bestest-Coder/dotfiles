@@ -1,2 +1,3 @@
 #!/bin/sh
-sudo ln -sf $(dirname $(realpath "$0"))/flake.nix /etc/nixos/flake.nix
+sudo mv /etc/nixos /etc/nixos.bak
+sudo ln -sf $(dirname $(realpath "$0"))/../ /etc/nixos/
