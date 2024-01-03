@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{config, lib, pkgs, ... }:
+{config, lib, pkgs, self, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -67,7 +67,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = inputs.self.outPath;
+    flake = self.outPath;
     flags = [
       "--update-input"
       "nixpkgs"

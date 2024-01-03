@@ -8,7 +8,7 @@
     };
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, ...}:
+  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, ...}@attrs:
     let
       system = "x86_64-linux";
       # adds pkgs.unstable
@@ -32,6 +32,7 @@
     in {
       nixosConfigurations.hoid = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = attrs;
         modules = [
           ./nixos/hosts/hoid/configuration.nix
         ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/hoid/home.nix);
