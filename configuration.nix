@@ -65,6 +65,26 @@
 
   nix.settings.experimental-features = "nix-command flakes";
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = inputs.self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L"
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
+
+  nix.gc = {
+    automatic = true;
+    dates = "weekly";
+    options = "--delete-older-than-30d";
+  };
+  
+  nix.settings.auto-optimise-store = true;
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
