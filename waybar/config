@@ -10,7 +10,7 @@
     ],
     "modules-left": ["temperature","cpu","memory","network","network#2"],
     "modules-center": ["hyprland/workspaces"],
-    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "keyboard-state", "battery", "clock", "tray"],
+    "modules-right": ["idle_inhibitor", "pulseaudio", "backlight", "battery", "clock", "tray"],
 },
 {
     "layer": "top",
