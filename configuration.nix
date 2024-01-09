@@ -61,22 +61,20 @@
     btop
   ];
 
-  programs.zsh.enable = true;
   users.defaultUserShell = pkgs.zsh;
+  programs.zsh = {
+    enable = true;
+    shellAliases = {
+      update-s = "sudo nixos-rebuild switch";
+      update-b = "sudo nixos-rebuild boot";
+    };
+    histSize = 10000;
+    histFile = "$HOME/.histfile";
+    initExtra = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
+%F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}>%F{white} \"";
+  };
 
   nix.settings.experimental-features = "nix-command flakes";
-
-  system.autoUpgrade = {
-    enable = true;
-    flake = self.outPath;
-    flags = [
-      "--update-input"
-      "nixpkgs"
-      "-L"
-    ];
-    dates = "02:00";
-    randomizedDelaySec = "45min";
-  };
 
   nix.gc = {
     automatic = true;

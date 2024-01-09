@@ -9,4 +9,15 @@
     ./desktop.nix
   ];
 
+  system.autoUpgrade = {
+    enable = true;
+    flake = self.outPath;
+    flags = [
+      "--update-input"
+      "nixpkgs"
+      "-L"
+    ];
+    dates = "02:00";
+    randomizedDelaySec = "45min";
+  };
 }
