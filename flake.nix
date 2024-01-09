@@ -46,17 +46,17 @@
           inherit system;
           specialArgs = attrs;
           modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image.nix"
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-riscv64-qemu.nix"
             ({nixpkgs, ...}:
             {
               nixpkgs.config.allowUnsupportedSystem = true;
               nixpkgs.hostPlatform.system = "riscv64-linux";
               nixpkgs.buildPlatform.system = system;
-              nixpkgs.crossSystem = {
-                system = "riscv64-linux";
-                #libc = "musl";
-                #config = "riscv64-unknown-linux-musl";
-              };
+              #nixpkgs.crossSystem = {
+              #  system = "riscv64-linux";
+              #  libc = "musl";
+              #  config = "riscv64-unknown-linux-musl";
+              #};
             })
             ./nixos/hosts/ien/configuration.nix
             nixos-hardware.nixosModules.raspberry-pi-4

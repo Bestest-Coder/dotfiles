@@ -7,6 +7,8 @@
 
   networking.hostName = "hoid";
 
+  boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda"; #change when get actual device
+  boot.loader.grub.useOSProber = true;
   #boot.loader.grub.devices = ["/dev/vda"];
 }
