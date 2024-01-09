@@ -70,7 +70,7 @@
     };
     histSize = 10000;
     histFile = "$HOME/.histfile";
-    initExtra = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
+    promptInit = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
 %F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}>%F{white} \"";
   };
 
