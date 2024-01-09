@@ -2,14 +2,14 @@
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-23.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
       url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware ...}@attrs:
+  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ...}@attrs:
     let
       system = "x86_64-linux";
       # adds pkgs.unstable
@@ -30,7 +30,7 @@
           home-manager.users.bestest = toplevel;
         }
       ];
-    in {
+    in rec {
       nixosConfigurations = {
         # framework 16 system
         hoid = nixpkgs.lib.nixosSystem {
@@ -40,21 +40,24 @@
             ./nixos/hosts/hoid/configuration.nix
           ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/hoid/home.nix);
         };
+
         # uconsole system
         ien = nixpkgs.lib.nixosSystem {
           inherit system;
-          nixpkgs.crossSystem = {
-            system = "riscv64-linux";
-            #libc = "musl";
-            #config = "riscv64-unknown-linux-musl";
-          };
+          specialArgs = attrs;
           modules = [
             "${nixpkgs}/nixos/modules/installer/sd-card/sd-image.nix"
+            ({nixpkgs, ...}:
             {
               nixpkgs.config.allowUnsupportedSystem = true;
               nixpkgs.hostPlatform.system = "riscv64-linux";
               nixpkgs.buildPlatform.system = system;
-            }
+              nixpkgs.crossSystem = {
+                system = "riscv64-linux";
+                #libc = "musl";
+                #config = "riscv64-unknown-linux-musl";
+              };
+            })
             ./nixos/hosts/ien/configuration.nix
             nixos-hardware.nixosModules.raspberry-pi-4
           ];
