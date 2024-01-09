@@ -56,6 +56,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     neovim
+    unixtools.xxd # adds xdd to neovim (not included by default)
     git
     btop
   ];
