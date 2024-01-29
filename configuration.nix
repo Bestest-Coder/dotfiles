@@ -55,11 +55,18 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    neovim
+    #neovim
     unixtools.xxd # adds xdd to neovim (not included by default)
     git
     btop
   ];
+
+  programs.neovim = {
+    enable = true;
+    defaultEditor = true;
+    vimAlias = true;
+    viAlias = true;
+  };
 
   users.defaultUserShell = pkgs.zsh;
   programs.zsh = {
