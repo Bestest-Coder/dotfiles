@@ -43,6 +43,16 @@
 
         # uconsole system
         ien = nixpkgs.lib.nixosSystem {
+          system = "riscv64-linux";
+          specialArgs = attrs;
+          modules = [
+            #"${nixpkgs}/nixos/modules/installer/sd-card/sd-image-riscv64-qemu.nix"
+            ./nixos/hosts/ien/configuration.nix
+            #nixos-hardware.nixosModules.raspberry-pi-4
+          ];
+        };
+        # ien image with the modules to cross-compile an sd image
+        ienCross = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = attrs;
           modules = [
@@ -52,19 +62,14 @@
               nixpkgs.config.allowUnsupportedSystem = true;
               nixpkgs.hostPlatform.system = "riscv64-linux";
               nixpkgs.buildPlatform.system = system;
-              #nixpkgs.crossSystem = {
-              #  system = "riscv64-linux";
-              #  libc = "musl";
-              #  config = "riscv64-unknown-linux-musl";
-              #};
             })
             ./nixos/hosts/ien/configuration.nix
-            nixos-hardware.nixosModules.raspberry-pi-4
+            #nixos-hardware.nixosModules.raspberry-pi-4
           ];
         };
       };
       # build ien sd card image with
       # nix build .#images.ien
-      images.ien = nixosConfigurations.ien.config.system.build.sdImage;
+      images.ien = nixosConfigurations.ienCross.config.system.build.sdImage;
     };
 }
