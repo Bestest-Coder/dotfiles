@@ -26,7 +26,17 @@ in
 
   nixpkgs.overlays = [overlay-atomicfixes];
 
+  services.dbus.implementation = "broker";
+
+  documentation = {
+    info.enable = false;
+    dev.enable = false;
+    nixos.enable = false;
+  };
+
   programs.neovim.withRuby = pkgs.lib.mkOverride 0 false;
+  programs.neovim.enable = pkgs.lib.mkOverride 0 false;
+  programs.vim.defaultEditor = true;
 
   networking.hostName = "ien";
 
@@ -34,6 +44,7 @@ in
 
   environment.systemPackages = with pkgs; [
     tmux
+    fbterm
     #vitetris
   ];
 }

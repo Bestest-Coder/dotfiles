@@ -48,7 +48,7 @@
           modules = [
             #"${nixpkgs}/nixos/modules/installer/sd-card/sd-image-riscv64-qemu.nix"
             ./nixos/hosts/ien/configuration.nix
-            #nixos-hardware.nixosModules.raspberry-pi-4
+            nixos-hardware.nixosModules.raspberry-pi-4
           ];
         };
         # ien image with the modules to cross-compile an sd image
@@ -56,7 +56,7 @@
           inherit system;
           specialArgs = attrs;
           modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-riscv64-qemu.nix"
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image.nix"
             ({nixpkgs, ...}:
             {
               nixpkgs.config.allowUnsupportedSystem = true;
@@ -64,6 +64,7 @@
               nixpkgs.buildPlatform.system = system;
             })
             ./nixos/hosts/ien/configuration.nix
+            ./nixos/hosts/ien/sd-image.nix
             #nixos-hardware.nixosModules.raspberry-pi-4
           ];
         };
