@@ -20,4 +20,17 @@
     dates = "02:00";
     randomizedDelaySec = "45min";
   };
+
+  services = {
+    flatpak.enable = true;
+    printing = {
+      enable = true;
+      #drivers = [];
+    };
+    avahi = {
+      enable = true;
+      nssmdns = true;
+      openFirewall = true;
+    };
+  };
 }

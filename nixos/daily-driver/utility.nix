@@ -1,7 +1,7 @@
 {pkgs,...}:
 {
-  # things that are required or effectively required for general use
-  # i.e. terminal, web browser, file browser, cli utils
+  # things that are required or effectively required for (my) general use
+  # i.e. terminal, web browser, file browser, cli utils, configuration
   environment.systemPackages = with pkgs; [
     firefox
     mpv

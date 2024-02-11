@@ -3,19 +3,21 @@
   # everything generally involved with the desktop, or the desktop environment
   # i.e. window manager, task bar, audio systems, etc
   environment.systemPackages = with pkgs; [
+    # window manager (and utils)
     xdg-desktop-portal-hyprland
     #xdg-desktop-portal-gtk
     polkit
     polkit_gnome
     xdg-utils
-    pipewire
     swaylock
     fuzzel
     waybar
     dunst
     hyprpaper
+    # audio (and utils)
     wireplumber
     pavucontrol
+    helvum
   ];
 
   fonts.packages = with pkgs; [
@@ -38,6 +40,7 @@
 
   security.pam.services.swaylock = {};
 
+  security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
     alsa.enable = true;
