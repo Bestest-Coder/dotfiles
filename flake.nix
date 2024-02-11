@@ -22,6 +22,7 @@
       common-modules = [
         ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })
       ];
+      # provides an easy way to import home-manager configs
       home-manager-config = toplevel: [
         home-manager.nixosModules.home-manager
         {
@@ -41,7 +42,7 @@
           ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/hoid/home.nix);
         };
 
-        # uconsole system
+        # R-01 uconsole system
         ien = nixpkgs.lib.nixosSystem {
           system = "riscv64-linux";
           specialArgs = attrs;
@@ -51,7 +52,7 @@
             nixos-hardware.nixosModules.raspberry-pi-4
           ];
         };
-        # ien image with the modules to cross-compile an sd image
+        # ien image with the options to cross-compile an sd image
         ienCross = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = attrs;
@@ -69,7 +70,7 @@
           ];
         };
       };
-      # build ien sd card image with
+      # cross-compile ien sd card image with
       # nix build .#images.ien
       images.ien = nixosConfigurations.ienCross.config.system.build.sdImage;
     };
