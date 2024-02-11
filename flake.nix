@@ -56,7 +56,7 @@
           inherit system;
           specialArgs = attrs;
           modules = [
-            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image.nix"
+            "${nixpkgs}/nixos/modules/installer/sd-card/sd-image-riscv64-qemu.nix"
             ({nixpkgs, ...}:
             {
               nixpkgs.config.allowUnsupportedSystem = true;
@@ -64,7 +64,7 @@
               nixpkgs.buildPlatform.system = system;
             })
             ./nixos/hosts/ien/configuration.nix
-            ./nixos/hosts/ien/sd-image.nix
+            #./nixos/hosts/ien/sd-image.nix
             #nixos-hardware.nixosModules.raspberry-pi-4
           ];
         };

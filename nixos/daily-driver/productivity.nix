@@ -12,12 +12,14 @@
     unstable.godot_4
     texlive.combined.scheme-medium
     zathura
-    python3
-    scons
     qalculate-gtk
     libsForQt5.kdenlive
+    gimp
+    audacity
 
     nodejs_21
+    python3
+    scons
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

@@ -8,8 +8,6 @@
     unstable.discord
     kitty
     xfce.thunar
-    gimp
-    audacity
     curl
     ack
     #virt-manager
