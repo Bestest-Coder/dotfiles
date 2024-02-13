@@ -59,6 +59,7 @@
     unixtools.xxd # adds xdd to neovim (not included by default)
     git
     btop
+    killall
   ];
 
   programs.neovim = {
