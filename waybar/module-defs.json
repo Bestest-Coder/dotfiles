@@ -46,6 +46,7 @@
         },
         "format-alt": "{:%Y-%m-%d}",
         "actions": {
+            "on-click-right": "mode",
             "on-scroll-up": "shift_up",
             "on-scroll-down": "shift_down"
         }
