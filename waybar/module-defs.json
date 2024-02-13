@@ -34,11 +34,13 @@
     },
     "clock": {
         "timezone": "America/New_York",
+        "fomat": "{:%I:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",
             "mode-mon-col": 3,
             "weeks-pos" : "right",
+            "on-scroll" : 1,
             "on-click-right": "mode",
             "format": {
                 "today": "<span color='#ff0066'><b><u>{}</u></b></span>"
