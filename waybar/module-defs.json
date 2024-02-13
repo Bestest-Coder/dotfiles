@@ -45,8 +45,10 @@
             }
         },
         "format-alt": "{:%Y-%m-%d}",
-        "on-scroll-up": "shift_up",
-        "on-scroll-down": "shift_down"
+        "actions": {
+            "on-scroll-up": "shift_up",
+            "on-scroll-down": "shift_down"
+        }
     },
     "cpu": {
         "format": "{usage}% ",
