@@ -35,7 +35,17 @@
     "clock": {
         "timezone": "America/New_York",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-        "format-alt": "{:%Y-%m-%d}"
+        "calendar": {
+            "mode": "month",
+            "mode-mon-col": 3,
+            "weeks-pos" : "right",
+            "on-click-right": "mode",
+            "format": {
+                "today": "<span color='#ff0066'><b><u>{}</u></b></span>"
+        },
+        "format-alt": "{:%Y-%m-%d}",
+        "on-scroll-up": "shift_up",
+        "on-scroll-down": "shift_down"
     },
     "cpu": {
         "format": "{usage}% ",

@@ -1,5 +1,5 @@
 [{
-    "_layer": "top",
+    "layer": "top",
     "position": "bottom",
     "_output": ["eDP-0", "Virtual-1"],
     "height": 30,
