@@ -1,7 +1,7 @@
 {config, pkgs, ...}:
 {
   # everything that is purely for recreation
-  # i.e. games
+  # i.e. games, music, recording, etc
   environment.systemPackages = with pkgs; [
     spotify
     (wrapOBS {
@@ -12,6 +12,7 @@
         obs-vkcapture
       ];
     })
+    protonup-qt
   ];
 
   programs.steam = {
