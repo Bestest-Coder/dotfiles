@@ -42,6 +42,7 @@
             "on-click-right": "mode",
             "format": {
                 "today": "<span color='#ff0066'><b><u>{}</u></b></span>"
+            }
         },
         "format-alt": "{:%Y-%m-%d}",
         "on-scroll-up": "shift_up",
