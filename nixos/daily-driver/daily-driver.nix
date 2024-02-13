@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{self, pkgs, ...}:
 {
   # this is meant to have all the basics of a general use (for me) system
   imports = [
