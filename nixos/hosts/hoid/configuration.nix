@@ -17,4 +17,6 @@
     fwupd.enable = true;
     fprintd.enable = true;
   };
+
+  security.pam.services.swaylock.fprintAuth = true;
 }

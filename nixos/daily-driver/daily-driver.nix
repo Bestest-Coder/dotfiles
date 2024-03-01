@@ -13,8 +13,6 @@
     enable = true;
     flake = self.outPath;
     flags = [
-      "--update-input"
-      "nixpkgs"
       "-L"
     ];
     dates = "02:00";
