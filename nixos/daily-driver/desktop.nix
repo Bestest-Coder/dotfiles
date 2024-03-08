@@ -18,6 +18,7 @@
     wireplumber
     pavucontrol
     helvum
+    easyeffects
   ];
 
   fonts.packages = with pkgs; [
