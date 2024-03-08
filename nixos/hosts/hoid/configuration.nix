@@ -19,4 +19,8 @@
   };
 
   security.pam.services.swaylock.fprintAuth = true;
+
+  environment.systemPackages = [
+    (pkgs.callPackage ../../packages/run-prime {})
+  ]
 }
