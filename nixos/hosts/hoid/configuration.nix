@@ -22,5 +22,5 @@
 
   environment.systemPackages = [
     (pkgs.callPackage ../../packages/run-prime {})
-  ]
+  ];
 }
