@@ -14,6 +14,7 @@
     waybar
     dunst
     hyprpaper
+    brightnessctl
     # audio (and utils)
     wireplumber
     pavucontrol
