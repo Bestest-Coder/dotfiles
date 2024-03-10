@@ -123,15 +123,15 @@
     "hyprland/workspaces": {
         "format": "{name}: {icon}",
         "format-icons": {
-            "1: Misc": "",
-            "2: Work": "",
-            "3: Browser": "",
-            "4: Communication": "",
-            "5: File Manager": "",
-            "6: Gaming": "",
-            "7: Music": "",
-            "8: Notes": "󰎚",
-            "9: Wacky": "󰶬"
+            "1": "",
+            "2": "",
+            "3": "",
+            "4": "",
+            "5": "",
+            "6": "",
+            "7": "",
+            "8": "󰎚",
+            "9": "󰶬"
         }
     }
 }
