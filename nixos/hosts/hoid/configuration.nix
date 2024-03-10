@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [
     ./hardware-configuration.nix
     ../../daily-driver/daily-driver.nix
