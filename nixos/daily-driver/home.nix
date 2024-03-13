@@ -9,10 +9,10 @@
   xdg.configFile."fuzzel".source = ../../fuzzel;
   xdg.configFile."waybar".source = ../../waybar;
 
-  #xdg.configFile."hypr".source = ../../hyprland;
-  imports = [
-    ../../hyprland/hyprland.nix
-  ];
+  xdg.configFile."hypr/hyprland.conf".source = ../../hyprland/hyprland.conf;
+  #imports = [
+  #  ../../hyprland/hyprland.nix
+  #];
 
   xdg.desktopEntries = {
     firefox-private = {
