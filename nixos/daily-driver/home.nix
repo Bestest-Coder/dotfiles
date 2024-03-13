@@ -12,7 +12,7 @@
   #xdg.configFile."hypr".source = ../../hyprland;
   imports = [
     ../../hyprland/hyprland.nix
-  ]
+  ];
 
   xdg.desktopEntries = {
     firefox-private = {
