@@ -6,9 +6,13 @@
 
   xdg.configFile."kitty".recursive = true;
   xdg.configFile."kitty".source = ../../kitty;
-  xdg.configFile."hypr".source = ../../hyprland;
   xdg.configFile."fuzzel".source = ../../fuzzel;
   xdg.configFile."waybar".source = ../../waybar;
+
+  #xdg.configFile."hypr".source = ../../hyprland;
+  imports = [
+    ../../hyprland/hyprland.nix
+  ]
 
   xdg.desktopEntries = {
     firefox-private = {
