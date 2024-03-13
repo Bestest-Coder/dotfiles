@@ -5,7 +5,7 @@
     audio_text = "wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@";
   in  {
     "$mod" = "SUPER";
-    "$wallpaper" = "hyprctl hyprpaper wallpaper ',~/wallpaper.png'"
+    "$wallpaper" = "hyprctl hyprpaper wallpaper ',~/wallpaper.png'";
     monitor = [
       ",preferred,auto,1"
     ];
