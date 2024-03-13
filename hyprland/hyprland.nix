@@ -87,7 +87,7 @@
       "WLR_DRM_DEVICES,/dev/dri/cardo:/dev/dri/card1"
     ];
     input = {
-      kb_options = "caps:escape"
+      kb_options = "caps:escape";
     };
     decoration = {
       blur.enabled = false;
