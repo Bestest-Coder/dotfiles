@@ -98,4 +98,5 @@
       force_default_wallpaper = 0;
     };
     animations.enabled = false;
+  };
 }
