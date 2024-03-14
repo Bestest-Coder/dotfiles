@@ -13,6 +13,7 @@
       ];
     })
     protonup-qt
+    prismlauncher
   ];
 
   programs.steam = {
