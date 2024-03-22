@@ -75,6 +75,7 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
+        "_full-at": 99,
         "states": {
             "good": 95,
             "warning": 30,
