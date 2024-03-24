@@ -15,6 +15,8 @@
     flameshot # screenshot tool
     piper # mouse config
     bitwarden
+    powertop
+    ripgrep
   ];
 
   services.tailscale.enable = true;

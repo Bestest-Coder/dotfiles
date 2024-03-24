@@ -30,5 +30,6 @@
       nssmdns = true;
       openFirewall = true;
     };
+    xserver.libinput.touchpad.accelProfile = "flat";
   };
 }
