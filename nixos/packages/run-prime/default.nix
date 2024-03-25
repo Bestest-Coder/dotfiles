@@ -3,4 +3,4 @@
 , ...
 }:
 
-pkgs.writeShellScriptBin "prime-run" "DRI_PRIME=0 $@"
+pkgs.writeShellScriptBin "prime-run" "DRI_PRIME=1 $@"

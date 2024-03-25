@@ -8,8 +8,10 @@
   xdg.configFile."kitty".source = ../../kitty;
   xdg.configFile."fuzzel".source = ../../fuzzel;
   xdg.configFile."waybar".source = ../../waybar;
+  xdg.configFile."dunst".source = ../../dunst;
 
-  xdg.configFile."hypr/hyprland.conf".source = ../../hyprland/hyprland.conf;
+  xdg.configFile."hypr".recursive = true;
+  xdg.configFile."hypr".source = ../../hyprland;
   #imports = [
   #  ../../hyprland/hyprland.nix
   #];
@@ -25,10 +27,10 @@
       mimeType = ["text/html" "text/xml"];
     };
     steam-prime = {
-      name = "steam on prime";
+      name = "Steam on prime";
       genericName = "Application";
       icon = "steam";
-      exec = "DRI_PRIME=1 steam"; # assuming that the 2nd GPU is the better one to offload to
+      exec = "prime-run steam -cef-disable-gpu %U"; # assuming that the 2nd GPU is the better one to offload to
       terminal = false;
       categories = ["Game"];
       mimeType = ["x-scheme-handler/steam" "x-scheme-handler/steamlink"];

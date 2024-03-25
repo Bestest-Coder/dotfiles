@@ -34,7 +34,7 @@
     },
     "clock": {
         "timezone": "America/New_York",
-        "fomat": "{:%I:%M}",
+        "format": "{:%H:%M:%S, %a-%b-%d}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",
@@ -81,7 +81,7 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon}",
+        "format": "{capacity}% {icon} ⠿ {timeTo}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
         "format-alt": "{time} {icon}",

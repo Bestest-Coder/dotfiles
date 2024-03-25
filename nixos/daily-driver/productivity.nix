@@ -10,7 +10,7 @@
     hunspellDicts.en_US
     unstable.blender
     unstable.godot_4
-    texlive.combined.scheme-medium
+    texlive.combined.scheme-full
     zathura
     qalculate-gtk
     libsForQt5.kdenlive

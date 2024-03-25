@@ -30,5 +30,6 @@
   environment.systemPackages = with pkgs; [
     (callPackage ../../packages/run-prime {})
     nvtop-amd
+    glxinfo
   ];
 }

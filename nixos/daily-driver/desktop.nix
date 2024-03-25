@@ -15,6 +15,7 @@
     dunst
     hyprpaper
     brightnessctl
+    networkmanagerapplet
     # audio (and utils)
     wireplumber
     pavucontrol
@@ -48,5 +49,11 @@
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
+  };
+  
+  qt = {
+    enable = true;
+    platformTheme = "qt5ct";
+    #style = "breeze";
   };
 }

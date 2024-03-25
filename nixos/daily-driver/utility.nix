@@ -7,7 +7,6 @@
     mpv
     unstable.discord
     kitty
-    xfce.thunar
     curl
     ack
     #virt-manager
@@ -17,12 +16,27 @@
     bitwarden
     powertop
     ripgrep
+    wev
+    p7zip
+    libsForQt5.dolphin
+    libsForQt5.qt5ct
   ];
 
-  services.tailscale.enable = true;
-  services.mullvad-vpn.enable = true;
-  services.mullvad-vpn.package = pkgs.unstable.mullvad-vpn;
-  services.resolved.enable = true;
+  services = {
+    tailscale.enable = true;
+    mullvad-vpn.enable = true;
+    mullvad-vpn.package = pkgs.unstable.mullvad-vpn;
+    resolved.enable = true;
+    ratbagd.enable = true;
+  };
+
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
 
   #virtualisation.libvirtd.enable = true;
   #programs.dconf.enable = true;
