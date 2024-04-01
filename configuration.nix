@@ -75,6 +75,7 @@
     shellAliases = {
       update-s = "sudo nixos-rebuild switch";
       update-b = "sudo nixos-rebuild boot";
+      waybar-restart = "killall -9 .waybar-wrapped; waybar &!";
     };
     histSize = 10000;
     histFile = "$HOME/.histfile";

@@ -12,14 +12,19 @@
     #virt-manager
     playerctl
     flameshot # screenshot tool
+    grim
+    slurp
+    wl-clipboard
     piper # mouse config
     bitwarden
     powertop
     ripgrep
     wev
     p7zip
-    libsForQt5.dolphin
-    libsForQt5.qt5ct
+    #libsForQt5.dolphin
+    #libsForQt5.qt5ct
+    wineWowPackages.wayland
+    winetricks
   ];
 
   services = {
@@ -28,6 +33,8 @@
     mullvad-vpn.package = pkgs.unstable.mullvad-vpn;
     resolved.enable = true;
     ratbagd.enable = true;
+    gvfs.enable = true;
+    tumbler.enable = true;
   };
 
   programs.thunar = {
@@ -37,6 +44,7 @@
       thunar-volman
     ];
   };
+  programs.file-roller.enable = true;
 
   #virtualisation.libvirtd.enable = true;
   #programs.dconf.enable = true;

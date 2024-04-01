@@ -14,6 +14,13 @@
     })
     protonup-qt
     prismlauncher
+    (retroarch.override {
+      cores = with libretro; [
+        snes9x
+        beetle-psx
+        beetle-psx-hw
+      ];
+    })
   ];
 
   programs.steam = {

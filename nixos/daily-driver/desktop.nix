@@ -11,7 +11,7 @@
     xdg-utils
     swaylock
     fuzzel
-    waybar
+    unstable.waybar
     dunst
     hyprpaper
     brightnessctl
@@ -24,12 +24,14 @@
   ];
 
   fonts.packages = with pkgs; [
+    font-awesome
     (nerdfonts.override { fonts = ["Terminus"]; })
   ];
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
+    #package = pkgs.unstable.hyprland;
   };
 
   xdg.portal = {
@@ -56,4 +58,5 @@
     platformTheme = "qt5ct";
     #style = "breeze";
   };
+  
 }

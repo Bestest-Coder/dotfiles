@@ -30,10 +30,17 @@
       name = "Steam on prime";
       genericName = "Application";
       icon = "steam";
-      exec = "prime-run steam -cef-disable-gpu %U"; # assuming that the 2nd GPU is the better one to offload to
+      exec = "prime-run steam -cef-disable-gpu %U";
       terminal = false;
       categories = ["Game"];
       mimeType = ["x-scheme-handler/steam" "x-scheme-handler/steamlink"];
     };
   };
+
+  #dconf.settings = {
+  #  "org/gnome/desktop/interface" = {
+  #    gtk-theme = "Adwaita:dark";
+  #    icon-theme = "Adwaita:dark";
+  #  };
+  #};
 }

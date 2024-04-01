@@ -34,7 +34,7 @@
     },
     "clock": {
         "timezone": "America/New_York",
-        "format": "{:%H:%M:%S, %a-%b-%d}",
+        "format": "{:%I:%M, %a-%b-%d}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
         "calendar": {
             "mode": "month",
@@ -72,7 +72,8 @@
     "backlight": {
         "_device": "acpi_video1",
         "format": "{percent}% {icon}",
-        "format-icons": ["", "", "", "", "", "", "", "", ""]
+        "format-icons": ["", "", "", "", "", "", "", "", ""],
+        "scroll-step": 5.0
     },
     "battery": {
         "_full-at": 99,
@@ -81,10 +82,9 @@
             "warning": 30,
             "critical": 15
         },
-        "format": "{capacity}% {icon} ⠿ {timeTo}",
-        "format-charging": "{capacity}% ",
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% 󰂄",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
         "_format-good": "",
         "_format-full": "",
         "format-icons": ["", "", "", "", ""]
@@ -118,7 +118,8 @@
             "car": "",
             "default": ["", "", ""]
         },
-        "on-click": "pavucontrol"
+        "on-click": "pavucontrol",
+        "scroll-step": 5.0
     },
 
     "hyprland/workspaces": {
@@ -134,5 +135,24 @@
             "8": "󰎚",
             "9": "󰶬"
         }
+    },
+
+    "power-profiles-daemon": {
+        "format": "{profile}",
+        "tooltip": true,
+        "_format-icons": {
+            "performance": "󰓅",
+            "balanced": "",
+            "power-saver": "󰐧"
+        }
+    },
+
+    "privacy": {
+        "_modules": [
+            {
+                "type": "screenshare",
+                "tooltip": "true"
+            }
+        ]
     }
 }

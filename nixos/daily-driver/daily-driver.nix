@@ -30,6 +30,9 @@
       nssmdns = true;
       openFirewall = true;
     };
-    xserver.libinput.touchpad.accelProfile = "flat";
+    xserver.libinput = {
+      touchpad.accelProfile = "flat";
+      touchpad.disableWhileTyping = true;
+    };
   };
 }
