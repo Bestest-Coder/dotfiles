@@ -22,6 +22,19 @@ in {
     usbutils
   ];
 
+  environment.etc = {
+    # makes palm reject/disable touchpad while typing work
+    "libinput/local-overrides.quirks" = {
+      text = ''
+        [Framework Laptop 16 Keyboard Module]
+        MatchName=Framework Laptop 16 Keyboard Module*
+        MatchUdevType=keyboard
+        MatchDMIModalias=dmi:*svnFramework:pnLaptop16*
+        AttrKeyboardIntegration=internal
+      '';
+    };
+  };
+
   boot.initrd.kernelModules = ["amdgpu"];
 
   #boot.kernelPackages = pkgs.linuxPackages_6_7;
@@ -58,14 +71,9 @@ in {
 
   security.pam.services.swaylock.fprintAuth = true;
 
-    nixpkgs.overlays = [
-    (final: prev: {
-      steam = prev.steam.override ({ extraLibraries ? pkgs': [], ... }: {
-        extraLibraries = pkgs': (extraLibraries pkgs') ++ ( [
-          pkgs'.gperftools
-        ]);
-      });
-    })
-  ];
-
+  programs.steam.package = pkgs.steam.override ({ extraLibraries ? pkgs': [], ... }: {
+    extraLibraries = pkgs': (extraLibraries pkgs') ++ ( [
+      pkgs'.gperftools
+    ]);
+  });
 }

@@ -21,6 +21,7 @@
     pavucontrol
     helvum
     easyeffects
+    libinput
   ];
 
   fonts.packages = with pkgs; [
