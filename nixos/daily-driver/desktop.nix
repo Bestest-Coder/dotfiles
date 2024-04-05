@@ -13,6 +13,7 @@
     fuzzel
     unstable.waybar
     dunst
+    libnotify
     hyprpaper
     brightnessctl
     networkmanagerapplet
