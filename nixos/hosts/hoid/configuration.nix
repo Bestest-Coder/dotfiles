@@ -20,6 +20,10 @@ in {
     yt-dlp
     jstest-gtk
     usbutils
+    ungoogled-chromium
+    alsa-oss
+    dmidecode
+    #unstable.fontmatrix
   ];
 
   environment.etc = {
@@ -37,7 +41,7 @@ in {
 
   boot.initrd.kernelModules = ["amdgpu"];
 
-  #boot.kernelPackages = pkgs.linuxPackages_6_7;
+  boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
 
   boot.loader.systemd-boot.enable = true;
   #boot.loader.grub.enable = true;

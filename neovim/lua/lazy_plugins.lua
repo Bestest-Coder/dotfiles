@@ -191,6 +191,11 @@ highlight indentHighlight6 guifg=#c768dd
             ]])
         end
     },
+    { "startup-nvim/startup.nvim",
+        config = function()
+            require("startup").setup(require("startup_nvim")
+        end
+    }
 })
 
 --

@@ -76,7 +76,7 @@
         "scroll-step": 5.0
     },
     "battery": {
-        "_full-at": 99,
+        "full-at": 60,
         "states": {
             "good": 95,
             "warning": 30,

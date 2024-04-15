@@ -47,4 +47,6 @@ in
     fbterm
     #vitetris
   ];
+
+  #boot.loader.systemd-boot.enable = true;
 }

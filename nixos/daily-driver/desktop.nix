@@ -27,19 +27,20 @@
 
   fonts.packages = with pkgs; [
     font-awesome
+    liberation_ttf
     (nerdfonts.override { fonts = ["Terminus"]; })
   ];
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    #package = pkgs.unstable.hyprland;
+    package = pkgs.unstable.hyprland;
   };
 
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
-      xdg-desktop-portal-hyprland
+      #xdg-desktop-portal-hyprland
       #xdg-desktop-portal-gtk
     ];
   };

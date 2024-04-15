@@ -5,7 +5,7 @@
   environment.systemPackages = with pkgs; [
     firefox
     mpv
-    unstable.discord
+    discord
     kitty
     curl
     ack
@@ -21,10 +21,13 @@
     ripgrep
     wev
     p7zip
+    dig
+    pv
     #libsForQt5.dolphin
     #libsForQt5.qt5ct
     wineWowPackages.wayland
     winetricks
+    wireguard-tools
   ];
 
   services = {
