@@ -23,6 +23,7 @@
     helvum
     easyeffects
     libinput
+    unstable.hypridle
   ];
 
   fonts.packages = with pkgs; [

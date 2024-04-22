@@ -28,6 +28,7 @@
     wineWowPackages.wayland
     winetricks
     wireguard-tools
+    xfce.xfce4-icon-theme
   ];
 
   services = {

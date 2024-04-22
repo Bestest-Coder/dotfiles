@@ -27,7 +27,7 @@ local settings = {
         open_file_split = "<c-o>",
         open_help = "?",
     },
-    parts = {"section_1"}
+    parts = {"section_1","section_2"}
 }
 
 return settings
