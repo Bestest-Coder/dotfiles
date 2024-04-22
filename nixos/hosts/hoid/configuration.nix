@@ -14,6 +14,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     (callPackage ../../packages/run-prime {})
+    (callPacjage ../../packages/bestestoolscript {})
     nvtop-amd
     glxinfo
     vulkan-tools
