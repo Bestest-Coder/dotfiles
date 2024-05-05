@@ -86,7 +86,7 @@ nnoremap <leader>cd <cmd>CocDiagnostics<CR>
     {'nvim-lua/plenary.nvim'},
 
     {'nvim-telescope/telescope.nvim',
-        config = function() 
+        config = function()
             vim.cmd([[
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
@@ -188,6 +188,7 @@ highlight indentHighlight6 guifg=#c768dd
             vim.cmd([[
                 let g:vimtex_view_enabled = 1
                 let g:vimtex_view_method = 'zathura'
+                let g:vimtex_compiler_latexmk = {'aux_dir' : {_ -> expand("%:t:r") .. "_generated"}}
             ]])
         end
     },
@@ -197,84 +198,3 @@ highlight indentHighlight6 guifg=#c768dd
     --    end
     --}
 })
-
---
--- -- comment setup
--- require('Comment').setup()
---
--- -- configure theme
--- vim.cmd([[colorscheme onedark]])
---
--- -- airline config
--- vim.cmd([[
--- let g:airline#extensions#term#enabled = 1
--- let g:airline#extensions#tabline#ignore_bufadd_pat = "defx|gundo|nerd_tree|startify|tagbar|undotree|vimfilfer"
--- ]])
---
--- -- syntastic config
--- vim.cmd([[
--- let g:syntastic_always_populate_loc_list = 1
--- let g:syntastic_auto_loc_list = 1
--- let g:syntastic_check_on_open = 1
--- let g:syntastic_check_on_wq = 0
--- let g:airline#extensions#syntastic#enabled = 1
--- let g:syntastic_quiet_messages = { "type": "style" }
---
--- let g:airline#extensions#branch#enabled = 1
---
--- let g:airline#extensions#tabline#enabled = 1
--- let g:airline#extensions#tabline#fnamemod = ":t"
---
--- let g:airline_powerline_fonts = 1
---
--- ]])
---
--- -- coc config
--- vim.cmd([[
--- if has('nvim')
---     inoremap <silent><expr> <c-space> coc#refresh()
--- else
--- inoremap <silent><expr> <cr> coc#pum#visible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
--- nnoremap <leader>cd <cmd>CocDiagnostics<CR>
--- ]])
---
--- -- fzf config
--- vim.api.nvim_create_autocmd("FileType", {
---         pattern = {"fzf"},
---         command = "tnoremap <buffer> <Esc> <Esc>"
--- })
---
--- -- blankline config
--- vim.cmd([[
--- highlight indentHighlight1 guifg=#e06c75
--- highlight indentHighlight2 guifg=#e5c07b
--- highlight indentHighlight3 guifg=#98c739
--- highlight indentHighlight4 guifg=#56b6c2
--- highlight indentHighlight5 guifg=#61afef
--- highlight indentHighlight6 guifg=#c768dd
--- let g:indent_blankline_char_highlight_list = ["indentHighlight1", "indentHighlight2", "indentHighlight3",
---             \"indentHighlight4","indentHighlight5","indentHighlight6"]
--- let g:indent_blankline_char = "⇒"
--- let g:indent_blankline_show_current_context = 1
--- let g:indent_blankline_show_current_context_start = 1
--- ]])
---
--- -- telescope config
--- vim.cmd([[
--- nnoremap <leader>ff <cmd>Telescope find_files<cr>
--- nnoremap <leader>fg <cmd>Telescope live_grep<cr>
--- nnoremap <leader>fb <cmd>Telescope buffers<cr>
--- nnoremap <leader>fh <cmd>Telescope help_tags<cr>
--- nnoremap <leader>fm <cmd>Telescope man_pages<cr>
--- nnoremap <leader>ft <cmd>Telescope treesitter<cr>
--- ]])
---
--- -- Neotree config
--- require('neo-tree').setup({
---             \ close_if_last_window = true,
---             \ enable_git_status = true,
---             \ enable_diagnostics = true,
---             \ open_files_do_not_replace_types = { "terminal", "trouble", "qf" },
---             \ sort_case_insensitive = false,
---             \ })
--- autocmd VimEnter * Neotree show

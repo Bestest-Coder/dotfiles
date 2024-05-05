@@ -18,11 +18,11 @@ pkgs.writeShellScriptBin "bestestoolscript" ''
           ;;
 
       "Update - Switch")
-          kitty zsh -c "nixos-rebuild switch; zsh"
+          kitty zsh -c "sudo nixos-rebuild switch; zsh"
           ;;
       
       "Update - Boot")
-          kitty zsh -c "nixos-rebuild boot; zsh"
+          kitty zsh -c "sudo nixos-rebuild boot; zsh"
           ;;
   esac
 ''

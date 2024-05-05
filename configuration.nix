@@ -67,6 +67,7 @@
     defaultEditor = true;
     vimAlias = true;
     viAlias = true;
+    package = pkgs.unstable.neovim-unwrapped;
   };
 
   users.defaultUserShell = pkgs.zsh;

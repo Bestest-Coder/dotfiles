@@ -4,7 +4,7 @@
   # i.e. games, music, recording, etc
   environment.systemPackages = with pkgs; [
     spotify
-    (wrapOBS {
+    (unstable.wrapOBS {
       plugins = with obs-studio-plugins; [
         wlrobs
         obs-backgroundremoval

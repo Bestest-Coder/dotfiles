@@ -29,6 +29,8 @@
     winetricks
     wireguard-tools
     xfce.xfce4-icon-theme
+    gcc
+    fzf
   ];
 
   services = {
