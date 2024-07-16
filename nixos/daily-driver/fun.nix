@@ -10,6 +10,8 @@
         obs-backgroundremoval
         obs-pipewire-audio-capture
         obs-vkcapture
+        input-overlay
+        obs-scale-to-sound
       ];
     })
     protonup-qt
@@ -24,6 +26,9 @@
       ];
     })
     openttd
+    lutris
+    r2modman
+    ani-cli
   ];
 
   programs.steam = {

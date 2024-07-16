@@ -9,6 +9,10 @@
     ./desktop.nix
   ];
 
+  environment.systemPackages = with pkgs; [
+    appimage-run
+  ];
+
   system.autoUpgrade = {
     enable = true;
     flake = self.outPath;
@@ -27,10 +31,10 @@
     };
     avahi = {
       enable = true;
-      nssmdns = true;
+      nssmdns4 = true;
       openFirewall = true;
     };
-    xserver.libinput = {
+    libinput = {
       touchpad.accelProfile = "flat";
       touchpad.disableWhileTyping = true;
     };

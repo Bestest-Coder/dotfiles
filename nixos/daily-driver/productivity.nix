@@ -17,7 +17,7 @@
     gimp
     audacity
 
-    nodejs_21
+    nodejs_22
     python3
     scons
   ];

@@ -16,7 +16,7 @@ in {
     (callPackage ../../packages/run-prime {})
     (callPackage ../../packages/bestestoolscript {})
     (callPackage ../../packages/bestestscreenshot {})
-    nvtop-amd
+    nvtopPackages.amd
     glxinfo
     vulkan-tools
     yt-dlp
@@ -26,6 +26,7 @@ in {
     alsa-oss
     dmidecode
     #unstable.fontmatrix
+    #teams
   ];
 
   environment.etc = {
