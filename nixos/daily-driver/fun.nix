@@ -29,6 +29,8 @@
     lutris
     r2modman
     ani-cli
+    nethack
+    calibre
   ];
 
   programs.steam = {

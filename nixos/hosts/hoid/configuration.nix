@@ -16,6 +16,7 @@ in {
     (callPackage ../../packages/run-prime {})
     (callPackage ../../packages/bestestoolscript {})
     (callPackage ../../packages/bestestscreenshot {})
+    (callPackage ../../packages/citymania {})
     nvtopPackages.amd
     glxinfo
     vulkan-tools
