@@ -25,7 +25,7 @@
         beetle-psx-hw
       ];
     })
-    openttd
+    #openttd - replaced with citymania from custom package at packages/citymania
     lutris
     r2modman
     ani-cli

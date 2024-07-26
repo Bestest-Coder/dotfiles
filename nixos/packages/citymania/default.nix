@@ -36,8 +36,9 @@ stdenv.mkDerivation rec {
 
   src = fetchzip {
     #url = "https://cdn.openttd.org/openttd-releases/${version}/${pname}-${version}-source.tar.xz";
-    url = "https://github.com/citymania-org/cmclient/archive/refs/tags/${version}.tar.gz";
     #hash = "sha256-YT4IE/rJ9pnpeMWKbOra6AbSUwW19RwOKlXkxwoMeKY=";
+    url = "https://github.com/citymania-org/cmclient/archive/refs/tags/${version}.tar.gz";
+    hash = "sha256-sOS7DlVkZPQsKuIyFRszIh407tOqmZ1nmOwFoMEsrZw=";
   };
 
   nativeBuildInputs = [ cmake pkg-config makeWrapper ];
