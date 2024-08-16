@@ -31,6 +31,8 @@
     xfce.xfce4-icon-theme
     gcc
     fzf
+    qdirstat
+    wev
   ];
 
   services = {

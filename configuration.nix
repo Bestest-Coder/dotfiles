@@ -60,6 +60,8 @@
     git
     btop
     killall
+    findutils
+    findutils.locate
   ];
 
   programs.neovim = {

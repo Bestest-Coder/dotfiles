@@ -9,7 +9,8 @@
     hunspell #libreoffice spellcheck
     hunspellDicts.en_US
     unstable.blender
-    unstable.godot_4
+    #unstable.godot_4
+    (callPackage ../packages/godot4-mono {})
     texlive.combined.scheme-full
     zathura
     qalculate-gtk
