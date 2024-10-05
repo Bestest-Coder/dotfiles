@@ -45,6 +45,7 @@ let g:airline_powerline_fonts = 1
     },
 
     {'neoclide/coc.nvim',
+        enabled = false,
         branch = 'release',
         config = function()
             vim.cmd([[
@@ -192,9 +193,7 @@ highlight indentHighlight6 guifg=#c768dd
             ]])
         end
     },
-    --{ "startup-nvim/startup.nvim",
-    --    config = function()
-    --        require("startup").setup(require("startup_nvim"))
-    --    end
-    --}
+    {
+        "3rd/image.nvim"
+    }
 })

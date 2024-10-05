@@ -7,9 +7,10 @@
       url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland-pkg.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ...}@attrs:
+  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, hyprland-pkg, ...}@attrs:
     let
       system = "x86_64-linux";
       # adds pkgs.unstable
@@ -18,9 +19,15 @@
           inherit system;
           config.allowUnfree = true;
         };
+        hyprland = final.unstable.hyprland;
+        xdg-desktop-portal-hyprland = final.unstable.xdg-desktop-portal-hyprland;
+      };
+      overlay-hyprland = final: prev: {
+        hyprland_latest = hyprland-pkg.packages."x86_64-linux".hyprland;
+        hyprland_portal_latest = hyprland-pkg.packages."x86_64-linux".xdg-desktop-portal-hyprland;
       };
       common-modules = [
-        ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })
+        ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable overlay-hyprland]; })
       ];
       # provides an easy way to import home-manager configs
       home-manager-config = toplevel: [
@@ -39,6 +46,7 @@
           specialArgs = attrs;
           modules = [
             ./nixos/hosts/hoid/configuration.nix
+            nixos-hardware.nixosModules.framework-16-7040-amd
           ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/hoid/home.nix);
         };
 

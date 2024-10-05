@@ -15,7 +15,6 @@
     grim
     slurp
     wl-clipboard
-    piper # mouse config
     bitwarden
     powertop
     ripgrep
@@ -25,7 +24,7 @@
     pv
     #libsForQt5.dolphin
     #libsForQt5.qt5ct
-    wineWowPackages.wayland
+    unstable.wineWowPackages.unstable
     winetricks
     wireguard-tools
     xfce.xfce4-icon-theme
@@ -33,6 +32,7 @@
     fzf
     qdirstat
     wev
+    feh
   ];
 
   services = {
@@ -54,14 +54,15 @@
   };
   programs.file-roller.enable = true;
 
-  #virtualisation.libvirtd.enable = true;
-  #programs.dconf.enable = true;
-  #home-manager.users.bestest = {
-  #  dconf.settings = {
-  #    "org/virt-manager/virt-manager/connections" = {
-  #      autoconnect = ["qemu:///system"];
-  #      uris = ["qemu:///system"];
-  #    };
-  #  };
-  #};
+  # virtualisation.libvirtd.enable = true;
+  # programs.dconf.enable = true;
+  # programs.virt-manager.enable = true;
+  # home-manager.users.bestest = {
+  #   dconf.settings = {
+  #     "org/virt-manager/virt-manager/connections" = {
+  #       autoconnect = ["qemu:///system"];
+  #       uris = ["qemu:///system"];
+  #     };
+  #   };
+  # };
 }

@@ -70,6 +70,7 @@
     vimAlias = true;
     viAlias = true;
     package = pkgs.unstable.neovim-unwrapped;
+    withRuby = false;
   };
 
   users.defaultUserShell = pkgs.zsh;
@@ -94,7 +95,11 @@
     options = "--delete-older-than-30d";
   };
   
-  nix.settings.auto-optimise-store = true;
+  nix.settings = {
+    auto-optimise-store = true;
+    substituters = ["https://hyprland.cachix.org"];
+    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
+  };
 
   # List services that you want to enable:
 
@@ -108,7 +113,7 @@
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  networking.firewall.enable = false;
+  networking.firewall.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

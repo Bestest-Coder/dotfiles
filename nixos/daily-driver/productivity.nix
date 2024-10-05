@@ -9,18 +9,20 @@
     hunspell #libreoffice spellcheck
     hunspellDicts.en_US
     unstable.blender
-    #unstable.godot_4
-    (callPackage ../packages/godot4-mono {})
+    unstable.godot_4
+    #(callPackage ../packages/godot4-mono {})
+    #godot4-mono
     texlive.combined.scheme-full
     zathura
     qalculate-gtk
     libsForQt5.kdenlive
     gimp
     audacity
+    slack
 
-    nodejs_22
-    python3
-    scons
+    nodejs_22 #need for neovim coc :woeisme:
+    #python3
+    #scons
   ];
 
   nixpkgs.config.permittedInsecurePackages = [

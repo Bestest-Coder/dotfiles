@@ -10,8 +10,8 @@
     },
     "mpris": {
         "interval": 15,
-        "format": "{player_icon} {dynamic}",
-        "format-paused": "{status_icon} <i>{dynamic}</i>",
+        "format": "{player_icon} {title} [{position}/{length}]",
+        "format-paused": "{status_icon} {title} [{position}/{length}]",
         "player-icons": {
             "default": "▶",
             "spotify": "",
@@ -105,8 +105,8 @@
         "scroll-step": 1,
         "format": "{volume}% {icon} {format_source}",
         "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
+        "format-bluetooth-muted": " {icon} {format_source}",
+        "format-muted": " {format_source}",
         "format-source": "{volume}% ",
         "format-source-muted": "",
         "format-icons": {

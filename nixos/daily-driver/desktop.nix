@@ -24,6 +24,7 @@
     easyeffects
     libinput
     unstable.hypridle
+    libsForQt5.qt5ct
   ];
 
   fonts.packages = with pkgs; [
@@ -35,7 +36,9 @@
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    package = pkgs.unstable.hyprland;
+    #package = pkgs.unstable.hyprland;
+    #package = pkgs.hyprland_latest;
+    #portalPackage = pkgs.hyprland_portal_latest;
   };
 
   xdg.portal = {

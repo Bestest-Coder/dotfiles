@@ -29,8 +29,8 @@
     lutris
     r2modman
     ani-cli
-    nethack
     calibre
+    unstable.mangohud
   ];
 
   programs.steam = {

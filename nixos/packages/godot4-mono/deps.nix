@@ -1,7 +1,8 @@
 { fetchNuGet }: [
   (fetchNuGet { pname = "EnvDTE"; version = "8.0.2"; sha256 = "1wdvjzdmqbqyqlaijpjc959vvdic12vqr3c5sffhbxi7m1si5k63"; })
   (fetchNuGet { pname = "JetBrains.Annotations"; version = "2019.1.3"; sha256 = "188b0qw6lih0k3ddnmimadzr3y1y6vh6ramgkjnyskqd43prjzc2"; })
-  (fetchNuGet { pname = "JetBrains.Rider.PathLocator"; version = "1.0.4"; sha256 = "1s3jwhc7sxbx0240jfaclnqz28mxp9q8qqwp1fgh9g3vd111kby5"; })
+  (fetchNuGet { pname = "JetBrains.Rider.PathLocator"; version = "1.0.9"; sha256 = "1v6dk3g8lzlcagggspxj3dq2k39wxljkcpry2vsxmqkxkr2m7kpd"; })
+  (fetchNuGet { pname = "Microsoft.AspNetCore.App.Ref"; version = "6.0.30"; sha256 = "17k3l8xd5bsyk69bm5q4nxbpb4i0izw1kzmzi7j3p8pmm9prgrpy"; })
   (fetchNuGet { pname = "Microsoft.Build"; version = "15.1.548"; sha256 = "1aqb5rv71zvx7a49kk83ra5xbsj2mwzfszaabqqa8kxdzhcx7amz"; })
   (fetchNuGet { pname = "Microsoft.Build.Framework"; version = "15.1.548"; sha256 = "1f7p6ry58b70q88frnmiv8wldvir44gxfcgcyj9a7d4zs409fkni"; })
   (fetchNuGet { pname = "Microsoft.Build.Locator"; version = "1.2.6"; sha256 = "1rnfd7wq2bkynqj767xmq9ha38mz010fmqvvvrgb4v86gd537737"; })
@@ -11,6 +12,7 @@
   (fetchNuGet { pname = "Microsoft.CodeAnalysis.Common"; version = "3.8.0"; sha256 = "12n7rvr39bzkf2maw7zplw8rwpxpxss4ich3bb2pw770rx4nyvyw"; })
   (fetchNuGet { pname = "Microsoft.CodeAnalysis.CSharp"; version = "3.10.0"; sha256 = "0plpvimh9drip1fvic3zfg1gmiw3q8xb85nqjqy1hq140p4him6k"; })
   (fetchNuGet { pname = "Microsoft.CodeAnalysis.CSharp"; version = "3.8.0"; sha256 = "1kmry65csvfn72zzc16vj1nfbfwam28wcmlrk3m5rzb8ydbzgylb"; })
+  (fetchNuGet { pname = "Microsoft.NETCore.App.Ref"; version = "6.0.30"; sha256 = "1wqqjhhlqz4dmijcx3kg3hnwq0s0jzqsddaksskzhq8avr4ziy18"; })
   (fetchNuGet { pname = "Microsoft.NETCore.Platforms"; version = "1.0.1"; sha256 = "01al6cfxp68dscl15z7rxfw9zvhm64dncsw09a1vmdkacsa2v6lr"; })
   (fetchNuGet { pname = "Microsoft.NETCore.Platforms"; version = "1.1.0"; sha256 = "08vh1r12g6ykjygq5d3vq09zylgb84l63k49jc4v8faw9g93iqqm"; })
   (fetchNuGet { pname = "Microsoft.NETCore.Platforms"; version = "5.0.0"; sha256 = "0mwpwdflidzgzfx2dlpkvvnkgkr2ayaf0s80737h4wa35gaj11rc"; })

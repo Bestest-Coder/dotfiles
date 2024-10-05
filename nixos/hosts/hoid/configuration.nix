@@ -3,6 +3,27 @@ let
   amdgpu-kernel-module = pkgs.callPackage ./amdgpu-kernel-module.nix {
     kernel = config.boot.kernelPackages.kernel;
   };
+  overridden_piper = pkgs.piper.overrideAttrs (old: rec {
+    version = "0.8";
+    src = pkgs.fetchFromGitHub {
+      owner  = "libratbag";
+      repo   = "piper";
+      rev    =  version;
+      sha256 = "sha256-j58fL6jJAzeagy5/1FmygUhdBm+PAlIkw22Rl/fLff4=";
+    };
+    mesonFlags = [
+      "-Druntime-dependency-checks=false"
+    ];
+  });
+  overridden_ratbag = pkgs.libratbag.overrideAttrs (old: rec {
+    version = "0.18";
+    src = pkgs.fetchFromGitHub {
+      owner  = "libratbag";
+      repo   = "libratbag";
+      rev    = "v${version}";
+      sha256 = "sha256-dAWKDF5hegvKhUZ4JW2J/P9uSs4xNrZLNinhAff6NSc=";
+    };
+  });
 in {
   imports = [
     ./hardware-configuration.nix
@@ -17,6 +38,8 @@ in {
     (callPackage ../../packages/bestestoolscript {})
     (callPackage ../../packages/bestestscreenshot {})
     (callPackage ../../packages/citymania {})
+    (callPackage ../../packages/twad {})
+    (callPackage ../../packages/sm64coopdx {})
     nvtopPackages.amd
     glxinfo
     vulkan-tools
@@ -28,7 +51,19 @@ in {
     dmidecode
     #unstable.fontmatrix
     #teams
+    nethack
+    gzdoom
+    #zandronum
+    #crispy-doom
+    #prboom-plus
+    unstable.ringracers
+    unstable.via
+    overridden_piper
+    #unstable.piper
+    evtest
   ];
+
+  services.ratbagd.package = overridden_ratbag;
 
   environment.etc = {
     # makes palm reject/disable touchpad while typing work
@@ -65,6 +100,9 @@ in {
     power-profiles-daemon.enable = true;
     blueman.enable = true;
   };
+
+  hardware.keyboard.qmk.enable = true;
+  services.udev.packages = [ pkgs.unstable.via ];
 
   hardware.bluetooth.enable = true;
 

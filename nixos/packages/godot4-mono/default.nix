@@ -35,9 +35,9 @@
 , withFontconfig ? true
 , withUdev ? true
 , withTouch ? true
-, dotnet-sdk
+, dotnet-sdk_8
 , mono
-, dotnet-runtime
+, dotnet-runtime_8
 , callPackage
 }:
 
@@ -78,7 +78,7 @@ stdenv.mkDerivation rec {
     owner = "godotengine";
     repo = "godot";
     rev = commitHash;
-    hash = "sha256-Q6Og1H4H2ygOryMPyjm6kzUB6Su6T9mJIp0alNAxvjQ";
+    hash = "sha256-anJgPEeHIW2qIALMfPduBVgbYYyz1PWCmPsZZxS9oHI=";
   };
 
   nativeBuildInputs = [
@@ -87,8 +87,8 @@ stdenv.mkDerivation rec {
     installShellFiles
     python3
     mono
-    dotnet-sdk
-    dotnet-runtime
+    dotnet-sdk_8
+    dotnet-runtime_8
   ];
 
   buildInputs = [
@@ -109,8 +109,8 @@ stdenv.mkDerivation rec {
     libxkbcommon
     alsa-lib
     mono
-    dotnet-sdk
-    dotnet-runtime
+    dotnet-sdk_8
+    dotnet-runtime_8
   ]
   ++ lib.optional withPulseaudio libpulseaudio
   ++ lib.optional withDbus dbus
