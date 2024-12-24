@@ -1,33 +1,34 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.05";
+    nixpkgs.url = "nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland-pkg.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
+    #hyprland-pkg.url = "git+https://github.com/hyprwm/Hyprland?submodules=1#";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, hyprland-pkg, ...}@attrs:
+  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, ...}@attrs:
     let
       system = "x86_64-linux";
       # adds pkgs.unstable
       overlay-unstable = final: prev: {
         unstable = import nixpkgs-unstable {
-          inherit system;
+          system = prev.system;
           config.allowUnfree = true;
         };
-        hyprland = final.unstable.hyprland;
-        xdg-desktop-portal-hyprland = final.unstable.xdg-desktop-portal-hyprland;
+        #hyprland = final.unstable.hyprland;
+        #xdg-desktop-portal-hyprland = final.unstable.xdg-desktop-portal-hyprland;
+        #aquamarine = final.unstable.aquamarine;
       };
-      overlay-hyprland = final: prev: {
-        hyprland_latest = hyprland-pkg.packages."x86_64-linux".hyprland;
-        hyprland_portal_latest = hyprland-pkg.packages."x86_64-linux".xdg-desktop-portal-hyprland;
-      };
+      #overlay-hyprland = final: prev: {
+      #  hyprland_latest = hyprland-pkg.packages."x86_64-linux".hyprland;
+      #  hyprland_portal_latest = hyprland-pkg.packages."x86_64-linux".xdg-desktop-portal-hyprland;
+      #};
       common-modules = [
-        ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable overlay-hyprland]; })
+        ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })
       ];
       # provides an easy way to import home-manager configs
       home-manager-config = toplevel: [

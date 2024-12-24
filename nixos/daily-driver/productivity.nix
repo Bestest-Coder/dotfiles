@@ -8,19 +8,23 @@
     libreoffice-fresh
     hunspell #libreoffice spellcheck
     hunspellDicts.en_US
-    unstable.blender
+    #unstable.blender
+    blender
     unstable.godot_4
     #(callPackage ../packages/godot4-mono {})
     #godot4-mono
-    texlive.combined.scheme-full
+    (texlive.combine { inherit (texlive)
+      scheme-full
+    ;})
     zathura
     qalculate-gtk
-    libsForQt5.kdenlive
+    kdePackages.kdenlive
     gimp
     audacity
     slack
 
     nodejs_22 #need for neovim coc :woeisme:
+    nixd
     #python3
     #scons
   ];

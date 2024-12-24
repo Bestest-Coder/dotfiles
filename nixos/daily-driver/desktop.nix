@@ -20,8 +20,8 @@
     # audio (and utils)
     wireplumber
     pavucontrol
-    helvum
-    easyeffects
+    unstable.helvum
+    unstable.easyeffects
     libinput
     unstable.hypridle
     libsForQt5.qt5ct
@@ -37,16 +37,17 @@
     enable = true;
     xwayland.enable = true;
     #package = pkgs.unstable.hyprland;
+    #portalPackage = pkgs.unstable.xdg-desktop-portal-hyprland;
     #package = pkgs.hyprland_latest;
     #portalPackage = pkgs.hyprland_portal_latest;
   };
 
   xdg.portal = {
     enable = true;
-    extraPortals = with pkgs; [
+    #extraPortals = with pkgs; [
       #xdg-desktop-portal-hyprland
       #xdg-desktop-portal-gtk
-    ];
+    #];
   };
   security.polkit.enable = true;
 
@@ -63,7 +64,7 @@
   qt = {
     enable = true;
     platformTheme = "qt5ct";
-    #style = "breeze";
+    style = "breeze";
   };
   
 }

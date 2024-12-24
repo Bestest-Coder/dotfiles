@@ -144,9 +144,9 @@ return require('packer').startup({function(use)
 --         end
 --     }
 
-    end, config = {
-        ensure_depenencies = true
-    }})
+    --end, config = {
+        --ensure_depenencies = true
+    --}})
 
 --
 -- -- comment setup

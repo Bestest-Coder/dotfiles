@@ -19,7 +19,6 @@
     "include": [
         "~/.config/waybar/module-defs.json",
     ],
-    "modules-left" : ["mpris"],
     "modules-center": ["hyprland/workspaces"],
     "modules-right": ["clock"]
 },

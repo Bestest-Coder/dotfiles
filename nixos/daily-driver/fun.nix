@@ -29,7 +29,7 @@
     lutris
     r2modman
     ani-cli
-    calibre
+    unstable.calibre
     unstable.mangohud
   ];
 
@@ -38,7 +38,6 @@
     remotePlay.openFirewall = true;
     gamescopeSession.enable = true;
   };
-  hardware.opengl.driSupport32Bit = true;
 
   boot.extraModulePackages = with config.boot.kernelPackages; [
     v4l2loopback

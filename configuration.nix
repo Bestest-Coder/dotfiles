@@ -62,6 +62,8 @@
     killall
     findutils
     findutils.locate
+    pciutils
+    file
   ];
 
   programs.neovim = {
@@ -84,8 +86,12 @@
     histSize = 10000;
     histFile = "$HOME/.histfile";
     promptInit = "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
-%F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}>%F{white} \"";
+%F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}$SHLVL>%F{white} \"";
+    shellInit = "export PATH=~/.npm-packages/bin:$PATH;
+    export NODE_PATH=~/.npm-packages/lib/node_modules";
   };
+
+  programs.direnv.enable = true;
 
   nix.settings.experimental-features = "nix-command flakes";
 
@@ -97,7 +103,10 @@
   
   nix.settings = {
     auto-optimise-store = true;
-    substituters = ["https://hyprland.cachix.org"];
+    substituters = [
+      "https://hyprland.cachix.org"
+      "https://cache.nixos.org/"
+    ];
     trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
   };
 

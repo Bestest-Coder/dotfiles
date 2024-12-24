@@ -37,7 +37,7 @@ in {
     (callPackage ../../packages/run-prime {})
     (callPackage ../../packages/bestestoolscript {})
     (callPackage ../../packages/bestestscreenshot {})
-    (callPackage ../../packages/citymania {})
+    #(callPackage ../../packages/citymania {})
     (callPackage ../../packages/twad {})
     (callPackage ../../packages/sm64coopdx {})
     nvtopPackages.amd
@@ -61,6 +61,7 @@ in {
     overridden_piper
     #unstable.piper
     evtest
+    chirp
   ];
 
   services.ratbagd.package = overridden_ratbag;
@@ -81,6 +82,7 @@ in {
   boot.initrd.kernelModules = ["amdgpu"];
 
   boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
+  #boot.kernelPackages = pkgs.unstable.linuxPackages_6_10;
 
   boot.loader.systemd-boot.enable = true;
   #boot.loader.grub.enable = true;
@@ -107,19 +109,27 @@ in {
   hardware.bluetooth.enable = true;
 
   #hardware.opengl = {
-  #  extraPackages = with pkgs; [
-  #    amdvlk
-  #  ];
-  #  extraPackages32 = with pkgs; [
-  #    driversi686Linux.amdvlk
-  #  ];
+  #  enable = true;
+  #  driSupport32Bit = true;
+    #package = pkgs.unstable.mesa.drivers;
+    #package32 = pkgs.unstable.pkgsi686Linux.mesa.drivers;
   #};
+
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    #package = pkgs.lib.mkForce pkgs.unstable.mesa.drivers;
+    #package32 = pkgs.lib.mkForce pkgs.unstable.pkgsi686Linux.mesa.drivers;
+  };
+
+  #system.replaceRuntimeDependencies = [
+  #  ({original = pkgs.mesa; replacement = pkgs.unstable.mesa;})
+  #  ({original = pkgs.mesa.drivers; replacement = pkgs.unstable.mesa.drivers;})
 
   security.pam.services.swaylock.fprintAuth = true;
 
-  programs.steam.package = pkgs.steam.override ({ extraLibraries ? pkgs': [], ... }: {
-    extraLibraries = pkgs': (extraLibraries pkgs') ++ ( [
-      pkgs'.gperftools
-    ]);
-  });
+  swapDevices = [ {
+    device = "/var/lib/swapfile";
+    size = 16*1024;
+  } ];
 }

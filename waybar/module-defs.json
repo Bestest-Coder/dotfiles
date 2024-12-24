@@ -119,7 +119,8 @@
             "default": ["", "", ""]
         },
         "on-click": "pavucontrol",
-        "scroll-step": 5.0
+        "scroll-step": 5.0,
+        "ignored-sinks": ["Easy Effects Sink"]
     },
 
     "hyprland/workspaces": {

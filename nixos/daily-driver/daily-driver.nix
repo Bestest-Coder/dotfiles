@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     appimage-run
+    nix-tree
   ];
 
   system.autoUpgrade = {

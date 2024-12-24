@@ -68,6 +68,72 @@ nnoremap <leader>cd <cmd>CocDiagnostics<CR>
         end
     },
 
+    {'neovim/nvim-lspconfig',
+        -- add ft and autocmd for new lsps
+        --ft = {'py'},
+        dependencies = {
+            'hrsh7th/nvim-cmp'
+        },
+        config = function()
+            home_path = vim.env.HOME
+            vim.env.PATH = home_path .. "/.npm-packages/bin:" .. vim.env.PATH
+            vim.env.NODE_PATH = home_path .."/.npm-packages/lib/node_modules"
+            local capabilities = require'cmp_nvim_lsp'.default_capabilities()
+            require'lspconfig'.pyright.setup{capabilities = capabilities, autostart = false}
+            require'lspconfig'.gdscript.setup{capabilities = capabilities, autostart = false}
+            require'lspconfig'.nixd.setup{capabilities = capabilities, autostart = false}
+            vim.cmd([[
+augroup lspconfig
+    au!
+    autocmd BufNewFile,BufReadPre *.py LspStart pyright
+    autocmd BufNewFile,BufReadPre *.gd,*.gdscript,*.gdscript3 LspStart gdscript
+    autocmd BufNewFile,BufReadPre *.nix,*.flake LspStart nixd
+augroup END
+            ]])
+        end
+    },
+
+    {'hrsh7th/cmp-nvim-lsp'},
+    {'hrsh7th/cmp-buffer'},
+    {'hrsh7th/cmp-path'},
+    {'hrsh7th/cmp-cmdline'},
+    {'hrsh7th/nvim-cmp',
+        dependencies = {
+            'hrsh7th/cmp-nvim-lsp',
+            'hrsh7th/cmp-buffer',
+            'hrsh7th/cmp-path',
+            'hrsh7th/cmp-cmdline',
+            'hrsh7th/nvim-cmp',
+        },
+        config = function()
+            local cmp = require'cmp'
+            cmp.setup({
+                snippet = {
+                    expand = function(args)
+                        vim.snippet.expand(args.body)
+                    end,
+                },
+                window = {
+                    completion = cmp.config.window.bordered(),
+                    documentation = cmp.config.window.bordered(),
+                },
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<C-e>'] = cmp.mapping.abort(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                }),
+                sources = cmp.config.sources({
+                    { name = 'nvim_lsp'},
+                }, {
+                    { name = 'buffer'},
+                })
+            })
+        end
+    },
+
+
     -- use {'sakhnik/nvim-gdb', run = ':!./install.sh}
 
     {'sheerun/vim-polyglot'},
@@ -189,11 +255,22 @@ highlight indentHighlight6 guifg=#c768dd
             vim.cmd([[
                 let g:vimtex_view_enabled = 1
                 let g:vimtex_view_method = 'zathura'
-                let g:vimtex_compiler_latexmk = {'aux_dir' : {_ -> expand("%:t:r") .. "_generated"}}
+                let g:vimtex_compiler_method = "latexmk"
+                let g:vimtex_compiler_latexmk = {
+                    \ 'aux_dir' : {_ -> expand("%:t:r") .. "_generated"},
+                    \ 'options' : [
+                    \   '-verbose',
+                    \   '-file-line-error',
+                    \   '-synctex=1',
+                    \   '-interaction=nonstopmode',
+                    \ ],
+                \}
             ]])
         end
     },
-    {
-        "3rd/image.nvim"
+    { 'hat0uma/csvview.nvim',
+        config = function()
+            require('csvview').setup()
+        end
     }
 })
