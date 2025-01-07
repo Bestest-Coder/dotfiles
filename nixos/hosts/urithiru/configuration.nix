@@ -10,6 +10,8 @@ in {
 
   ];
 
+  networking.hostName = "urithiru";
+
   hardware.nvidia-container-toolkit.enable = true;
   virtualisation.docker.enableNvidia = true; # deprecated but might still be needed
 
