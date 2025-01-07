@@ -62,6 +62,14 @@ in {
     #unstable.piper
     evtest
     chirp
+    #monado
+    (callPackage ../../packages/monado_latest {})
+    xorg.xhost
+  ];
+
+  services.udev.packages = with pkgs; [ 
+    unstable.via
+    xr-hardware
   ];
 
   services.ratbagd.package = overridden_ratbag;
@@ -103,8 +111,8 @@ in {
     blueman.enable = true;
   };
 
+
   hardware.keyboard.qmk.enable = true;
-  services.udev.packages = [ pkgs.unstable.via ];
 
   hardware.bluetooth.enable = true;
 
@@ -132,4 +140,11 @@ in {
     device = "/var/lib/swapfile";
     size = 16*1024;
   } ];
+
+  programs.nix-ld = {
+    enable = true;
+    libraries = with pkgs; [
+      openvr
+    ];
+  };
 }

@@ -1,7 +1,7 @@
 {config, pkgs, ...}:
 {
   # everything that is purely for recreation
-  # i.e. games, music, recording, etc
+  # i.e. games (and associated programs), music, recording, etc
   environment.systemPackages = with pkgs; [
     spotify
     (unstable.wrapOBS {
@@ -31,6 +31,7 @@
     ani-cli
     unstable.calibre
     unstable.mangohud
+    itch
   ];
 
   programs.steam = {

@@ -82,5 +82,12 @@
       # cross-compile ien sd card image with
       # nix build .#images.ien
       images.ien = nixosConfigurations.ienCross.config.system.build.sdImage;
+      urithiru = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = attrs;
+        modules = [
+          ./nixos/hosts/urithiru/configuration.nix
+        ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/urithiru/home.nix);
+      };
     };
 }
