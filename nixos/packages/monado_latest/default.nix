@@ -27,16 +27,16 @@
   libuv,
   libuvc,
   libv4l,
-  libXau,
-  libxcb,
-  libXdmcp,
-  libXext,
-  libXrandr,
+  xorg,
+  # libxcb,
+  # libXdmcp,
+  # libXext,
+  # libXrandr,
   nix-update-script,
   onnxruntime,
   opencv4,
-  openhmd,
   openvr,
+  openhmd,
   orc,
   pcre2,
   pkg-config,
@@ -72,7 +72,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "monado";
     repo = "monado";
     rev = "main";
-    hash = "sha256-cbrB6bPzCXjvmp2GlzA3QV18FDAWd+nF8DnjqHrNSL4=";
+    hash = "sha256-vsi4XwDCp9t61hmW3qERCE0SOvgxt+P5gBe3gxKV5Bo=";
   };
 
   nativeBuildInputs = [
@@ -111,11 +111,11 @@ stdenv.mkDerivation (finalAttrs: {
       libuv
       libuvc
       libv4l
-      libXau
-      libxcb
-      libXdmcp
-      libXext
-      libXrandr
+      xorg.libXau
+      xorg.libxcb
+      xorg.libXdmcp
+      xorg.libXext
+      xorg.libXrandr
       onnxruntime
       opencv4
       openhmd

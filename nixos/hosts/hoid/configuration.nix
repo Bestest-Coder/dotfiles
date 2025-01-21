@@ -24,11 +24,23 @@ let
       sha256 = "sha256-dAWKDF5hegvKhUZ4JW2J/P9uSs4xNrZLNinhAff6NSc=";
     };
   });
+  overridden_sm64coopdx = pkgs.unstable.sm64coopdx.overrideAttrs (old: rec {
+    version = "1.1.1";
+    src = pkgs.fetchFromGitHub {
+      owner  = "coop-deluxe";
+      repo   = "sm64coopdx";
+      rev    = "v${version}";
+      sha256 = "sha256-ktdvzOUYSh6H49BVDovqYt5CGyvJi4UW6nJOOD/HGGU=";
+    };
+  });
+  unstableCallPackage = pkgs.lib.callPackageWith (pkgs.unstable);
+  custom-envision = (unstableCallPackage ../../packages/envision-mesa {});
 in {
   imports = [
     ./hardware-configuration.nix
     ../../daily-driver/daily-driver.nix
     ../../../configuration.nix
+    ./riftcv1.nix
   ];
 
   networking.hostName = "hoid";
@@ -39,7 +51,7 @@ in {
     (callPackage ../../packages/bestestscreenshot {})
     #(callPackage ../../packages/citymania {})
     (callPackage ../../packages/twad {})
-    (callPackage ../../packages/sm64coopdx {})
+    #(callPackage ../../packages/sm64coopdx {})
     nvtopPackages.amd
     glxinfo
     vulkan-tools
@@ -63,13 +75,18 @@ in {
     evtest
     chirp
     #monado
-    (callPackage ../../packages/monado_latest {})
+    #(callPackage ../../packages/monado_latest {})
+    #unstable.envision
+    #custom-envision
+    #unstable.opencomposite
     xorg.xhost
+    overridden_sm64coopdx
+    element-desktop
+    unstable.teamspeak5_client
   ];
 
   services.udev.packages = with pkgs; [ 
     unstable.via
-    xr-hardware
   ];
 
   services.ratbagd.package = overridden_ratbag;

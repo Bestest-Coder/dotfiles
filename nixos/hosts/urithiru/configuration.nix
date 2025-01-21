@@ -3,7 +3,6 @@ let
 
 in {
   imports = [
-    #./docker-compose.nix
     ./podman-compose.nix
     ../../../configuration.nix
     ./hardware-configuration.nix

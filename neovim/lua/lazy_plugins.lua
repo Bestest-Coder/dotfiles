@@ -83,6 +83,7 @@ nnoremap <leader>cd <cmd>CocDiagnostics<CR>
             require'lspconfig'.gdscript.setup{capabilities = capabilities, autostart = false}
             require'lspconfig'.nixd.setup{capabilities = capabilities, autostart = false}
             require'lspconfig'.rust_analyzer.setup{capabilities = capabilities, autostart = false}
+            require'lspconfig'.omnisharp.setup{capabilities = capabilities, autostart = false}
             vim.cmd([[
 augroup lspconfig
     au!
@@ -90,6 +91,7 @@ augroup lspconfig
     autocmd BufNewFile,BufReadPre *.gd,*.gdscript,*.gdscript3 LspStart gdscript
     autocmd BufNewFile,BufReadPre *.nix,*.flake LspStart nixd
     autocmd BufNewFile,BufReadPre *.rs LspStart rust-analyzer
+    autocmd BufNewFile,BufReadPre *.cs LspStart omnisharp
 augroup END
             ]])
         end

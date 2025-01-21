@@ -8,6 +8,8 @@
   SDL2,
   libGL,
   glew,
+  libusb1,
+  opencv,
   withExamples ? true,
 }:
 
@@ -20,20 +22,23 @@ stdenv.mkDerivation rec {
   version = "0.3.0";
 
   src = fetchFromGitHub {
-    owner = "OpenHMD";
+    owner = "thaytan";
     repo = "OpenHMD";
-    rev = version;
-    sha256 = "1hkpdl4zgycag5k8njvqpx01apxmm8m8pvhlsxgxpqiqy9a38ccg";
+    rev = "4d32df7";
+    sha256 = "tENpYtiZu+8+oGg/eiJc05FlF4mcICm7LyiI4tOAtwM=";
   };
 
   nativeBuildInputs = [
     cmake
     pkg-config
+    #libusb1
   ];
 
   buildInputs =
     [
       hidapi
+      libusb1
+      opencv
     ]
     ++ lib.optionals withExamples [
       SDL2
