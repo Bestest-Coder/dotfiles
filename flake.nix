@@ -23,6 +23,7 @@
       common-modules = [
         ({config, pkgs, ...}: {nixpkgs.overlays = [overlay-unstable]; })
         agenix.nixosModules.default
+        { environment.systemPackages = [ agenix.packages.${system}.default ]; }
       ];
       # provides an easy way to import home-manager configs
       home-manager-config = toplevel: [

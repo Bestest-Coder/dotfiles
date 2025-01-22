@@ -83,6 +83,7 @@ in {
     overridden_sm64coopdx
     element-desktop
     unstable.teamspeak5_client
+    unstable.mumble
   ];
 
   services.udev.packages = with pkgs; [ 

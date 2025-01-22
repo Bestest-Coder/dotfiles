@@ -6,6 +6,7 @@ in {
     ./podman-compose.nix
     ../../../configuration.nix
     ./hardware-configuration.nix
+    ./services.nix
   ];
 
   environment.systemPackages = with pkgs; [
@@ -48,5 +49,6 @@ in {
   age.secrets = {
     cloudflare-env.file = ../../../secrets/cloudflare-env.age;
     curseforge-env.file = ../../../secrets/curseforge-env.age;
+    murmur-env.file = ../../../secrets/murmur-env.age;
   };
 }
