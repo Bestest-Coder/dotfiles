@@ -83,7 +83,8 @@ nnoremap <leader>cd <cmd>CocDiagnostics<CR>
             require'lspconfig'.gdscript.setup{capabilities = capabilities, autostart = false}
             require'lspconfig'.nixd.setup{capabilities = capabilities, autostart = false}
             require'lspconfig'.rust_analyzer.setup{capabilities = capabilities, autostart = false}
-            require'lspconfig'.omnisharp.setup{capabilities = capabilities, autostart = false}
+            require'lspconfig'.omnisharp.setup{capabilities = capabilities, autostart = false,
+                cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid())}} 
             vim.cmd([[
 augroup lspconfig
     au!
@@ -177,15 +178,15 @@ nnoremap <leader>ft <cmd>Telescope treesitter<cr>
     -- {'joshdick/onedark.vim',
     --     config = function() vim.cmd([[colorscheme onedark]]) end
     -- },
-    {'navarasu/onedark.nvim',
-        config = function()
-            vim.cmd([[colorscheme onedark]])
-            require('onedark').setup({
-                    style = 'deep',
-                    term_colors = false
-            })
-        end,
-    },
+    -- {'navarasu/onedark.nvim',
+    --     config = function()
+    --         vim.cmd([[colorscheme onedark]])
+    --         require('onedark').setup({
+    --                 style = 'deep',
+    --                 term_colors = true
+    --         })
+    --     end,
+    -- },
 
     {'junegunn/fzf',
         build = 'fzf#install()',
@@ -234,7 +235,7 @@ highlight indentHighlight6 guifg=#c768dd
     },
 
     { "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
+        branch = "v3.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
@@ -246,7 +247,7 @@ highlight indentHighlight6 guifg=#c768dd
                         close_if_last_window = true,
                         enable_git_status = true,
                         enable_diagnostics = true,
-                        open_files_do_not_replace_types = { "trouble", "qf" },
+                        open_files_do_not_replace_types = {"terminal", "trouble", "qf" },
                         sort_case_insensitive = false,
                     })
             vim.api.nvim_create_autocmd("VimEnter",{

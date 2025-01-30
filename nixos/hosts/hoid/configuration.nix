@@ -34,13 +34,12 @@ let
     };
   });
   unstableCallPackage = pkgs.lib.callPackageWith (pkgs.unstable);
-  custom-envision = (unstableCallPackage ../../packages/envision-mesa {});
 in {
   imports = [
     ./hardware-configuration.nix
     ../../daily-driver/daily-driver.nix
     ../../../configuration.nix
-    ./riftcv1.nix
+    #./riftcv1.nix
   ];
 
   networking.hostName = "hoid";
@@ -165,4 +164,10 @@ in {
       openvr
     ];
   };
+
+  networking.firewall = {
+    allowedTCPPorts = [ 5029 ];
+    allowedUDPPorts = [ 5029 ];
+  };
+
 }
