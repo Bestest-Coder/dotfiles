@@ -51,4 +51,7 @@ in {
     curseforge-env.file = ../../../secrets/curseforge-env.age;
     murmur-env.file = ../../../secrets/murmur-env.age;
   };
+
+  # god I hope this doesn't screw things up, sometimes just doesn't start
+  systemd.services.NetworkManager-wait-online.enable = false;
 }
