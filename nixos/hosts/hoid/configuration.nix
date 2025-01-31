@@ -51,6 +51,7 @@ in {
     #(callPackage ../../packages/citymania {})
     (callPackage ../../packages/twad {})
     #(callPackage ../../packages/sm64coopdx {})
+    #(unstableCallPackage ../../packages/gimp-latest {})
     nvtopPackages.amd
     glxinfo
     vulkan-tools

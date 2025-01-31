@@ -242,7 +242,7 @@ highlight indentHighlight6 guifg=#c768dd
             "MunifTanjim/nui.nvim",
         },
         config = function()
-
+            
             require('neo-tree').setup({
                         close_if_last_window = true,
                         enable_git_status = true,
@@ -253,6 +253,7 @@ highlight indentHighlight6 guifg=#c768dd
             vim.api.nvim_create_autocmd("VimEnter",{
                 command = [[Neotree show]]
             })
+            vim.api.nvim_set_hl(0, 'NeoTreeDimText', {ctermfg=15})
         end
     },
     { "lervag/vimtex",

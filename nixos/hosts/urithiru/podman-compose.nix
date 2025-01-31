@@ -61,7 +61,7 @@
   #   ];
   # };
   virtualisation.oci-containers.containers."cloudflared" = {
-    image = "cloudflare/cloudflared";
+    image = "docker.io/cloudflare/cloudflared";
     environment = {
     };
     environmentFiles = [
@@ -71,6 +71,7 @@
     log-driver = "journald";
     extraOptions = [
       "--network=host"
+      "-lio.containers.autoupdate=registry"
     ];
   };
   systemd.services."podman-cloudflared" = {
@@ -160,7 +161,7 @@
   #   ];
   # };
   virtualisation.oci-containers.containers."jellyfin" = {
-    image = "jellyfin/jellyfin:latest";
+    image = "docker.io/jellyfin/jellyfin:latest";
     environment = {
       "PGID" = "1000";
       "PUID" = "1000";
@@ -178,6 +179,7 @@
       "--device=nvidia.com/gpu=all"
       "--network-alias=jellyfin"
       "--network=urithiru_default"
+      "-lio.containers.autoupdate=registry"
     ];
   };
   systemd.services."podman-jellyfin" = {
@@ -198,7 +200,7 @@
     ];
   };
   # virtualisation.oci-containers.containers."playit-docker" = {
-  #   image = "pepaondrugs/playitgg-docker:latest";
+  #   image = "docker.io/pepaondrugs/playitgg-docker:latest";
   #   volumes = [
   #     "urithiru_playit-volume:/etc/playit:rw"
   #   ];
@@ -225,7 +227,7 @@
   #   ];
   # };
   # virtualisation.oci-containers.containers."postgres-dendrite" = {
-  #   image = "postgres:15.5-bookworm";
+  #   image = "docker.io/postgres:15.5-bookworm";
   #   environment = {
   #     "POSTGRES_DB" = "dendrite";
   #     "POSTGRES_PASSWORD" = "cockdickballin";
@@ -283,6 +285,7 @@
     extraOptions = [
       "--network-alias=prowlarr"
       "--network=urithiru_default"
+      "-lio.containers.autoupdate=registry"
     ];
   };
   systemd.services."podman-prowlarr" = {
@@ -320,6 +323,7 @@
     log-driver = "journald";
     extraOptions = [
       "--network=container:wireguard"
+      "-lio.containers.autoupdate=registry"
     ];
   };
   systemd.services."podman-qbittorrent" = {
@@ -354,6 +358,7 @@
     extraOptions = [
       "--network-alias=radarr"
       "--network=urithiru_default"
+      "-lio.containers.autoupdate=registry"
     ];
   };
   systemd.services."podman-radarr" = {
@@ -394,6 +399,7 @@
     extraOptions = [
       "--network-alias=sonarr"
       "--network=urithiru_default"
+      "-lio.containers.autoupdate=registry"
     ];
   };
   systemd.services."podman-sonarr" = {
@@ -486,6 +492,7 @@
       "--network=urithiru_default"
       "--sysctl=net.ipv4.conf.all.src_valid_mark=1"
       "--sysctl=net.ipv4.ip_forward=1"
+      "-lio.containers.autoupdate=registry"
     ];
   };
   systemd.services."podman-wireguard" = {
