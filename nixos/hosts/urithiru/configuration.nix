@@ -49,8 +49,13 @@ in {
   age.secrets = {
     cloudflare-env.file = ../../../secrets/cloudflare-env.age;
     curseforge-env.file = ../../../secrets/curseforge-env.age;
-    murmur-env.file = ../../../secrets/murmur-env.age;
+    murmur-env.file     = ../../../secrets/murmur-env.age;
+    frp-toml.file       = ../../../secrets/frp-toml.age;
+    frp-toml.group = "frp";
+    frp-toml.mode = "770";
   };
+
+  #users.groups.frp = {};
 
   # god I hope this doesn't screw things up, sometimes just doesn't start
   systemd.services.NetworkManager-wait-online.enable = false;

@@ -8,4 +8,5 @@ in {
   "cloudflare-env.age".publicKeys = [ bestest urithiru ];
   "curseforge-env.age".publicKeys = [ bestest urithiru ];
   "murmur-env.age".publicKeys = [ bestest urithiru ];
+  "frp-toml.age".publicKeys = [ bestest urithiru ];
 }
