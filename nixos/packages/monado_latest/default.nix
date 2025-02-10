@@ -72,7 +72,7 @@ stdenv.mkDerivation (finalAttrs: {
     owner = "monado";
     repo = "monado";
     rev = "main";
-    hash = "sha256-vsi4XwDCp9t61hmW3qERCE0SOvgxt+P5gBe3gxKV5Bo=";
+    hash = "sha256-BliqwIMe0ROJUFta5bGXOgPWItmgKDe6xP7mWY66Jeg=";
   };
 
   nativeBuildInputs = [

@@ -60,7 +60,6 @@
   environment.systemPackages = with pkgs; [
     #neovim
     unixtools.xxd # adds xdd to neovim (not included by default)
-    git
     btop
     killall
     findutils
@@ -76,6 +75,11 @@
     viAlias = true;
     package = pkgs.unstable.neovim-unwrapped;
     withRuby = false;
+  };
+
+  programs.git = {
+    enable = true;
+    lfs.enable = true;
   };
 
   users.defaultUserShell = pkgs.zsh;
