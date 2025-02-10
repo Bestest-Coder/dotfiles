@@ -84,7 +84,6 @@ in {
     element-desktop
     unstable.teamspeak6-client
     unstable.mumble
-    nnn
   ];
 
   services.udev.packages = with pkgs; [ 
