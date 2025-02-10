@@ -82,8 +82,9 @@ in {
     xorg.xhost
     overridden_sm64coopdx
     element-desktop
-    unstable.teamspeak5_client
+    unstable.teamspeak6-client
     unstable.mumble
+    nnn
   ];
 
   services.udev.packages = with pkgs; [ 
