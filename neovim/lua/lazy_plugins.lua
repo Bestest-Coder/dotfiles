@@ -91,7 +91,7 @@ augroup lspconfig
     autocmd BufNewFile,BufReadPre *.py LspStart pyright
     autocmd BufNewFile,BufReadPre *.gd,*.gdscript,*.gdscript3 LspStart gdscript
     autocmd BufNewFile,BufReadPre *.nix,*.flake LspStart nixd
-    autocmd BufNewFile,BufReadPre *.rs LspStart rust-analyzer
+    autocmd BufNewFile,BufReadPre *.rs LspStart rust_analyzer
     autocmd BufNewFile,BufReadPre *.cs LspStart omnisharp
 augroup END
             ]])

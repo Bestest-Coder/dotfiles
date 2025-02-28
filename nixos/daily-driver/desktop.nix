@@ -33,14 +33,15 @@
   fonts.packages = with pkgs; [
     font-awesome
     liberation_ttf
-    (nerdfonts.override { fonts = ["Terminus"]; })
+    #(nerdfonts.override { fonts = ["Terminus"]; })
+    nerd-fonts.terminess-ttf
   ];
 
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    #package = pkgs.unstable.hyprland;
-    #portalPackage = pkgs.unstable.xdg-desktop-portal-hyprland;
+    package = pkgs.unstable.hyprland;
+    portalPackage = pkgs.unstable.xdg-desktop-portal-hyprland;
     #package = pkgs.hyprland_latest;
     #portalPackage = pkgs.hyprland_portal_latest;
   };

@@ -1,4 +1,4 @@
-{pkgs, config, ...}: 
+{pkgs, lib, config, ...}: 
 let
   amdgpu-kernel-module = pkgs.callPackage ./amdgpu-kernel-module.nix {
     kernel = config.boot.kernelPackages.kernel;
@@ -25,12 +25,12 @@ let
     };
   });
   overridden_sm64coopdx = pkgs.unstable.sm64coopdx.overrideAttrs (old: rec {
-    version = "1.1.1";
+    version = "1.2.1";
     src = pkgs.fetchFromGitHub {
       owner  = "coop-deluxe";
       repo   = "sm64coopdx";
       rev    = "v${version}";
-      sha256 = "sha256-ktdvzOUYSh6H49BVDovqYt5CGyvJi4UW6nJOOD/HGGU=";
+      sha256 = "sha256-QWxhu7wGIjOIJyqjqakUzhhF+WxQslZdX3aEWYdDZbw=";
     };
   });
   unstableCallPackage = pkgs.lib.callPackageWith (pkgs.unstable);
@@ -84,6 +84,8 @@ in {
     element-desktop
     unstable.teamspeak6-client
     unstable.mumble
+    unstable.lumafly
+    imagemagick
   ];
 
   services.udev.packages = with pkgs; [ 
@@ -170,5 +172,46 @@ in {
     allowedTCPPorts = [ 5029 ];
     allowedUDPPorts = [ 5029 ];
   };
+
+  # nnn zsh config
+  programs.zsh.shellInit = lib.mkAfter ''
+    n ()
+    {
+      # Block nesting of nnn in subshells
+      [ "''${NNNLVL:-0}" -eq 0 ] || {
+          echo "nnn is already running"
+          return
+      }
+
+      # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+      # If NNN_TMPFILE is set to a custom path, it must be exported for nnn to
+      # see. To cd on quit only on ^G, remove the 'export' and make sure not to
+      # use a custom path, i.e. set NNN_TMPFILE *exactly* as follows:
+      #      NNN_TMPFILE="''${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+      export NNN_TMPFILE="''${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+      # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+      # stty start undef
+      # stty stop undef
+      # stty lwrap undef
+      # stty lnext undef
+
+      # The command builtin allows one to alias nnn to n, if desired, without
+      # making an infinitely recursive alias
+      command nnn -P p $@
+
+      [ ! -f "$NNN_TMPFILE" ] || {
+          . "$NNN_TMPFILE"
+          rm -f -- "$NNN_TMPFILE" > /dev/null
+      }
+    }
+    NNN_PLUG_SHELL='x:!chmod +x "$nnn";l:!git log;g:-!git diff'
+    NNN_PLUG_MANAGEMENT='u:getplugs'
+    NNN_PLUG_INTERFACE='p:preview-tui'
+    NNN_PLUG="$NNN_PLUG_SHELL;$NNN_PLUG_MANAGEMENT;$NNN_PLUG_INTERFACE"
+    export NNN_PLUG
+
+    export NNN_FIFO=/tmp/nnn.fifo
+    '';
 
 }

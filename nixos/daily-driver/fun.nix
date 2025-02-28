@@ -18,13 +18,11 @@
     gst_all_1.gst-plugins-bad
     gst_all_1.gst-plugins-ugly
     unstable.prismlauncher
-    (retroarch.override {
-      cores = with libretro; [
-        snes9x
-        beetle-psx
-        beetle-psx-hw
-      ];
-    })
+    (retroarch.withCores (cores: with cores; [
+      snes9x
+      beetle-psx
+      beetle-psx-hw
+      ]))
     #openttd - replaced with citymania from custom package at packages/citymania
     lutris
     r2modman
