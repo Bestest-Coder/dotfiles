@@ -14,6 +14,10 @@ in {
       categories = ["Application" "Game"];
     };
   };
+  xdg.configFile."nyxt" = {
+    recursive = true;
+    source = ../../../nyxt;
+  };
   #xdg.configFile."openxr/1/active_runtime.json".source = "${custom-envision}/share/openxr/1/openxr_monado.json";
 #   xdg.configFile."openvr/openvrpaths.vrpath".text = ''
 #   {

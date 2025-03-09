@@ -14,7 +14,8 @@ pkgs.writeShellScriptBin "bestestoolscript" ''
 
 
       "Open Dotfiles")
-          kitty nvim ~/dotfiles
+          cd ~/dotfiles
+          kitty nvim
           ;;
 
       "Update - Switch")

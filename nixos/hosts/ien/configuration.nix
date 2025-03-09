@@ -1,4 +1,4 @@
-{pkgs, ...}:
+{pkgs, lib, ...}:
 {
   imports = [
     ../../../configuration.nix
@@ -13,6 +13,9 @@
 
   environment.systemPackages = with pkgs; [
   ];
+
+  networking.networkmanager.enable = lib.mkForce false;
+  system.stateVersion = lib.mkForce "25.05";
 
   #boot.loader.systemd-boot.enable = true;
 }

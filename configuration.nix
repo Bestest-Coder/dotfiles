@@ -93,15 +93,16 @@
     };
     histSize = 10000;
     histFile = "$HOME/.histfile";
-    promptInit = lib.mkBefore "PROMPT=\"%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
-%F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}$SHLVL>%F{white} \"";
+    promptInit = lib.mkBefore ''PROMPT="%F{blue}┌%F{green}[%n]%F{magenta}@%F{yellow}[%M]
+%F{blue}└─%F{white}(%F{red}%~%F{white}) %#%F{10}$SHLVL>%F{white} "
+      RPROMPT="%F{yellow}%B%D{%H:%M:%S}%b%f"'';
     shellInit = ''export PATH=~/.npm-packages/bin:$PATH;
     export NODE_PATH=~/.npm-packages/lib/node_modules'';
   };
 
   programs.direnv.enable = true;
 
-  nix.settings.experimental-features = "nix-command flakes";
+  nix.settings.experimental-features = lib.mkForce "nix-command flakes";
 
   nix.gc = {
     automatic = true;

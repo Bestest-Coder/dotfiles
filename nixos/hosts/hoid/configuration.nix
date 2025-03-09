@@ -34,6 +34,7 @@ let
     };
   });
   unstableCallPackage = pkgs.lib.callPackageWith (pkgs.unstable);
+  stableCallPackage = pkgs.lib.callPackageWith (pkgs.stable);
 in {
   imports = [
     ./hardware-configuration.nix
@@ -52,6 +53,9 @@ in {
     (callPackage ../../packages/twad {})
     #(callPackage ../../packages/sm64coopdx {})
     #(unstableCallPackage ../../packages/gimp-latest {})
+    #(unstableCallPackage ../../packages/nyxt-latest {sbcl = pkgs.stable.sbcl; nodejs = nodejs_20; electron = electron_32;})
+    #(stableCallPackage ../../packages/nyxt-latest {})
+    #(callPackage ../../packages/VPKEdit {})
     nvtopPackages.amd
     glxinfo
     vulkan-tools
@@ -86,6 +90,8 @@ in {
     unstable.mumble
     unstable.lumafly
     imagemagick
+    #qutebrowser
+    nyxt
   ];
 
   services.udev.packages = with pkgs; [ 
@@ -173,6 +179,8 @@ in {
     allowedUDPPorts = [ 5029 ];
   };
 
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   # nnn zsh config
   programs.zsh.shellInit = lib.mkAfter ''
     n ()
@@ -213,5 +221,7 @@ in {
 
     export NNN_FIFO=/tmp/nnn.fifo
     '';
+
+    boot.kernel.sysctl."kernel.sysrq" = 1;
 
 }

@@ -20,6 +20,10 @@
         system = prev.system;
         config.allowUnfree = true;
       };
+      stable = import nixpkgs {
+        system = prev.system;
+        config.allowUnfree = true;
+      };
     };
     common-modules = [
       { nixpkgs.overlays = [overlay-unstable-sub]; }
@@ -59,7 +63,7 @@
         ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/urithiru/home.nix);
       };
       # uConsole (rpi cm4)
-      ien = nixpkgs.lib.nixosSystem {
+      ien = nixpkgs-unstable.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = attrs;
         modules = [
@@ -67,13 +71,15 @@
           oom-hardware.nixosModules.uconsole
         ] ++ common-modules;# ++ home-manager-config (import ./nixos/hosts/ien/home.nix);
       };
-      ienCross = nixpkgs.lib.nixosSystem {
+      # needs to be built with --impure
+      ienCross = nixpkgs-unstable.lib.nixosSystem {
+        #system = "x86_64-linux";
         system = "aarch64-linux";
         specialArgs = attrs;
         modules = [
-          #"${builtins.fetchGit {url = "https://github.com/robertjakub/oom-hardware.git";}}/uconsole/sd-image-uConsole.nix"
+          #{ nixpkgs.crossSystem = nixpkgs.lib.systems.examples.raspberryPi;}
           "${oom-hardware}/uconsole/sd-image-uConsole.nix"
-          ./nixos/hosts/urithiru/configuration.nix
+          ./nixos/hosts/ien/configuration.nix
           oom-hardware.nixosModules.uconsole
         ] ++ common-modules;# ++ nixosConfigurations.ien.modules;
       };
