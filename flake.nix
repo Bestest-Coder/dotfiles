@@ -9,9 +9,10 @@
     };
     agenix.url = "github:ryantm/agenix";
     oom-hardware.url = "github:robertjakub/oom-hardware";
+    gimp3-pkgs.url = "github:jtojnar/nixpkgs/gimp-meson";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, oom-hardware, ...}@attrs:
+  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, oom-hardware, gimp3-pkgs, ...}@attrs:
   let
     system = "x86_64-linux";
     # adds pkgs.unstable
@@ -24,6 +25,11 @@
         system = prev.system;
         config.allowUnfree = true;
       };
+    };
+    overlay-gimp = final: prev: {
+      gimp3 = (import gimp3-pkgs {
+        system = prev.system;
+      }).gimp;
     };
     common-modules = [
       { nixpkgs.overlays = [overlay-unstable-sub]; }
@@ -50,6 +56,7 @@
         specialArgs = attrs;
         modules = [
           {nixpkgs.config.pkgs = import nixpkgs-unstable {inherit system; config.allowUnfree = true;};}
+          {nixpkgs.overlays = [overlay-gimp];}
           ./nixos/hosts/hoid/configuration.nix
           nixos-hardware.nixosModules.framework-16-7040-amd
         ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/hoid/home.nix);
@@ -77,7 +84,7 @@
         system = "aarch64-linux";
         specialArgs = attrs;
         modules = [
-          #{ nixpkgs.crossSystem = nixpkgs.lib.systems.examples.raspberryPi;}
+          #{ nixpkgs.config.pkgs = import nixpkgs.pkgsCross.raspberryPi;}
           "${oom-hardware}/uconsole/sd-image-uConsole.nix"
           ./nixos/hosts/ien/configuration.nix
           oom-hardware.nixosModules.uconsole

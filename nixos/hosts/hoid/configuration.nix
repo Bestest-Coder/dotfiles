@@ -92,6 +92,7 @@ in {
     imagemagick
     #qutebrowser
     nyxt
+    gimp3
   ];
 
   services.udev.packages = with pkgs; [ 
@@ -180,6 +181,11 @@ in {
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+  # cache for cross compiling ien
+  nix.settings.substituters = ["https://cache-nix.project2.xyz/uconsole"];
+  nix.settings.trusted-substituters = ["https://cache-nix.project2.xyz/uconsole"];
+  nix.settings.trusted-public-keys = ["uconsole:vvqOLjqEwTJBUqv1xdndD1YHcdlMc/AnfAz4V9Hdxyk="];
 
   # nnn zsh config
   programs.zsh.shellInit = lib.mkAfter ''

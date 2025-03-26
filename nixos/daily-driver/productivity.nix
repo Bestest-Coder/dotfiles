@@ -19,7 +19,7 @@
     zathura
     qalculate-gtk
     kdePackages.kdenlive
-    gimp
+    #gimp
     audacity
     slack
 
