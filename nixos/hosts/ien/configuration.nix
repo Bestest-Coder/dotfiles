@@ -2,6 +2,7 @@
 {
   imports = [
     ../../../configuration.nix
+    ./hardware-configuration.nix
   ];
 
   networking.hostName = "ien";
@@ -15,9 +16,8 @@
     (callPackage ../../packages/twad {})
     kitty
     firefox
-    qalc
+    libqalculate
     qalculate-gtk
-    steam
     crispy-doom
   ];
 
@@ -42,4 +42,7 @@
   nix.extraOptions = ''
     builders-use-substitutes = true
   '';
+
+  hardware.raspberry-pi."4".apply-overlays-dtmerge.enable = lib.mkForce true;
+  #hardware.raspberry-pi."4".audio.enable = true;
 }

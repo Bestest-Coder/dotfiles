@@ -9,6 +9,7 @@
     };
     agenix.url = "github:ryantm/agenix";
     oom-hardware.url = "github:robertjakub/oom-hardware";
+    #oom-unstable = 
     gimp3-pkgs.url = "github:jtojnar/nixpkgs/gimp-meson";
   };
 
@@ -84,9 +85,9 @@
         system = "aarch64-linux";
         specialArgs = attrs;
         modules = [
+          ./nixos/hosts/ien/configuration.nix
           #{ nixpkgs.config.pkgs = import nixpkgs.pkgsCross.raspberryPi;}
           "${oom-hardware}/uconsole/sd-image-uConsole.nix"
-          ./nixos/hosts/ien/configuration.nix
           oom-hardware.nixosModules.uconsole
         ] ++ common-modules;# ++ nixosConfigurations.ien.modules;
       };
