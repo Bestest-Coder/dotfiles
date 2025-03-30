@@ -12,11 +12,16 @@
   };
 
   environment.systemPackages = with pkgs; [
+    (callPackage ../../packages/twad {})
     kitty
     firefox
+    qalc
+    qalculate-gtk
+    steam
+    crispy-doom
   ];
 
-  #networking.networkmanager.enable = lib.mkForce false;
+  networking.networkmanager.enable = lib.mkForce false;
   system.stateVersion = lib.mkForce "25.05";
 
   #boot.loader.systemd-boot.enable = true;
