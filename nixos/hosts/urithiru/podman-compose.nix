@@ -419,6 +419,43 @@
       "podman-compose-urithiru-root.target"
     ];
   };
+  virtualisation.oci-containers."minecraft" = {
+    image = "itzg/minecraft-server:java17";
+    environment = {
+      "VERSION" = "25w14craftmine";
+      "EULA" = "TRUE";
+      "INIT_MEMORY" = "1G";
+      "MAX_MEMORY" = "6G";
+    }
+    volumes = [
+      "/home/bestest/mc-server:/data:rw"
+    ];
+    ports = [
+      "25565:25565/tcp"
+    ];
+    log-driver = "journald";
+    extraOptions = [
+      "--network-alias=minecraft-server"
+      "--network=urithiru_default"
+    ];
+  };
+  systemd.services."podman-minecraft" = {
+    serviceConfig = {
+      Restart = lib.mkOverride 90 "no";
+    };
+    after = [
+      "podman-network-urithiru_default.service"
+    ];
+    requires = [
+      "podman-network-urithiru_default.service"
+    ];
+    partOf = [
+      "podman-compose-urithiru-root.target"
+    ];
+    wantedBy = [
+      "podman-compose-urithiru-root.target"
+    ];
+  };
   # virtualisation.oci-containers.containers."terrafirmacraft" = {
   #   image = "itzg/minecraft-server:java17";
   #   environment = {
