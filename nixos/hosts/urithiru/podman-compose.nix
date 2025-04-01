@@ -426,7 +426,7 @@
       "EULA" = "TRUE";
       "INIT_MEMORY" = "1G";
       "MAX_MEMORY" = "6G";
-    }
+    };
     volumes = [
       "/home/bestest/mc-server:/data:rw"
     ];
