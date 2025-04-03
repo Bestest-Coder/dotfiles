@@ -81,14 +81,15 @@
       };
       # needs to be built with --impure
       ienCross = nixpkgs-unstable.lib.nixosSystem {
-        #system = "x86_64-linux";
-        system = "aarch64-linux";
         specialArgs = attrs;
         modules = [
           ./nixos/hosts/ien/configuration.nix
-          #{ nixpkgs.config.pkgs = import nixpkgs.pkgsCross.raspberryPi;}
+          {
+            nixpkgs.buildPlatform = "x86_64-linux";
+            nixpkgs.hostPlatform = "aarch64-linux";
+          }
           "${oom-hardware}/uconsole/sd-image-uConsole.nix"
-          oom-hardware.nixosModules.uconsole
+          #oom-hardware.nixosModules.uconsole
         ] ++ common-modules;# ++ nixosConfigurations.ien.modules;
       };
     };

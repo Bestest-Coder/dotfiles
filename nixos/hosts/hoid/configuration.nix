@@ -3,27 +3,6 @@ let
   amdgpu-kernel-module = pkgs.callPackage ./amdgpu-kernel-module.nix {
     kernel = config.boot.kernelPackages.kernel;
   };
-  overridden_piper = pkgs.piper.overrideAttrs (old: rec {
-    version = "0.8";
-    src = pkgs.fetchFromGitHub {
-      owner  = "libratbag";
-      repo   = "piper";
-      rev    =  version;
-      sha256 = "sha256-j58fL6jJAzeagy5/1FmygUhdBm+PAlIkw22Rl/fLff4=";
-    };
-    mesonFlags = [
-      "-Druntime-dependency-checks=false"
-    ];
-  });
-  overridden_ratbag = pkgs.libratbag.overrideAttrs (old: rec {
-    version = "0.18";
-    src = pkgs.fetchFromGitHub {
-      owner  = "libratbag";
-      repo   = "libratbag";
-      rev    = "v${version}";
-      sha256 = "sha256-dAWKDF5hegvKhUZ4JW2J/P9uSs4xNrZLNinhAff6NSc=";
-    };
-  });
   overridden_sm64coopdx = pkgs.unstable.sm64coopdx.overrideAttrs (old: rec {
     version = "1.2.1";
     src = pkgs.fetchFromGitHub {
@@ -51,8 +30,6 @@ in {
     (callPackage ../../packages/bestestscreenshot {})
     #(callPackage ../../packages/citymania {})
     (callPackage ../../packages/twad {})
-    #(callPackage ../../packages/sm64coopdx {})
-    #(unstableCallPackage ../../packages/gimp-latest {})
     #(unstableCallPackage ../../packages/nyxt-latest {sbcl = pkgs.stable.sbcl; nodejs = nodejs_20; electron = electron_32;})
     #(stableCallPackage ../../packages/nyxt-latest {})
     #(callPackage ../../packages/VPKEdit {})
@@ -74,17 +51,12 @@ in {
     #prboom-plus
     unstable.ringracers
     unstable.via
-    overridden_piper
-    #unstable.piper
+    unstable.piper
     evtest
     chirp
-    #monado
-    #(callPackage ../../packages/monado_latest {})
-    #unstable.envision
-    #custom-envision
-    #unstable.opencomposite
     xorg.xhost
-    overridden_sm64coopdx
+    #overridden_sm64coopdx
+    unstable.sm64coopdx
     element-desktop
     unstable.teamspeak6-client
     unstable.mumble
@@ -98,8 +70,6 @@ in {
   services.udev.packages = with pkgs; [ 
     unstable.via
   ];
-
-  services.ratbagd.package = overridden_ratbag;
 
   environment.etc = {
     # makes palm reject/disable touchpad while typing work
@@ -117,7 +87,7 @@ in {
   boot.initrd.kernelModules = ["amdgpu"];
 
   boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
-  #boot.kernelPackages = pkgs.unstable.linuxPackages_6_10;
+  #boot.kernelPackages = pkgs.unstable.linuxPackages_6_13;
 
   boot.loader.systemd-boot.enable = true;
   #boot.loader.grub.enable = true;
@@ -168,6 +138,16 @@ in {
     size = 16*1024;
   } ];
 
+  ## suspend to disk stuff
+  boot = {
+    kernelParams = ["resume_offset=305248256"];
+    resumeDevice = "/dev/disk/by-uuid/6efcc105-ca1a-452e-a84c-3c18b17226b8";
+  };
+  powerManagement.enable = true;
+  systemd.sleep.extraConfig = ''
+    HibernateDelaySec=1h
+  '';
+
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
@@ -180,7 +160,7 @@ in {
     allowedUDPPorts = [ 5029 ];
   };
 
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  #boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # cache for cross compiling ien
   nix.settings.substituters = ["https://cache-nix.project2.xyz/uconsole"];

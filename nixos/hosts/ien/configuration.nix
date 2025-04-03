@@ -7,18 +7,18 @@
 
   networking.hostName = "ien";
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  programs.labwc.enable = true;
+  #programs.waybar.enable = true;
+  #programs.gamescope.enable = true;
 
   environment.systemPackages = with pkgs; [
-    (callPackage ../../packages/twad {})
+    #(callPackage ../../packages/twad {})
     kitty
-    firefox
-    libqalculate
-    qalculate-gtk
-    crispy-doom
+    #firefox
+    #libqalculate
+    #qalculate-gtk
+    #crispy-doom
+    #fuzzel
   ];
 
   networking.networkmanager.enable = lib.mkForce false;
@@ -43,6 +43,16 @@
     builders-use-substitutes = true
   '';
 
-  hardware.raspberry-pi."4".apply-overlays-dtmerge.enable = lib.mkForce true;
+  boot.extraModprobeConfig = ''
+    options brcmfmac feature_disable=0x282000
+    options brcmfmac roamfoff=1
+  '';
+
+  #hardware.raspberry-pi."4".apply-overlays-dtmerge.enable = lib.mkForce true;
   #hardware.raspberry-pi."4".audio.enable = true;
+
+  programs.neovim.withRuby = lib.mkForce false;
+  programs.neovim.package = lib.mkForce pkgs.neovim-unwrapped;
+  programs.neovim.enable = lib.mkForce false;
+
 }

@@ -3,7 +3,6 @@
   # things that are required or effectively required for (my) general use
   # i.e. terminal, web browser, file browser, cli utils, configuration
   environment.systemPackages = with pkgs; [
-    firefox
     mpv
     discord
     unstable.kitty
@@ -34,6 +33,8 @@
     wev
     feh
   ];
+
+  programs.firefox.enable = true;
 
   services = {
     tailscale.enable = true;
