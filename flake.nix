@@ -9,11 +9,11 @@
     };
     agenix.url = "github:ryantm/agenix";
     oom-hardware.url = "github:robertjakub/oom-hardware";
-    #oom-unstable = 
-    gimp3-pkgs.url = "github:jtojnar/nixpkgs/gimp-meson";
+    #oom-unstable.url = "nixpkgs/<rev>";
+    nixpkgs-testing.url = "path:/home/bestest/projects/nixpkgs";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, oom-hardware, gimp3-pkgs, ...}@attrs:
+  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, oom-hardware, nixpkgs-testing, ...}@attrs:
   let
     system = "x86_64-linux";
     # adds pkgs.unstable
@@ -26,11 +26,6 @@
         system = prev.system;
         config.allowUnfree = true;
       };
-    };
-    overlay-gimp = final: prev: {
-      gimp3 = (import gimp3-pkgs {
-        system = prev.system;
-      }).gimp;
     };
     common-modules = [
       { nixpkgs.overlays = [overlay-unstable-sub]; }
@@ -47,6 +42,33 @@
         home-manager.backupFileExtension = "backup";
       }
     ];
+    #ienCrossPkgs = (import nixpkgs-unstable {system = "x86_64-linux";}).pkgsCross.aarch64-multiplatform;
+    # I think same thing but more explicit
+    ienCrossPkgs = (import nixpkgs-unstable {
+      localSystem = "x86_64-linux";
+      crossSystem = "aarch64-linux";
+    });
+    crossKernelOverlay = final: prev: {
+      inherit (ienCrossPkgs) linuxKernel linuxPackagesFor;
+    };
+    rpi4-allow-missing-overlay = final: prev: {
+      makeModulesClosure = x:
+        prev.makeModulesClosure (x // {allowMissing = true;});
+    };
+    overlay-gtk-fix = (final: prev: {
+      qt6Packages = prev.qt6Packages.overrideScope (_: kprev: {
+        qt6gtk2 = kprev.qt6gtk2.overrideAttrs (_: {
+          version = "0.5-unstable-2025-03-04";
+          src = final.fetchFromGitLab {
+            domain = "opencode.net";
+            owner = "trialuser";
+            repo = "qt6gtk2";
+            rev = "d7c14bec2c7a3d2a37cde60ec059fc0ed4efee67";
+            hash = "sha256-6xD0lBiGWC3PXFyM2JW16/sDwicw4kWSCnjnNwUT4PI=";
+          };
+        });
+      });
+    });
   in rec {
     nixosConfigurations = {
       # framework 16 system
@@ -57,7 +79,6 @@
         specialArgs = attrs;
         modules = [
           {nixpkgs.config.pkgs = import nixpkgs-unstable {inherit system; config.allowUnfree = true;};}
-          {nixpkgs.overlays = [overlay-gimp];}
           ./nixos/hosts/hoid/configuration.nix
           nixos-hardware.nixosModules.framework-16-7040-amd
         ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/hoid/home.nix);
@@ -76,20 +97,22 @@
         specialArgs = attrs;
         modules = [
           ./nixos/hosts/ien/configuration.nix
-          oom-hardware.nixosModules.uconsole
+          #oom-hardware.nixosModules.uconsole
+          nixos-hardware.nixosModules.raspberry-pi-4
+          { nixpkgs.overlays = [rpi4-allow-missing-overlay]; }
         ] ++ common-modules;# ++ home-manager-config (import ./nixos/hosts/ien/home.nix);
       };
       # needs to be built with --impure
       ienCross = nixpkgs-unstable.lib.nixosSystem {
+        system = "aarch64-linux";
         specialArgs = attrs;
         modules = [
           ./nixos/hosts/ien/configuration.nix
-          {
-            nixpkgs.buildPlatform = "x86_64-linux";
-            nixpkgs.hostPlatform = "aarch64-linux";
-          }
-          "${oom-hardware}/uconsole/sd-image-uConsole.nix"
           #oom-hardware.nixosModules.uconsole
+          nixos-hardware.nixosModules.raspberry-pi-4
+          { nixpkgs.overlays = [rpi4-allow-missing-overlay]; }
+          "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image.nix"
+          ./nixos/hosts/ien/sd-image.nix
         ] ++ common-modules;# ++ nixosConfigurations.ien.modules;
       };
     };

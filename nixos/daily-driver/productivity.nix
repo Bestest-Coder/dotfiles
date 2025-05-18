@@ -10,7 +10,7 @@
     hunspellDicts.en_US
     #unstable.blender
     blender
-    unstable.godot_4
+    #unstable.godot_4
     #(callPackage ../packages/godot4-mono {})
     #godot4-mono
     (texlive.combine { inherit (texlive)
@@ -19,7 +19,7 @@
     zathura
     qalculate-gtk
     kdePackages.kdenlive
-    #gimp
+    unstable.gimp3
     audacity
     slack
 

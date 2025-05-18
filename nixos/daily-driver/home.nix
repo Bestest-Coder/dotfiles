@@ -30,7 +30,8 @@
       name = "Steam on prime";
       genericName = "Application";
       icon = "steam";
-      exec = "prime-run steam -cef-disable-gpu %U";
+      # may need -cef-disable-gpu if "use GPU acceleration" is not turned off in interface settings
+      exec = "prime-run steam %U";
       terminal = false;
       categories = ["Game"];
       mimeType = ["x-scheme-handler/steam" "x-scheme-handler/steamlink"];

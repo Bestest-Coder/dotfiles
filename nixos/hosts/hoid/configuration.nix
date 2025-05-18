@@ -4,13 +4,14 @@ let
     kernel = config.boot.kernelPackages.kernel;
   };
   overridden_sm64coopdx = pkgs.unstable.sm64coopdx.overrideAttrs (old: rec {
-    version = "1.2.1";
+    version = "1.3";
     src = pkgs.fetchFromGitHub {
       owner  = "coop-deluxe";
       repo   = "sm64coopdx";
       rev    = "v${version}";
-      sha256 = "sha256-QWxhu7wGIjOIJyqjqakUzhhF+WxQslZdX3aEWYdDZbw=";
+      sha256 = "sha256-ssbvNnBBxahzJRIX5Vhze+Nfh3ADoy+NrUIF2RZHye8=";
     };
+    buildInputs = old.buildInputs ++ [ pkgs.unstable.libGL ];
   });
   unstableCallPackage = pkgs.lib.callPackageWith (pkgs.unstable);
   stableCallPackage = pkgs.lib.callPackageWith (pkgs.stable);
@@ -55,8 +56,8 @@ in {
     evtest
     chirp
     xorg.xhost
-    #overridden_sm64coopdx
-    unstable.sm64coopdx
+    overridden_sm64coopdx
+    #unstable.sm64coopdx
     element-desktop
     unstable.teamspeak6-client
     unstable.mumble
@@ -64,7 +65,6 @@ in {
     imagemagick
     #qutebrowser
     nyxt
-    gimp3
   ];
 
   services.udev.packages = with pkgs; [ 
@@ -86,8 +86,10 @@ in {
 
   boot.initrd.kernelModules = ["amdgpu"];
 
+  #boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
+  # needed to revert because AMDGPU sometimes crashes after suspend (close/open lid)
+  #boot.kernelPackages = pkgs.unstable.linuxPackages_6_12;
   boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
-  #boot.kernelPackages = pkgs.unstable.linuxPackages_6_13;
 
   boot.loader.systemd-boot.enable = true;
   #boot.loader.grub.enable = true;
@@ -160,12 +162,12 @@ in {
     allowedUDPPorts = [ 5029 ];
   };
 
-  #boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
   # cache for cross compiling ien
-  nix.settings.substituters = ["https://cache-nix.project2.xyz/uconsole"];
-  nix.settings.trusted-substituters = ["https://cache-nix.project2.xyz/uconsole"];
-  nix.settings.trusted-public-keys = ["uconsole:vvqOLjqEwTJBUqv1xdndD1YHcdlMc/AnfAz4V9Hdxyk="];
+  #nix.settings.substituters = ["https://cache-nix.project2.xyz/uconsole"];
+  #nix.settings.trusted-substituters = ["https://cache-nix.project2.xyz/uconsole"];
+  #nix.settings.trusted-public-keys = ["uconsole:vvqOLjqEwTJBUqv1xdndD1YHcdlMc/AnfAz4V9Hdxyk="];
 
   # nnn zsh config
   programs.zsh.shellInit = lib.mkAfter ''
