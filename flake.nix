@@ -1,10 +1,10 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-24.11";
+    nixpkgs.url = "nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
@@ -108,11 +108,11 @@
         specialArgs = attrs;
         modules = [
           ./nixos/hosts/ien/configuration.nix
-          #oom-hardware.nixosModules.uconsole
           nixos-hardware.nixosModules.raspberry-pi-4
           { nixpkgs.overlays = [rpi4-allow-missing-overlay]; }
           "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image.nix"
           ./nixos/hosts/ien/sd-image.nix
+          #oom-hardware.nixosModules.uconsole
         ] ++ common-modules;# ++ nixosConfigurations.ien.modules;
       };
     };
