@@ -1,10 +1,20 @@
-{pkgs,...}:
+{pkgs, ...}:
+let
+  discord_override = pkgs.discord.overrideAttrs (old: rec {
+    version = "0.0.104";
+    src = pkgs.fetchurl {
+      url = "https://stable.dl2.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
+      hash = "sha256-4w8C9YHRNTgkUBzqkW1IywKtRHvtlkihjo3/shAgPac=";
+    };
+  });
+in
 {
   # things that are required or effectively required for (my) general use
   # i.e. terminal, web browser, file browser, cli utils, configuration
   environment.systemPackages = with pkgs; [
     mpv
-    discord
+    #discord
+    discord_override
     unstable.kitty
     curl
     ack

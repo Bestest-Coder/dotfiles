@@ -67,32 +67,6 @@
         filter = "bcm2711-rpi-cm4.dtb";
       }
     ];
-    # overlaysParams = [
-    #   {
-    #     name = "bcm2711-rpi-cm4";
-    #     params = {
-    #       ant2 = "on";
-    #       audio = "on";
-    #       spi = "off";
-    #       i2c_arm = "on";
-    #     };
-    #   }
-    #   {
-    #     name = "cpu-revision";
-    #     params = {cm4-8 = "on";};
-    #   }
-    #   {
-    #     name = "audremap";
-    #     params = {pins_12_13 = "on";};
-    #   }
-    #   {
-    #     name = "vc4-kms-v3d";
-    #     params = {
-    #       cma-384 = "on";
-    #       nohdmi1 = "on";
-    #     };
-    #   }
-    # ];
   };
 
   environment.systemPackages = with pkgs; [
@@ -101,21 +75,83 @@
     gitMinimal
   ];
 
-  networking.wireless = {
-    userControlled.enable = true;
-    enable = true;
-  };
+  # networking.wireless = {
+  #   userControlled.enable = true;
+  #   enable = true;
+  # };
   networking.networkmanager.enable = true;
 
   sdImage = {
-    imageBaseName = "nixos-sd-uconsole-custom";
+    imageBaseName = "nixos-sd-uconsole-custom-2";
     compressImage = false;
     populateFirmwareCommands = let
+      # configTxt = pkgs.writeText "config.txt" ''
+      #   [pi3]
+      #   kernel=u-boot-rpi3.bin
+      #
+      #   [pi4]
+      #   kernel=u-boot-rpi4.bin
+      #   enable_gic=1
+      #   armstub=armstub8-gic.bin
+      #
+      #   # Otherwise the resolution will be weird in most cases, compared to
+      #   # what the pi3 firmware does by default.
+      #   disable_overscan=1
+      #
+      #   # Supported in newer board revisions
+      #   arm_boost=1
+      #
+      #   [cm4]
+      #   # Enable host mode on the 2711 built-in XHCI USB controller.
+      #   # This line should be removed if the legacy DWC2 controller is required
+      #   # (e.g. for USB device mode) or if USB support is not required.
+      #   # otg_mode=1
+      #   # ------------------------
+      #   arm_boost=1
+      #   max_framebuffers=2
+      #   # dtoverlay=vc4-kms-v3d-pi4,cma-384
+      #   # dtoverlay=uconsole,cm4
+      #   # ------------------------
+      #
+      #   [all]
+      #   # Boot in 64-bit mode.
+      #   arm_64bit=1
+      #
+      #   # U-Boot needs this to work, regardless of whether UART is actually used or not.
+      #   # Look in arch/arm/mach-bcm283x/Kconfig in the U-Boot tree to see if this is still
+      #   # a requirement in the future.
+      #   enable_uart=1
+      #
+      #   # Prevent the firmware from smashing the framebuffer setup done by the mainline kernel
+      #   # when attempting to show low-voltage or overtemperature warnings.
+      #   avoid_warnings=1
+      #
+      #   # ------------------------
+      #   ignore_lcd=1
+      #   disable_fw_kms_setup=1
+      #   disable_audio_dither
+      #   pwm_sample_bits=20
+      #
+      #   # setup headphone detect pin
+      #   gpio=10=ip,np
+      #
+      #   dtoverlay=dwc2,dr_mode=host
+      #   dtoverlay=audremap,pins_12_13
+      #   dtparam=audio=on
+      #   # dtparam=spi=on
+      #   dtparam=ant2
+      #   # ------------------------
+      #'';
       configTxt = pkgs.writeText "config.txt" ''
         [pi4]
         kernel=u-boot-rpi4.bin
         enable_gic=1
         armstub=armstub8-gic.bin
+        arm_boost=1
+
+        [cm4]
+        arm_boost=1
+        max_framebuffers=2
 
         [all]
         arm_64bit=1
@@ -151,7 +187,6 @@
       mkdir -p ./files/boot/firmware
       mkdir -p ./files/etc/nixos
       ${config.boot.loader.generic-extlinux-compatible.populateCmd} -c ${config.system.build.toplevel} -d ./files/boot
-      '';#cp ${./configs}/* ./files/etc/nixos
-    #'';
+    '';
   };
 }

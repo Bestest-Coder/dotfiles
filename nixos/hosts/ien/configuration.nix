@@ -3,6 +3,7 @@
   imports = [
     ../../../configuration.nix
     ./hardware-configuration.nix
+    ./kernel.nix
   ];
 
   networking.hostName = "ien";
@@ -13,19 +14,17 @@
 
   environment.systemPackages = with pkgs; [
     #(callPackage ../../packages/twad {})
-    #kitty
+    kitty
     foot
-    #firefox
+    firefox
     libqalculate
     qalculate-gtk
     crispy-doom
     fuzzel
   ];
 
-  networking.networkmanager.enable = lib.mkForce false;
+  #networking.networkmanager.enable = lib.mkForce false;
   system.stateVersion = lib.mkForce "25.05";
-
-  #boot.loader.systemd-boot.enable = true;
 
   services.tailscale = {
     #enable = true;
@@ -61,13 +60,6 @@
     trusted-substituters = ["https://cache-nix.project2.xyz/uconsole"];
     trusted-public-keys = ["uconsole:vvqOLjqEwTJBUqv1xdndD1YHcdlMc/AnfAz4V9Hdxyk="];
   };
-
-  services.avahi.enable = false;
-  fonts.fontconfig.enable = false;
-
-  programs.systemtap.enable = lib.mkForce false;
-
-  programs.direnv.enable = lib.mkForce false;
 
   # ensuring this is here from sd-image.nix, I think might be necessary for on-device rebuilds?
   console = {
@@ -106,5 +98,56 @@
     #   cpi-spi4.enable = false;
     #   cpi-bluetooth.enable = true;
     # };
+  };
+
+  hardware.deviceTree = {
+    enable = true;
+      overlays = [
+        {
+          name = "cpu-revision";
+          filter = "bcm2711-rpi-*.dtb";
+          dtsFile = ./dt-source/cpu-revision.dts;
+        }
+        {
+          name = "audremap";
+          filter = "bcm2711-rpi-*.dtb";
+          dtsFile = ./dt-source/audremap.dts;
+        }
+        {
+          name = "vc4-kms-v3d";
+          filter = "bcm2711-rpi-*.dtb";
+          dtsFile = ./dt-source/vc4-kms-v3d.dts;
+        }
+        {
+          name = "cpi-disable-pcie";
+          filter = "bcm2711-rpi-cm4.dtb";
+          dtsFile = ./dt-source/cpi-disable-pcie.dts;
+        }
+        {
+          name = "cpi-disable-genet";
+          filter = "bcm2711-rpi-cm4.dtb";
+          dtsFile = ./dt-source/cpi-disable-genet.dts;
+        }
+        {
+          name = "cpi-uconsole";
+          filter = "bcm2711-rpi-cm4.dtb";
+          dtsFile = ./dt-source/cpi-uconsole.dts;
+        }
+        # {
+        #   name = "cpi-i2c1";
+        #   filter = "bcm2711-rpi-cm4.dtb";
+        #   dtsFile = ./dt-source/cpi-i2c1.dts;
+        # }
+        # {
+        #   name = "cpi-spi4";
+        #   filter = "bcm2711-rpi-cm4.dtb";
+        #   dtsFile = ./dt-source/cpi-spi4.dts;
+        # }
+        {
+          name = "cpi-bluetooth";
+          filter = "bcm2711-rpi-cm4.dtb";
+          dtsFile = ./dt-source/cpi-bluetooth.dts;
+        }
+    ];
   };
 }

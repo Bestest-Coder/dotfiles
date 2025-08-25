@@ -194,6 +194,7 @@
       };
     '';
   }
+
   {
     name = "devterm-pmu";
     filter = "bcm2711-rpi-cm4.dtb";

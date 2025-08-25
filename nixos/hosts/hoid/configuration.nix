@@ -48,7 +48,7 @@ in {
     nethack
     gzdoom
     #zandronum
-    #crispy-doom
+    crispy-doom
     #prboom-plus
     unstable.ringracers
     unstable.via
@@ -64,12 +64,21 @@ in {
     unstable.lumafly
     imagemagick
     #qutebrowser
-    nyxt
+    #nyxt
+    ffmpeg
+    ioquake3
+    archipelago
   ];
 
-  services.udev.packages = with pkgs; [ 
-    unstable.via
-  ];
+  services.udev = {
+    packages = with pkgs; [ 
+      unstable.via
+    ];
+    extraRules = ''
+      ATTRS{name}=="Sony Interactive Entertainment Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+      ATTRS{name}=="Wireless Controller Touchpad", ENV{LIBINPUT_IGNORE_DEVICE}="1"
+    '';
+  };
 
   environment.etc = {
     # makes palm reject/disable touchpad while typing work
@@ -83,6 +92,7 @@ in {
       '';
     };
   };
+
 
   boot.initrd.kernelModules = ["amdgpu"];
 
@@ -153,7 +163,10 @@ in {
   programs.nix-ld = {
     enable = true;
     libraries = with pkgs; [
-      openvr
+      SDL2_mixer
+      libsamplerate
+      fluidsynth
+      SDL2
     ];
   };
 
@@ -211,5 +224,7 @@ in {
     '';
 
     boot.kernel.sysctl."kernel.sysrq" = 1;
+
+  services.timesyncd.enable = true;
 
 }
