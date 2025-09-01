@@ -97,9 +97,10 @@
         specialArgs = attrs;
         modules = [
           ./nixos/hosts/ien/configuration.nix
-          #oom-hardware.nixosModules.uconsole
           nixos-hardware.nixosModules.raspberry-pi-4
           { nixpkgs.overlays = [rpi4-allow-missing-overlay]; }
+          "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image.nix"
+          ./nixos/hosts/ien/sd-image.nix
         ] ++ common-modules;# ++ home-manager-config (import ./nixos/hosts/ien/home.nix);
       };
       # needs to be built with --impure
@@ -112,7 +113,6 @@
           { nixpkgs.overlays = [rpi4-allow-missing-overlay]; }
           "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image.nix"
           ./nixos/hosts/ien/sd-image.nix
-          #oom-hardware.nixosModules.uconsole
         ] ++ common-modules;# ++ nixosConfigurations.ien.modules;
       };
     };

@@ -223,4 +223,15 @@ in {
 
   services.timesyncd.enable = true;
 
+  users.users.nixremote = {
+    isNormalUser = true;
+    createHome = true;
+    group = "nixremote";
+
+    openssh.authorizedKeys.keys = [
+      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGo8mKYDrxFvOPEmlY6velYUu+O6fvDhdkx8rTS/RJBA root@ien"
+    ];
+  };
+  users.groups.nixremote = {};
+  nix.settings.trusted-users = [ "nixremote" ];
 }

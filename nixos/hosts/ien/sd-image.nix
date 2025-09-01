@@ -10,7 +10,7 @@
   boot.loader.generic-extlinux-compatible.enable = true;
   boot.supportedFilesystems.zfs = lib.mkForce false;
 
-  boot.consoleLogLevel = lib.mkDefault 7;
+  #boot.consoleLogLevel = lib.mkDefault 7;
 
   users.users.root.initialPassword = "";
 
@@ -81,8 +81,8 @@
   # };
   networking.networkmanager.enable = true;
 
+  image.baseName = "nixos-sd-uconsole-custom";
   sdImage = {
-    imageBaseName = "nixos-sd-uconsole-custom-2";
     compressImage = false;
     populateFirmwareCommands = let
       # configTxt = pkgs.writeText "config.txt" ''
@@ -170,6 +170,8 @@
         disable_fw_kms_setup=1
         disable_audio_dither=1
         pwm_sample_bits=20
+
+        dtparam=audo=on
       '';
     in ''
       (cd ${pkgs.raspberrypifw}/share/raspberrypi/boot && cp bootcode.bin fixup*.dat start*.elf $NIX_BUILD_TOP/firmware/)
