@@ -135,13 +135,8 @@ in {
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
-    #package = pkgs.lib.mkForce pkgs.unstable.mesa.drivers;
-    #package32 = pkgs.lib.mkForce pkgs.unstable.pkgsi686Linux.mesa.drivers;
   };
 
-  #system.replaceRuntimeDependencies = [
-  #  ({original = pkgs.mesa; replacement = pkgs.unstable.mesa;})
-  #  ({original = pkgs.mesa.drivers; replacement = pkgs.unstable.mesa.drivers;})
 
   security.pam.services.swaylock.fprintAuth = true;
 
@@ -162,6 +157,7 @@ in {
 
   programs.nix-ld = {
     enable = true;
+    ## TODO: make apdoom package to remove this
     libraries = with pkgs; [
       SDL2_mixer
       libsamplerate

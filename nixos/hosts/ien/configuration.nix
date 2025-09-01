@@ -27,7 +27,7 @@
   system.stateVersion = lib.mkForce "25.05";
 
   services.tailscale = {
-    #enable = true;
+    enable = true;
   };
 
   nix.buildMachines = [{
