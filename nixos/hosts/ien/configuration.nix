@@ -1,4 +1,7 @@
-{pkgs, lib, ...}:
+{nixpkgs, pkgs, lib, ...}:
+let
+  inherit (import ./lib.nix {inherit nixpkgs;}) callPackagesCrossAarch64;
+in
 {
   imports = [
     ../../../configuration.nix
@@ -6,7 +9,6 @@
     ./kernel.nix
   ];
 
-  inherit (import ./lib.nix {inherit pkgs;}) callPackagesCrossAarch64;
 
   networking.hostName = "ien";
 
@@ -27,12 +29,15 @@
     crispy-doom
     fuzzel
     wlr-randr
-    callPackagesCrossAarch64 (retroarch.withCores (cores: with cores; [
+    # (retroarch.withCores (cores: with cores; [
+    #
+    # ]))
+    (callPackagesCrossAarch64 (retroarch.withCores (cores: with cores; [
       #snes9x
       #beetle-psx
       #beetle-psx-hw
       fbneo
-    ]))
+    ])) {})
   ];
 
   #networking.networkmanager.enable = lib.mkForce false;
