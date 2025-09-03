@@ -12,6 +12,9 @@
   #programs.waybar.enable = true;
   #programs.gamescope.enable = true;
 
+  #programs.steam.enable = true;
+  #hardware.graphics.enable32Bit = false;
+
   environment.systemPackages = with pkgs; [
     #(callPackage ../../packages/twad {})
     kitty
@@ -21,6 +24,13 @@
     qalculate-gtk
     crispy-doom
     fuzzel
+    wlr-randr
+    (retroarch.withCores (cores: with cores; [
+      #snes9x
+      #beetle-psx
+      #beetle-psx-hw
+      fbneo
+    ]))
   ];
 
   #networking.networkmanager.enable = lib.mkForce false;
@@ -29,6 +39,13 @@
   services.tailscale = {
     enable = true;
   };
+
+  fonts.packages = with pkgs; [
+    font-awesome
+    liberation_ttf
+    #(nerdfonts.override { fonts = ["Terminus"]; })
+    nerd-fonts.terminess-ttf
+  ];
 
   nix.buildMachines = [{
     hostName = "builder"; # actually hoid, but have alias in sshd
@@ -59,6 +76,17 @@
     substituters = ["https://cache-nix.project2.xyz/uconsole"];
     trusted-substituters = ["https://cache-nix.project2.xyz/uconsole"];
     trusted-public-keys = ["uconsole:vvqOLjqEwTJBUqv1xdndD1YHcdlMc/AnfAz4V9Hdxyk="];
+  };
+
+  services.greetd = {
+    enable = true;
+    settings = rec {
+      initial_session = {
+        command = "labwc";
+        user = "bestest";
+      };
+      default_session = initial_session;
+    };
   };
 
   # ensuring this is here from sd-image.nix, I think might be necessary for on-device rebuilds?

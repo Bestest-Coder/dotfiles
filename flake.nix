@@ -101,7 +101,7 @@
           { nixpkgs.overlays = [rpi4-allow-missing-overlay]; }
           "${nixpkgs-unstable}/nixos/modules/installer/sd-card/sd-image.nix"
           ./nixos/hosts/ien/sd-image.nix
-        ] ++ common-modules;# ++ home-manager-config (import ./nixos/hosts/ien/home.nix);
+        ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/ien/home.nix);
       };
       # needs to be built with --impure
       ienCross = nixpkgs-unstable.lib.nixosSystem {
