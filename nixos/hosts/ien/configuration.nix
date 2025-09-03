@@ -6,6 +6,8 @@
     ./kernel.nix
   ];
 
+  inherit (import ./lib.nix {inherit pkgs;}) callPackagesCrossAarch64;
+
   networking.hostName = "ien";
 
   programs.labwc.enable = true;
@@ -25,7 +27,7 @@
     crispy-doom
     fuzzel
     wlr-randr
-    (retroarch.withCores (cores: with cores; [
+    callPackagesCrossAarch64 (retroarch.withCores (cores: with cores; [
       #snes9x
       #beetle-psx
       #beetle-psx-hw
