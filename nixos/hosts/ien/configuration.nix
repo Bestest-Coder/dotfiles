@@ -1,6 +1,10 @@
 {nixpkgs, pkgs, lib, ...}:
 let
   inherit (import ./lib.nix {inherit nixpkgs;}) callPackagesCrossAarch64;
+
+  cross_retroarch = callPackagesCrossAarch64 ({retroarch} :(retroarch.withCores (cores: with cores; [
+    fbneo
+  ]))) {};
 in
 {
   imports = [
@@ -29,15 +33,10 @@ in
     crispy-doom
     fuzzel
     wlr-randr
-    # (retroarch.withCores (cores: with cores; [
-    #
-    # ]))
-    (callPackagesCrossAarch64 (retroarch.withCores (cores: with cores; [
-      #snes9x
-      #beetle-psx
-      #beetle-psx-hw
+    cross_retroarch
+    (retroarch.withCores (cores: with cores; [
       fbneo
-    ])) {})
+    ]))
   ];
 
   #networking.networkmanager.enable = lib.mkForce false;

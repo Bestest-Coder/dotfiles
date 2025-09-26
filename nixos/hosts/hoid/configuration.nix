@@ -3,16 +3,16 @@ let
   amdgpu-kernel-module = pkgs.callPackage ./amdgpu-kernel-module.nix {
     kernel = config.boot.kernelPackages.kernel;
   };
-  overridden_sm64coopdx = pkgs.unstable.sm64coopdx.overrideAttrs (old: rec {
-    version = "1.3";
-    src = pkgs.fetchFromGitHub {
-      owner  = "coop-deluxe";
-      repo   = "sm64coopdx";
-      rev    = "v${version}";
-      sha256 = "sha256-ssbvNnBBxahzJRIX5Vhze+Nfh3ADoy+NrUIF2RZHye8=";
-    };
-    buildInputs = old.buildInputs ++ [ pkgs.unstable.libGL ];
-  });
+  # overridden_sm64coopdx = pkgs.unstable.sm64coopdx.overrideAttrs (old: rec {
+  #   version = "1.3";
+  #   src = pkgs.fetchFromGitHub {
+  #     owner  = "coop-deluxe";
+  #     repo   = "sm64coopdx";
+  #     rev    = "v${version}";
+  #     sha256 = "sha256-ssbvNnBBxahzJRIX5Vhze+Nfh3ADoy+NrUIF2RZHye8=";
+  #   };
+  #   buildInputs = old.buildInputs ++ [ pkgs.unstable.libGL ];
+  # });
   unstableCallPackage = pkgs.lib.callPackageWith (pkgs.unstable);
   stableCallPackage = pkgs.lib.callPackageWith (pkgs.stable);
 in {
@@ -56,8 +56,8 @@ in {
     evtest
     chirp
     xorg.xhost
-    overridden_sm64coopdx
-    #unstable.sm64coopdx
+    #overridden_sm64coopdx
+    unstable.sm64coopdx
     element-desktop
     unstable.teamspeak6-client
     unstable.mumble
@@ -234,4 +234,5 @@ in {
   };
   users.groups.nixremote = {};
   nix.settings.trusted-users = [ "nixremote" ];
+  
 }

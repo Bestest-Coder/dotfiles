@@ -79,12 +79,13 @@ nnoremap <leader>cd <cmd>CocDiagnostics<CR>
             vim.env.PATH = home_path .. "/.npm-packages/bin:" .. vim.env.PATH
             vim.env.NODE_PATH = home_path .."/.npm-packages/lib/node_modules"
             local capabilities = require'cmp_nvim_lsp'.default_capabilities()
-            require'lspconfig'.pyright.setup{capabilities = capabilities, autostart = false}
-            require'lspconfig'.gdscript.setup{capabilities = capabilities, autostart = false}
-            require'lspconfig'.nixd.setup{capabilities = capabilities, autostart = false}
-            require'lspconfig'.rust_analyzer.setup{capabilities = capabilities, autostart = false}
-            require'lspconfig'.omnisharp.setup{capabilities = capabilities, autostart = false,
-                cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid())}} 
+            vim.lsp.config("pyright",{capabilities = capabilities, autostart = false})
+            vim.lsp.config("gdscript",{capabilities = capabilities, autostart = false})
+            vim.lsp.config("nixd",{capabilities = capabilities, autostart = false})
+            vim.lsp.config("rust_analyzer",{capabilities = capabilities, autostart = false})
+            vim.lsp.config("omnisharp",{capabilities = capabilities, autostart = false,
+                cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid())}})
+            vim.lsp.config("ccls",{capabilities = capabilities, autostart = false})
             vim.cmd([[
 augroup lspconfig
     au!
@@ -93,6 +94,7 @@ augroup lspconfig
     autocmd BufNewFile,BufReadPre *.nix,*.flake LspStart nixd
     autocmd BufNewFile,BufReadPre *.rs LspStart rust_analyzer
     autocmd BufNewFile,BufReadPre *.cs LspStart omnisharp
+    autocmd BufNewFile,BufReadPre *.c,*.cpp,*.h,*.hpp LspStart ccls
 augroup END
             ]])
         end

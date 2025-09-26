@@ -25,8 +25,8 @@
     libinput
     unstable.hypridle
     libsForQt5.qt5ct
-    libsForQt5.breeze-qt5
-    libsForQt5.breeze-gtk
+    #libsForQt5.breeze-qt5
+    #libsForQt5.breeze-gtk
     libsForQt5.breeze-icons
   ];
 
