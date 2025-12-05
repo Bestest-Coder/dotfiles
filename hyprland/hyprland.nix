@@ -10,7 +10,7 @@
       ",preferred,auto,1"
     ];
     bind = [
-      "$mod, Return, exec, kitty"
+      "$mod, Return, exec, wezterm"
       "$mod, D, exec, fuzzel"
       "$mod SHIFT, Q, killactive"
 

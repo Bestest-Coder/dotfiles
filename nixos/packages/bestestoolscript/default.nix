@@ -14,16 +14,15 @@ pkgs.writeShellScriptBin "bestestoolscript" ''
 
 
       "Open Dotfiles")
-          cd ~/dotfiles
-          kitty nvim
+          wezterm start -- nvim ~/dotfiles
           ;;
 
       "Update - Switch")
-          kitty zsh -c "sudo nixos-rebuild switch; zsh"
+          wezterm start -- zsh -c "sudo nixos-rebuild switch; zsh"
           ;;
       
       "Update - Boot")
-          kitty zsh -c "sudo nixos-rebuild boot; zsh"
+          wezterm start -- zsh -c "sudo nixos-rebuild boot; zsh"
           ;;
   esac
 ''

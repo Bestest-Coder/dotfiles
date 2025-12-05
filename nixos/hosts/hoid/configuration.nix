@@ -20,7 +20,7 @@ in {
     ./hardware-configuration.nix
     ../../daily-driver/daily-driver.nix
     ../../../configuration.nix
-    #./riftcv1.nix
+    ./riftcv1.nix
   ];
 
   networking.hostName = "hoid";
@@ -35,7 +35,7 @@ in {
     #(stableCallPackage ../../packages/nyxt-latest {})
     #(callPackage ../../packages/VPKEdit {})
     nvtopPackages.amd
-    glxinfo
+    mesa-demos
     vulkan-tools
     yt-dlp
     jstest-gtk
@@ -51,23 +51,28 @@ in {
     crispy-doom
     #prboom-plus
     unstable.ringracers
+    #unstable.srb2kart
     unstable.via
     unstable.piper
     evtest
-    chirp
+    #chirp
     xorg.xhost
     #overridden_sm64coopdx
     unstable.sm64coopdx
-    element-desktop
-    unstable.teamspeak6-client
-    unstable.mumble
-    unstable.lumafly
+    #element-desktop
+    #unstable.teamspeak6-client
+    #unstable.mumble
+    #unstable.lumafly
     imagemagick
     #qutebrowser
     #nyxt
     ffmpeg
-    ioquake3
     archipelago
+    tidal-hifi
+    zoom-us
+    #guvcview
+    wezterm
+    eza
   ];
 
   services.udev = {
@@ -118,6 +123,7 @@ in {
     #tlp.enable = true;
     power-profiles-daemon.enable = true;
     blueman.enable = true;
+    lact.enable = true;
   };
 
 
@@ -125,16 +131,17 @@ in {
 
   hardware.bluetooth.enable = true;
 
-  #hardware.opengl = {
-  #  enable = true;
-  #  driSupport32Bit = true;
-    #package = pkgs.unstable.mesa.drivers;
-    #package32 = pkgs.unstable.pkgsi686Linux.mesa.drivers;
-  #};
+  environment.variables = {
+    RUSTICL_ENABLE = "radeonsi";
+  };
 
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+    extraPackages = with pkgs; [
+      mesa.opencl
+      rocmPackages.clr.icd
+    ];
   };
 
 
@@ -167,8 +174,8 @@ in {
   };
 
   networking.firewall = {
-    allowedTCPPorts = [ 5029 ];
-    allowedUDPPorts = [ 5029 ];
+    allowedTCPPorts = [ ];
+    allowedUDPPorts = [ 1337 ];
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

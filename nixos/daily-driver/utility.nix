@@ -13,31 +13,27 @@ in
   # i.e. terminal, web browser, file browser, cli utils, configuration
   environment.systemPackages = with pkgs; [
     mpv
-    #discord
-    discord_override
-    unstable.kitty
+    discord
+    #discord_override
+    #unstable.kitty
     curl
     ack
     #virt-manager
     playerctl
-    flameshot # screenshot tool
     grim
     slurp
     wl-clipboard
-    bitwarden
+    bitwarden-desktop
     powertop
     ripgrep
     wev
     p7zip
     dig
     pv
-    #libsForQt5.dolphin
-    #libsForQt5.qt5ct
     unstable.wineWowPackages.unstable
     winetricks
     wireguard-tools
     xfce.xfce4-icon-theme
-    gcc
     fzf
     qdirstat
     wev
@@ -49,7 +45,6 @@ in
   services = {
     tailscale.enable = true;
     mullvad-vpn.enable = true;
-    mullvad-vpn.package = pkgs.unstable.mullvad-vpn;
     resolved.enable = true;
     ratbagd.enable = true;
     gvfs.enable = true;
@@ -63,7 +58,6 @@ in
       thunar-volman
     ];
   };
-  programs.file-roller.enable = true;
 
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;

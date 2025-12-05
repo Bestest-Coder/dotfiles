@@ -27,7 +27,7 @@
     lutris
     r2modman
     ani-cli
-    unstable.calibre
+    #unstable.calibre
     unstable.mangohud
     itch
   ];

@@ -4,8 +4,9 @@
   xdg.configFile."nvim".recursive = true;
   xdg.configFile."nvim".source =  ../../neovim;
 
-  xdg.configFile."kitty".recursive = true;
-  xdg.configFile."kitty".source = ../../kitty;
+  #xdg.configFile."kitty".recursive = true;
+  #xdg.configFile."kitty".source = ../../kitty;
+  xdg.configFile."wezterm".source = ../../wezterm;
   xdg.configFile."fuzzel".source = ../../fuzzel;
   xdg.configFile."waybar".source = ../../waybar;
   xdg.configFile."dunst".source = ../../dunst;

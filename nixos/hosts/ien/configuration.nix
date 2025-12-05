@@ -25,7 +25,8 @@ in
 
   environment.systemPackages = with pkgs; [
     #(callPackage ../../packages/twad {})
-    kitty
+    #kitty
+    wezterm
     foot
     firefox
     libqalculate
@@ -37,6 +38,7 @@ in
     (retroarch.withCores (cores: with cores; [
       fbneo
     ]))
+    bettercap
   ];
 
   #networking.networkmanager.enable = lib.mkForce false;
@@ -76,7 +78,6 @@ in
 
   programs.neovim.withRuby = lib.mkForce false;
   programs.neovim.package = lib.mkForce pkgs.neovim-unwrapped;
-  #programs.neovim.enable = lib.mkForce false;
 
   nix.settings = {
     substituters = ["https://cache-nix.project2.xyz/uconsole"];

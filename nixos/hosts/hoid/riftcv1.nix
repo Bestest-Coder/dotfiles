@@ -1,17 +1,25 @@
 {pkgs, config, ...}:
 let
   unstableCallPackage = pkgs.lib.callPackageWith (pkgs.unstable);
-  openhmd-thaytan = (unstableCallPackage ../../packages/openhmd-thaytan {});
-  monado_latest = (unstableCallPackage ../../packages/monado_latest {}).override { openhmd = openhmd-thaytan;};
+  # openhmd-thaytan = (unstableCallPackage ../../packages/openhmd-thaytan {});
+  # monado_latest = (unstableCallPackage ../../packages/monado_latest
+  # {
+  #   gst-plugins-base = pkgs.gst_all_1.gst-plugins-base;
+  #   gstreamer = pkgs.gst_all_1.gstreamer;
+  #   libXau = pkgs.libxau;
+  #   libXdmcp = pkgs.libxdmcp;
+  #   libXext = pkgs.libxext;
+  #   libXrandr = pkgs.libxrandr;
+  # }).override { openhmd = openhmd-thaytan;};
 in {
   environment.systemPackages = with pkgs; [
     #monado_latest
-    unstable.opencomposite
-    openhmd-thaytan
+    #unstable.opencomposite
+    #openhmd-thaytan
   ];
   services.monado = {
     enable = true;
-    package = monado_latest;
+    #package = monado_latest;
     defaultRuntime = true;
     highPriority = true;
   };
