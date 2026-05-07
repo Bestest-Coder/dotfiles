@@ -15,7 +15,7 @@
       port = 64738; # default value, for reminder
     };
     frp = {
-      enable = true;
+      enable = false;
       role = "client";
       settings = {
         #includes = [config.age.secrets.frp-toml.path];
@@ -37,13 +37,13 @@
             localPort = 64738;
             remotePort = 64738;
           }
-          # {
-          #   name = "minecraft-tcp";
-          #   type = "tcp";
-          #   localIP = "127.0.0.1";
-          #   localPort = "25565";
-          #   remotePort = "25565";
-          # }
+          {
+            name = "minecraft-tcp";
+            type = "tcp";
+            localIP = "127.0.0.1";
+            localPort = 25565;
+            remotePort = 25565;
+          }
 
         ];
       };

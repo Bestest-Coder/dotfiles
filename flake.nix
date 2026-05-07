@@ -10,10 +10,10 @@
     agenix.url = "github:ryantm/agenix";
     oom-hardware.url = "github:robertjakub/oom-hardware";
     #oom-unstable.url = "nixpkgs/<rev>";
-    nixpkgs-testing.url = "path:/home/bestest/projects/nixpkgs";
+    #nixpkgs-testing.url = "path:/home/bestest/projects/nixpkgs";
   };
 
-  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, oom-hardware, nixpkgs-testing, ...}@attrs:
+  outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, oom-hardware, ...}@attrs:
   let
     system = "x86_64-linux";
     # adds pkgs.unstable

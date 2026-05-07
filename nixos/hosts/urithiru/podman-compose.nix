@@ -419,61 +419,74 @@
       "podman-compose-urithiru-root.target"
     ];
   };
-  virtualisation.oci-containers."minecraft" = {
-    image = "itzg/minecraft-server:java17";
-    environment = {
-      "VERSION" = "25w14craftmine";
-      "EULA" = "TRUE";
-      "INIT_MEMORY" = "1G";
-      "MAX_MEMORY" = "6G";
-    };
-    volumes = [
-      "/home/bestest/mc-server:/data:rw"
-    ];
-    ports = [
-      "25565:25565/tcp"
-    ];
-    log-driver = "journald";
-    extraOptions = [
-      "--network-alias=minecraft-server"
-      "--network=urithiru_default"
-    ];
-  };
-  systemd.services."podman-minecraft" = {
-    serviceConfig = {
-      Restart = lib.mkOverride 90 "no";
-    };
-    after = [
-      "podman-network-urithiru_default.service"
-    ];
-    requires = [
-      "podman-network-urithiru_default.service"
-    ];
-    partOf = [
-      "podman-compose-urithiru-root.target"
-    ];
-    wantedBy = [
-      "podman-compose-urithiru-root.target"
-    ];
-  };
+  # virtualisation.oci-containers.containers."minecraft" = {
+  #   image = "itzg/minecraft-server:latest";
+  #   environment = {
+  #     #"VERSION" = "25w14craftmine";
+  #     "MODPACK_PLATFORM" = "MODRINTH";
+  #     "MODRINTH_MODPACK" = "/data/modpacks/TotalDramaModpackv1.3.0.mrpack";
+  #     "EULA" = "TRUE";
+  #     "INIT_MEMORY" = "1G";
+  #     "MAX_MEMORY" = "8G";
+  #     "MOTD" = "Silksong Official Waiting Room";
+  #     "SERVER_NAME" = "Total Drama Apartment SMP";
+  #     "LEVEL" = "TotalDramaModpackWorldv2";
+  #     "REMOVE_OLD_MODS" = "TRUE";
+  #     "ALLOW_FLIGHT" = "TRUE";
+  #   };
+  #   volumes = [
+  #     "/home/bestest/mc-server:/data:rw"
+  #   ];
+  #   ports = [
+  #     "25565:25565/tcp"
+  #   ];
+  #   log-driver = "journald";
+  #   extraOptions = [
+  #     "--network-alias=minecraft-server"
+  #     "--network=urithiru_default"
+  #   ];
+  # };
+  # systemd.services."podman-minecraft" = {
+  #   serviceConfig = {
+  #     Restart = lib.mkOverride 90 "no";
+  #   };
+  #   after = [
+  #     "podman-network-urithiru_default.service"
+  #   ];
+  #   requires = [
+  #     "podman-network-urithiru_default.service"
+  #   ];
+  #   partOf = [
+  #     "podman-compose-urithiru-root.target"
+  #   ];
+  #   wantedBy = [
+  #     "podman-compose-urithiru-root.target"
+  #   ];
+  # };
   # virtualisation.oci-containers.containers."terrafirmacraft" = {
   #   image = "itzg/minecraft-server:java17";
   #   environment = {
-  #     "CF_SLUG" = "terrafirmacraft-hardrock";
+  #     "CF_SLUG" = "hardrock-terrafirmacraft-4-realistic-extreme";
+  #     #"CF_PAGE_URL" = "https://www.curseforge.com/minecraft/modpacks/hardrock-terrafirmacraft-4-realistic-extreme";
+  #     #"CF_MODPACK_ZIP" = "/manifests/hardrock4.zip";
   #     "ENABLE_AUTOPAUSE" = "true";
   #     "EULA" = "TRUE";
   #     "INIT_MEMORY" = "1G";
-  #     "MAX_MEMORY" = "6G";
+  #     "MAX_MEMORY" = "8G";
   #     "MAX_TICK_TIME" = "-1";
   #     "REMOVE_OLD_MODS" = "TRUE";
-  #     "TYPE" = "AUTO_CURSEFORGE";
+  #     "MODPACK_PLATFORM" = "AUTO_CURSEFORGE";
+  #     #"TYPE" = "PAPER";
+  #     #"VERSION" = "1.20.1";
+  #     "CF_API_KEY" = "$2a$10$rw.2ndcM2y.fxfsMrAuuOOV7JYqH2I5g/pjMcbqLN8C./bUs0QJQO";
   #   };
-  #   environmentFiles = [
-  #     config.age.secrets.curseforge-env.path
-  #   ];
+  #   #environmentFiles = [
+  #   #  config.age.secrets.curseforge-env.path
+  #   #];
   #   volumes = [
   #     "/home/bestest/mc-downloads:/downloads:rw"
   #     "/home/bestest/tfc-server:/data:rw"
+  #     "/home/bestest/tfc-server/manifests:/manifests:rw"
   #   ];
   #   ports = [
   #     "25565:25565/tcp"
@@ -483,6 +496,8 @@
   #     "--network-alias=terrafirmacraft"
   #     "--network=urithiru_default"
   #   ];
+  #   #entrypoint = "/bin/sh";
+  #   #cmd = ["-c 'echo $CF_API_KEY'"];
   # };
   # systemd.services."podman-terrafirmacraft" = {
   #   serviceConfig = {
