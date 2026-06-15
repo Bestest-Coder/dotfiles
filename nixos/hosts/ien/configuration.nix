@@ -48,6 +48,8 @@ in
     enable = true;
   };
 
+  services.resolved.enable = true;
+
   fonts.packages = with pkgs; [
     font-awesome
     liberation_ttf
