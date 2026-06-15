@@ -1,18 +1,43 @@
-{self, pkgs, ...}:
 {
-  # this is meant to have all the basics of a general use (for me) system
+  self,
+  pkgs,
+  lib,
+  # withHyprland ? false,
+  # withNiri ? false,
+  # withSteam ? false,
+  # withOBS ? false,
+  # withVirt ? false,
+  ...
+}:
+{
+  # meant to be all the bare minimums of what I need to use a system fairly regularly
+  # everything beyond basics goes in system specific configs (see ../hosts)
+  # some files also provide accompanying packages for common software (WMs, Steam, etc)
   imports = [
-    ./greetd.nix
     ./productivity.nix
     ./utility.nix
-    ./fun.nix
     ./desktop.nix
-  ];
+    ./niri.nix
+    ./hyprland.nix
+    ./obs.nix
+    ./steam.nix
+  ]
+  # ++ lib.optional withHyprland ./hyprland.nix
+  # ++ lib.optional withNiri ./niri.nix
+  # ++ lib.optional withSteam ./steam.nix
+  # ++ lib.optional withOBS ./obs.nix
+  # ++ lib.optional withVirt ./virt.nix
+  ; # this feels so weird
+
 
   environment.systemPackages = with pkgs; [
-    appimage-run
     nix-tree
   ];
+
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
 
   system.autoUpgrade = {
     enable = true;

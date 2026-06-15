@@ -4,7 +4,7 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     agenix.url = "github:ryantm/agenix";
@@ -16,6 +16,7 @@
   outputs = {self, nixpkgs, nixpkgs-unstable, home-manager, nixos-hardware, agenix, oom-hardware, ...}@attrs:
   let
     system = "x86_64-linux";
+    hostPlatform = "x86_64-linux";
     # adds pkgs.unstable
     overlay-unstable-sub = final: prev: {
       unstable = import nixpkgs-unstable {

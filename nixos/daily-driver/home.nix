@@ -13,9 +13,9 @@
 
   xdg.configFile."hypr".recursive = true;
   xdg.configFile."hypr".source = ../../hyprland;
-  #imports = [
-  #  ../../hyprland/hyprland.nix
-  #];
+
+  xdg.configFile."niri".recursive = true;
+  xdg.configFile."niri".source = ../../niri;
 
   xdg.desktopEntries = {
     firefox-private = {
@@ -39,10 +39,18 @@
     };
   };
 
-  #dconf.settings = {
-  #  "org/gnome/desktop/interface" = {
-  #    gtk-theme = "Adwaita:dark";
-  #    icon-theme = "Adwaita:dark";
-  #  };
-  #};
+  xdg.mimeApps = {
+    enable = true;
+    defaultApplications = {
+      "text/html" = "firefox.desktop";
+      "x-scheme-handler/http" = "firefox.desktop";
+      "x-scheme-handler/https" = "firefox.desktop";
+      "audio/mpeg" = "mpv.desktop";
+      "audio/ogg" = "mpv.desktop";
+      "audio/x-wav" = "mpv.desktop";
+      "text/plain" = "nvim.desktop";
+      "application/zip" = "ark.desktop";
+    };
+  };
+
 }

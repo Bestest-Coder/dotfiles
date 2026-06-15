@@ -14,7 +14,7 @@ pkgs.writeShellScriptBin "bestestoolscript" ''
 
 
       "Open Dotfiles")
-          wezterm start -- nvim ~/dotfiles
+          wezterm start -- zsh -c "cd ~/dotfiles; nvim"
           ;;
 
       "Update - Switch")

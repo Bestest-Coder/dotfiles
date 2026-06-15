@@ -18,14 +18,20 @@ let
 in {
   imports = [
     ./hardware-configuration.nix
+    #../../daily-driver/daily-driver.nix { withHyprland = true; withSteam = true; withOBS = true;}
     ../../daily-driver/daily-driver.nix
     ../../../configuration.nix
     ./riftcv1.nix
   ];
 
+  daily-driver.hyprland = true;
+  daily-driver.steam = true;
+  daily-driver.obs = true;
+
   networking.hostName = "hoid";
 
   environment.systemPackages = with pkgs; [
+    # self built
     (callPackage ../../packages/run-prime {})
     (callPackage ../../packages/bestestoolscript {})
     (callPackage ../../packages/bestestscreenshot {})
@@ -34,17 +40,38 @@ in {
     #(unstableCallPackage ../../packages/nyxt-latest {sbcl = pkgs.stable.sbcl; nodejs = nodejs_20; electron = electron_32;})
     #(stableCallPackage ../../packages/nyxt-latest {})
     #(callPackage ../../packages/VPKEdit {})
+    #(callPackage ../../packages/smokin-guns {})
+    (callPackage ../../packages/ironwail {})
+
+    # misc tools
     nvtopPackages.amd
     mesa-demos
     vulkan-tools
-    yt-dlp
-    jstest-gtk
     usbutils
-    ungoogled-chromium
-    alsa-oss
     dmidecode
-    #unstable.fontmatrix
-    #teams
+    yt-dlp
+    alsa-oss
+    evtest
+    #chirp
+    xhost
+    imagemagick
+    unstable.via
+    ffmpeg
+    eza
+    wireguard-tools
+    extest
+
+    nodejs_22 #need for neovim coc :woeisme:
+    nixd
+
+    # graphical tools/utilities
+    bitwarden-desktop
+    unstable.piper
+    ungoogled-chromium
+    jstest-gtk
+    qdirstat
+
+    # games
     nethack
     gzdoom
     #zandronum
@@ -52,27 +79,43 @@ in {
     #prboom-plus
     unstable.ringracers
     #unstable.srb2kart
-    unstable.via
-    unstable.piper
-    evtest
-    #chirp
-    xorg.xhost
     #overridden_sm64coopdx
     unstable.sm64coopdx
-    #element-desktop
-    #unstable.teamspeak6-client
+    #lumafly
+    ioquake3
+    azahar
+    archipelago
+    #poptracker
+    unstable.prismlauncher
+    pcsx2
+    stable.rpcs3
+    openttd
+    #lutris
+    r2modman
+    unstable.mangohud
+    itch
+    (retroarch.withCores (cores: with cores; [
+      snes9x
+      beetle-psx
+      beetle-psx-hw
+      mesen
+    ]))
+
+    # music and media
+    tidal-hifi
+    jellyfin-desktop
+    #audacious
+    #strawberry
+    calibre
+
     #unstable.mumble
-    #unstable.lumafly
-    imagemagick
     #qutebrowser
     #nyxt
-    ffmpeg
-    archipelago
-    tidal-hifi
     zoom-us
     #guvcview
     wezterm
-    eza
+    pkgsRocm.blender
+    #gparted
   ];
 
   services.udev = {
@@ -106,14 +149,14 @@ in {
   #boot.kernelPackages = pkgs.unstable.linuxPackages_6_12;
   boot.kernelPackages = pkgs.unstable.linuxPackages_latest;
 
-  boot.loader.systemd-boot.enable = true;
-  #boot.loader.grub.enable = true;
+  #boot.loader.systemd-boot.enable = true;
+  boot.loader.grub.enable = true;
   #boot.loader.grub.device = "/dev/nvme0n1p1"; # change when get actual device
-  #boot.loader.grub.device = "nodev";
+  boot.loader.grub.device = "nodev";
   #boot.loader.grub.useOSProber = true;
-  #boot.loader.grub.efiSupport = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
-  #boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  boot.loader.grub.efiSupport = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.efi.efiSysMountPoint = "/boot/efi";
   #boot.loader.grub.devices = ["/dev/nvme0n1p1"];
 
   # framework stuff
@@ -158,9 +201,9 @@ in {
     resumeDevice = "/dev/disk/by-uuid/6efcc105-ca1a-452e-a84c-3c18b17226b8";
   };
   powerManagement.enable = true;
-  systemd.sleep.extraConfig = ''
-    HibernateDelaySec=1h
-  '';
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "1h";
+  };
 
   programs.nix-ld = {
     enable = true;
@@ -174,8 +217,9 @@ in {
   };
 
   networking.firewall = {
-    allowedTCPPorts = [ ];
-    allowedUDPPorts = [ 1337 ];
+    enable = lib.mkForce false;
+    allowedTCPPorts = [ 53 67 ];
+    allowedUDPPorts = [ 53 67 ];
   };
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
@@ -239,7 +283,20 @@ in {
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGo8mKYDrxFvOPEmlY6velYUu+O6fvDhdkx8rTS/RJBA root@ien"
     ];
   };
+
   users.groups.nixremote = {};
   nix.settings.trusted-users = [ "nixremote" ];
-  
+
+  # security.tpm2 = {
+  #   enable = true;
+  #   pkcs11.enable = true;
+  #   tctiEnvironment.enable = true;
+  # };
+  # users.users.bestest.extraGroups = [ "tss" ];
+
+
+  virtualisation.waydroid.enable = true;
+
+  programs.steam.extraPackages = with pkgs; [ hidapi ];
 }
+

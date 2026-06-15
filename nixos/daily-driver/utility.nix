@@ -14,30 +14,35 @@ in
   environment.systemPackages = with pkgs; [
     mpv
     discord
-    #discord_override
-    #unstable.kitty
     curl
     ack
-    #virt-manager
     playerctl
     grim
     slurp
     wl-clipboard
-    bitwarden-desktop
     powertop
     ripgrep
     wev
     p7zip
     dig
-    pv
-    unstable.wineWowPackages.unstable
+    stable.wineWow64Packages.unstable
     winetricks
-    wireguard-tools
-    xfce.xfce4-icon-theme
+    xfce4-icon-theme
     fzf
-    qdirstat
     wev
     feh
+
+    #dolphin stuff
+    kdePackages.dolphin
+    kdePackages.kservice
+    kdePackages.ark
+    kdePackages.kio
+    kdePackages.kdf
+    kdePackages.kio-fuse
+    kdePackages.kio-extras
+    kdePackages.kio-admin
+    kdePackages.kdegraphics-thumbnailers
+    unrar
   ];
 
   programs.firefox.enable = true;
@@ -51,23 +56,8 @@ in
     tumbler.enable = true;
   };
 
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
-  };
+  xdg.mime.enable = true;
+  xdg.menus.enable = true;
+  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
 
-  virtualisation.libvirtd.enable = true;
-  programs.dconf.enable = true;
-  programs.virt-manager.enable = true;
-  home-manager.users.bestest = {
-    dconf.settings = {
-      "org/virt-manager/virt-manager/connections" = {
-        autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
-      };
-    };
-  };
 }

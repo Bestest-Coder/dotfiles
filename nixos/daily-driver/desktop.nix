@@ -1,31 +1,29 @@
 {pkgs, ...}:
 {
-  # everything generally involved with the desktop, or the desktop environment
-  # i.e. window manager, task bar, audio systems, etc
+  # things I use across any desktop/window manager
+  # i.e. preferred terminal, bars, file manager, etc along with a few convenience softwares
   environment.systemPackages = with pkgs; [
-    # window manager (and utils)
-    xdg-desktop-portal-hyprland
+    # utilies/services
     polkit
     polkit_gnome
     xdg-utils
+    brightnessctl
+    libnotify
+    libinput
+    libsForQt5.qt5ct
+    #libsForQt5.breeze-icons
+    # desktop utilities
     swaylock
     fuzzel
     unstable.waybar
     dunst
-    libnotify
-    hyprpaper
-    brightnessctl
     networkmanagerapplet
-    hyprpolkitagent
     # audio (and utils)
     wireplumber
     pavucontrol
-    unstable.helvum
+    #unstable.helvum
+    crosspipe
     unstable.easyeffects
-    libinput
-    unstable.hypridle
-    libsForQt5.qt5ct
-    libsForQt5.breeze-icons
   ];
 
   fonts.packages = with pkgs; [
@@ -35,21 +33,13 @@
     nerd-fonts.terminess-ttf
   ];
 
-  programs.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-    package = pkgs.unstable.hyprland;
-    portalPackage = pkgs.unstable.xdg-desktop-portal-hyprland;
-    #package = pkgs.hyprland_latest;
-    #portalPackage = pkgs.hyprland_portal_latest;
-  };
-
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
     ];
   };
+
   security.polkit.enable = true;
 
   security.pam.services.swaylock = {};

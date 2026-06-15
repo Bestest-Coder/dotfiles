@@ -8,22 +8,18 @@
     libreoffice-fresh
     hunspell #libreoffice spellcheck
     hunspellDicts.en_US
-    blender
     (texlive.combine { inherit (texlive)
       scheme-full
     ;})
     zathura
     qalculate-gtk
-    davinci-resolve
+    kdePackages.kdenlive
     unstable.gimp3
     audacity
-    slack
 
-    nodejs_22 #need for neovim coc :woeisme:
-    nixd
   ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "electron-25.9.0"
-  ];
+  # nixpkgs.config.permittedInsecurePackages = [
+  #   "electron-25.9.0"
+  # ];
 }
