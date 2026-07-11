@@ -34,6 +34,7 @@ in
 
     #dolphin stuff
     kdePackages.dolphin
+    kdePackages.dolphin-plugins
     kdePackages.kservice
     kdePackages.ark
     kdePackages.kio

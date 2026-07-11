@@ -65,7 +65,7 @@ in {
     nixd
 
     # graphical tools/utilities
-    bitwarden-desktop
+    #(bitwarden-desktop.override { electron_39 = pkgs.electron_39-bin; })
     unstable.piper
     ungoogled-chromium
     jstest-gtk

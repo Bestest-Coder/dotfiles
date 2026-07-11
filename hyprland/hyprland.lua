@@ -21,7 +21,8 @@ hl.config({
         input = {
             kb_options = "caps:escape",
             touchpad = { disable_while_typing = true},
-        }
+        },
+        cursor = { no_hardware_cursors = 1}
 })
 
 for i = 1,9 do

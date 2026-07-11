@@ -89,12 +89,12 @@ nnoremap <leader>cd <cmd>CocDiagnostics<CR>
             vim.cmd([[
 augroup lspconfig
     au!
-    autocmd BufNewFile,BufReadPre *.py LspStart pyright
-    autocmd BufNewFile,BufReadPre *.gd,*.gdscript,*.gdscript3 LspStart gdscript
-    autocmd BufNewFile,BufReadPre *.nix,*.flake LspStart nixd
-    autocmd BufNewFile,BufReadPre *.rs LspStart rust_analyzer
-    autocmd BufNewFile,BufReadPre *.cs LspStart omnisharp
-    autocmd BufNewFile,BufReadPre *.c,*.cpp,*.h,*.hpp LspStart ccls
+    autocmd BufNewFile,BufReadPre *.py lsp enable pyright
+    autocmd BufNewFile,BufReadPre *.gd,*.gdscript,*.gdscript3 lsp enable gdscript
+    autocmd BufNewFile,BufReadPre *.nix,*.flake lsp enable nixd
+    autocmd BufNewFile,BufReadPre *.rs lsp enable rust_analyzer
+    autocmd BufNewFile,BufReadPre *.cs lsp enable omnisharp
+    autocmd BufNewFile,BufReadPre *.c,*.cpp,*.h,*.hpp lsp enable ccls
 augroup END
             ]])
         end
