@@ -42,6 +42,9 @@ in {
     #(callPackage ../../packages/VPKEdit {})
     #(callPackage ../../packages/smokin-guns {})
     (callPackage ../../packages/ironwail {})
+    #(callPackage /home/bestest/Desktop/BizHawk {})
+    (callPackage ../../packages/statlocker {})
+    (callPackage ../../packages/audacity_4 {})
 
     # misc tools
     nvtopPackages.amd
@@ -90,7 +93,7 @@ in {
     pcsx2
     stable.rpcs3
     openttd
-    #lutris
+    lutris
     r2modman
     unstable.mangohud
     itch

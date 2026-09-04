@@ -111,3 +111,9 @@ augroup END
 
 " opens a nix develop shell
 command! Ndterm :term nix develop
+
+" open new terminal below current window
+augroup OpenTerm
+    au!
+    nnoremap tn :sp<CR> <C-w>j :term<CR>
+augroup END

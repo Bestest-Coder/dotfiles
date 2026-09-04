@@ -50,6 +50,8 @@
       "audio/x-wav" = "mpv.desktop";
       "text/plain" = "nvim.desktop";
       "application/zip" = "ark.desktop";
+      "application/pdf" = "zathura.desktop";
+      "image/png" = "feh";
     };
   };
 

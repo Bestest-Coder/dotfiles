@@ -32,6 +32,7 @@
 
   environment.systemPackages = with pkgs; [
     nix-tree
+    tree-sitter
   ];
 
   programs.appimage = {

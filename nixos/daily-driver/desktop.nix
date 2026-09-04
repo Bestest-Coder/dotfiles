@@ -24,6 +24,8 @@
     #unstable.helvum
     crosspipe
     unstable.easyeffects
+    qt6.qtwayland
+    qt5.qtwayland
   ];
 
   fonts.packages = with pkgs; [

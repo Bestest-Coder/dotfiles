@@ -7,9 +7,17 @@ hl.on("hyprland.start", function ()
     hl.exec_cmd("waybar")
     hl.exec_cmd("easyeffects --gapplication-service")
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
+    hl.exec_cmd("systemctl --user start hyprland-session.target")
 end)
 
--- hl.on("hyprland.start", function () 
+hl.on("hyprland.shutdown", function()
+    os.execute("systemctl --user stop hyprland-session.target && sleep 0.1")
+end)
+
+hl.env("GTK_THEME", "Adwaita:dark")
+hl.env("AQ_DRM_DEVICES", "/dev/dri/card2:/dev/dri/card1")
+
+-- hl.on("hyprland.start", function ()
 --   hl.exec_cmd(terminal)
 --   hl.exec_cmd("nm-applet")
 --   hl.exec_cmd("waybar & hyprpaper & firefox")
@@ -22,7 +30,10 @@ hl.config({
             kb_options = "caps:escape",
             touchpad = { disable_while_typing = true},
         },
-        cursor = { no_hardware_cursors = 1}
+        cursor = { no_hardware_cursors = 1},
+        binds = {
+            drag_threshold = 10
+        }
 })
 
 for i = 1,9 do
@@ -48,6 +59,9 @@ hl.bind("SUPER + period", hl.dsp.workspace.move({monitor = "r"}))
 hl.bind("SUPER + CTRL + comma", hl.dsp.workspace.move({monitor = "d"}))
 hl.bind("SUPER + CTRL + period", hl.dsp.workspace.move({monitor = "u"}))
 
+hl.bind("SUPER + mouse:272", hl.dsp.window.drag(), {mouse = true})
+hl.bind("SUPER + SHIFT + mouse:272", hl.dsp.window.resize(), { mouse = true})
+hl.bind("SUPER + CTRL + SHIFT + mouse:272", hl.dsp.window.resize({keep_aspect_ratio = true }), { mouse = true})
 hl.bind("SUPER + SHIFT + Space", hl.dsp.window.float({"toggle", "activewindow"}))
 
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("wpctl set-volume -l 1.5 @DEFAULT_AUDIO_SINK@ 5%+"),{ locked = true, repeating = true })
@@ -70,7 +84,7 @@ hl.bind("XF86Tools", hl.dsp.exec_cmd("bestestoolscript"))
 
 hl.bind("switch:on:Lid Switch", hl.dsp.exec_cmd("systemctl suspend"), {locked = true })
 
---hl.bind("SUPER + mouse:272", 
+--hl.bind("SUPER + mouse:272",
 --hl.bind("SUPER + SHIFT + mouse:272",
 
 hl.monitor({
@@ -78,13 +92,14 @@ hl.monitor({
         mode = "preferred",
         position = "0x0",
         scale = 1,
-        vrr = 2
+        vrr = 2,
+        --bitdepth = 10
 })
 
 hl.monitor({
         output = "desc:Dell Inc. DELL U2312HM T9MJ318A191L",
         mode = "preferred",
-        position = "auto-up",
+        position = "auto-left",
         scale = 1
 })
 

@@ -26,7 +26,18 @@ require("lazy").setup({
 
     {'ryanoasis/vim-devicons'},
 
-    {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
+    {'nvim-treesitter/nvim-treesitter', build = ':TSUpdate',
+    
+    config = function()
+        require('nvim-treesitter').setup {
+            install_dir = "/home/bestest/.config/nvim-treesitter/"
+        }
+        -- require('nvim-treesitter').install { 'c', 'cpp', 'python', 'rust', 'c_sharp' }
+        vim.api.nvim_create_autocmd('BufReadPost', {
+                pattern = { '*.c','*.h','*.cpp','*.hpp' },
+                callback = function() vim.treesitter.start() end,
+        })
+    end},
 
     {'vim-airline/vim-airline',
         config = function()
@@ -79,24 +90,30 @@ nnoremap <leader>cd <cmd>CocDiagnostics<CR>
             vim.env.PATH = home_path .. "/.npm-packages/bin:" .. vim.env.PATH
             vim.env.NODE_PATH = home_path .."/.npm-packages/lib/node_modules"
             local capabilities = require'cmp_nvim_lsp'.default_capabilities()
-            vim.lsp.config("pyright",{capabilities = capabilities, autostart = false})
-            vim.lsp.config("gdscript",{capabilities = capabilities, autostart = false})
-            vim.lsp.config("nixd",{capabilities = capabilities, autostart = false})
-            vim.lsp.config("rust_analyzer",{capabilities = capabilities, autostart = false})
-            vim.lsp.config("omnisharp",{capabilities = capabilities, autostart = false,
-                cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid())}})
-            vim.lsp.config("ccls",{capabilities = capabilities, autostart = false})
-            vim.cmd([[
-augroup lspconfig
-    au!
-    autocmd BufNewFile,BufReadPre *.py lsp enable pyright
-    autocmd BufNewFile,BufReadPre *.gd,*.gdscript,*.gdscript3 lsp enable gdscript
-    autocmd BufNewFile,BufReadPre *.nix,*.flake lsp enable nixd
-    autocmd BufNewFile,BufReadPre *.rs lsp enable rust_analyzer
-    autocmd BufNewFile,BufReadPre *.cs lsp enable omnisharp
-    autocmd BufNewFile,BufReadPre *.c,*.cpp,*.h,*.hpp lsp enable ccls
-augroup END
-            ]])
+            -- vim.lsp.config("pyright",{capabilities = capabilities, autostart = false})
+            vim.lsp.enable("pyright")
+            -- vim.lsp.config("gdscript",{capabilities = capabilities, autostart = false})
+            vim.lsp.enable("gdscript")
+            -- vim.lsp.config("nixd",{capabilities = capabilities, autostart = false})
+            vim.lsp.enable("nixd")
+            -- vim.lsp.config("rust_analyzer",{capabilities = capabilities, autostart = false})
+            vim.lsp.enable("rust_analyzer")
+            -- vim.lsp.config("omnisharp",{capabilities = capabilities, autostart = false,
+                -- cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid())}})
+            -- vim.lsp.enable("omnisharp")
+            -- vim.lsp.config("ccls",{capabilities = capabilities, autostart = false})
+            vim.lsp.enable("ccls")
+--             vim.cmd([[
+-- augroup lspconfig
+--     au!
+--     autocmd BufNewFile,BufReadPre *.py lsp enable pyright
+--     autocmd BufNewFile,BufReadPre *.gd,*.gdscript,*.gdscript3 lsp enable gdscript
+--     autocmd BufNewFile,BufReadPre *.nix,*.flake lsp enable nixd
+--     autocmd BufNewFile,BufReadPre *.rs lsp enable rust_analyzer
+--     autocmd BufNewFile,BufReadPre *.cs lsp enable omnisharp
+--     autocmd BufNewFile,BufReadPre *.c,*.cpp,*.h,*.hpp lsp enable ccls
+-- augroup END
+--             ]])
         end
     },
 
@@ -143,15 +160,15 @@ augroup END
 
     -- use {'sakhnik/nvim-gdb', run = ':!./install.sh}
 
-    {'sheerun/vim-polyglot'},
+    -- {'sheerun/vim-polyglot'},
 
-    {'octol/vim-cpp-enhanced-highlight',
-        ft = {'c', 'cpp'}
-    },
-
-    {'jackguo380/vim-lsp-cxx-highlight',
-        ft = {'c', 'cpp'}
-    },
+    -- {'octol/vim-cpp-enhanced-highlight',
+    --     ft = {'c', 'cpp'}
+    -- },
+    --
+    -- {'jackguo380/vim-lsp-cxx-highlight',
+    --     ft = {'c', 'cpp'}
+    -- },
 
     {'tpope/vim-fugitive', cmd = 'Git'},
 
@@ -177,19 +194,16 @@ nnoremap <leader>ft <cmd>Telescope treesitter<cr>
         keys = 'gcc'
     },
 
-    -- {'joshdick/onedark.vim',
-    --     config = function() vim.cmd([[colorscheme onedark]]) end
-    -- },
-    -- {'navarasu/onedark.nvim',
-    --     config = function()
-    --         vim.cmd([[colorscheme onedark]])
-    --         require('onedark').setup({
-    --                 style = 'deep',
-    --                 term_colors = true
-    --         })
-    --     end,
-    -- },
-
+    {"navarasu/onedark.nvim",
+        priority = 1000,
+        config = function()
+            require('onedark').setup {
+                style = 'dark'
+            }
+            require('onedark').load()
+        end
+    },
+    
     {'junegunn/fzf',
         build = 'fzf#install()',
         config = function() vim.api.nvim_create_autocmd("FileType", {

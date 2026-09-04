@@ -8,14 +8,14 @@
     libreoffice-fresh
     hunspell #libreoffice spellcheck
     hunspellDicts.en_US
-    (texlive.combine { inherit (texlive)
+    (texliveSmall.withPackages (ps: with ps; [
       scheme-full
-    ;})
+    ]))
     zathura
     qalculate-gtk
     kdePackages.kdenlive
     unstable.gimp3
-    audacity
+    #audacity
 
   ];
 

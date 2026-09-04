@@ -4,13 +4,15 @@
 
   kernelPackagesCfg = {
     linuxPackagesFor,
-    linux_rpi4,
+    #linux_rpi4,
+    nixos-hardware,
     fetchFromGitHub,
+    callPackage
   }: let
     modDirVersion = "6.6.51"; # might be able to choose different, but will figure out later
     tag = "stable_20241008";
   in
-    linuxPackagesFor (linux_rpi4.override {
+    linuxPackagesFor ((callPackage "${nixos-hardware}/raspberry-pi/common/kernel.nix" {rpiVersion = 4;}).override {
       argsOverride = {
         version = "${modDirVersion}-${tag}-uc-cm4-bestest";
         inherit modDirVersion;
