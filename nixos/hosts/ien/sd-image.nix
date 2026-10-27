@@ -8,6 +8,10 @@
   ];
 
   boot.loader.generic-extlinux-compatible.enable = true;
+  # hardware.raspberry-pi.firmware = {
+  #   enable = true;
+  #   uboot.enable = true;
+  # };
   boot.supportedFilesystems.zfs = lib.mkForce false;
 
   #boot.consoleLogLevel = lib.mkDefault 7;
@@ -37,8 +41,8 @@
 
   hardware.raspberry-pi."4" = {
     xhci.enable = false;
-    dwc2.enable = true;
-    dwc2.dr_mode = "host";
+    #dwc2.enable = true;
+    #dwc2.dr_mode = "host";
     # overlays = {
     #   cpu-revision.enable = true;
     #   audremap.enable = true;
@@ -51,6 +55,15 @@
     #   cpi-bluetooth.enable = true;
     # };
   };
+
+  hardware.raspberry-pi.configtxt.deviceTreeOverlays.pi4 = [
+    { dwc2 = {
+        enable = true;
+        dr_mode = "host";
+      };
+    }
+  ];
+
 
   hardware.deviceTree = {
     enable = true;

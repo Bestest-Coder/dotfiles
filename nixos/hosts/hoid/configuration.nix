@@ -27,6 +27,7 @@ in {
   daily-driver.hyprland = true;
   daily-driver.steam = true;
   daily-driver.obs = true;
+  daily-driver.virt = true;
 
   networking.hostName = "hoid";
 
@@ -44,7 +45,8 @@ in {
     (callPackage ../../packages/ironwail {})
     #(callPackage /home/bestest/Desktop/BizHawk {})
     (callPackage ../../packages/statlocker {})
-    (callPackage ../../packages/audacity_4 {})
+    (callPackage ../../packages/emulationstation-de {})
+    #(callPackage ../../packages/es-de_appimage {})
 
     # misc tools
     nvtopPackages.amd
@@ -91,9 +93,10 @@ in {
     #poptracker
     unstable.prismlauncher
     pcsx2
-    stable.rpcs3
+    #stable.rpcs3
     openttd
     lutris
+    umu-launcher
     r2modman
     unstable.mangohud
     itch
@@ -101,8 +104,11 @@ in {
       snes9x
       beetle-psx
       beetle-psx-hw
-      mesen
+      #mgba
     ]))
+    mgba
+    dosbox-staging
+    mesen
 
     # music and media
     tidal-hifi

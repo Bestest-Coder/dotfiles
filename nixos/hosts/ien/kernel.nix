@@ -1,13 +1,12 @@
-{nixpkgs, pkgs, ...}: let
+{nixpkgs, pkgs, nixos-hardware, ...}: let
 
   inherit (import ./lib.nix {inherit nixpkgs;}) callPackagesCrossAarch64;
 
   kernelPackagesCfg = {
     linuxPackagesFor,
-    #linux_rpi4,
     nixos-hardware,
     fetchFromGitHub,
-    callPackage
+    callPackage,
   }: let
     modDirVersion = "6.6.51"; # might be able to choose different, but will figure out later
     tag = "stable_20241008";
@@ -37,7 +36,10 @@
       ./patches/008-driver-staging-add-uconsole-simple-amplifier-switch.patch
     ];
 in {
-  boot.kernelPackages = callPackagesCrossAarch64 kernelPackagesCfg {};
+  boot.kernelPackages = callPackagesCrossAarch64 kernelPackagesCfg {nixos-hardware = nixos-hardware;};
+
+  # above does not provide for some reason?
+  system.boot.loader.kernelFile = "linux-rpi-aarch64-unknown-linux-gnu-6.6.51-stable_20241008-uc-cm4-bestest";
 
   boot.initrd.kernelModules = [
     "ocp8178_bl"
@@ -48,7 +50,7 @@ in {
 
   boot.kernelPatches =
     (
-      builtins.map (patch: {
+      map (patch: {
         name = patch + "";
         patch = patch;
       })

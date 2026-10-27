@@ -25,7 +25,7 @@ in
     wev
     p7zip
     dig
-    wine
+    wine64
     winetricks
     xfce4-icon-theme
     fzf

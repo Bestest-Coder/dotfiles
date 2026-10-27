@@ -5,7 +5,7 @@
   environment.systemPackages = with pkgs; [
     obsidian
     thunderbird
-    libreoffice-fresh
+    libreoffice-stable
     hunspell #libreoffice spellcheck
     hunspellDicts.en_US
     (texliveSmall.withPackages (ps: with ps; [
@@ -15,7 +15,7 @@
     qalculate-gtk
     kdePackages.kdenlive
     unstable.gimp3
-    #audacity
+    audacity
 
   ];
 

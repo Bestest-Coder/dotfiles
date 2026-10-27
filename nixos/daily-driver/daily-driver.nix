@@ -21,6 +21,7 @@
     ./hyprland.nix
     ./obs.nix
     ./steam.nix
+    ./virt.nix
   ]
   # ++ lib.optional withHyprland ./hyprland.nix
   # ++ lib.optional withNiri ./niri.nix

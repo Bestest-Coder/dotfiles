@@ -37,6 +37,16 @@
       categories = ["Game"];
       mimeType = ["x-scheme-handler/steam" "x-scheme-handler/steamlink"];
     };
+    steam-extest = {
+      name = "Steam on prime with ex-test";
+      genericName = "Application";
+      icon = "steam";
+      # may need -cef-disable-gpu if "use GPU acceleration" is not turned off in interface settings
+      exec = "prime-run env LD_PRELOAD=${pkgs.extest}/target/i686-unknown-linux-gnu/release/libextest.so steam %U";
+      terminal = false;
+      categories = ["Game"];
+      mimeType = ["x-scheme-handler/steam" "x-scheme-handler/steamlink"];
+    };
   };
 
   xdg.mimeApps = {
@@ -50,7 +60,7 @@
       "audio/x-wav" = "mpv.desktop";
       "text/plain" = "nvim.desktop";
       "application/zip" = "ark.desktop";
-      "application/pdf" = "zathura.desktop";
+      "application/pdf" = "firefox.desktop";
       "image/png" = "feh";
     };
   };

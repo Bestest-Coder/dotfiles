@@ -93,7 +93,7 @@
         ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/urithiru/home.nix);
       };
       # uConsole (rpi cm4)
-      ien = nixpkgs-unstable.lib.nixosSystem {
+      ien = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = attrs;
         modules = [
@@ -105,7 +105,7 @@
         ] ++ common-modules ++ home-manager-config (import ./nixos/hosts/ien/home.nix);
       };
       # needs to be built with --impure
-      ienCross = nixpkgs-unstable.lib.nixosSystem {
+      ienCross = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = attrs;
         modules = [
@@ -117,6 +117,6 @@
         ] ++ common-modules;# ++ nixosConfigurations.ien.modules;
       };
     };
-  ien-sd-image = nixosConfigurations.ienCross.config.system.build.sdImage;
+  ien-sd-image = nixosConfigurations.ien.config.system.build.sdImage;
   };
 }

@@ -33,12 +33,14 @@
     liberation_ttf
     #(nerdfonts.override { fonts = ["Terminus"]; })
     nerd-fonts.terminess-ttf
+    nerd-fonts.roboto-mono
   ];
 
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
+      kdePackages.xdg-desktop-portal-kde
     ];
   };
 
@@ -57,7 +59,7 @@
   #programs.dconf.enable = true;
   qt = {
     enable = true;
-    platformTheme = "gtk2";
+    platformTheme = "gnome";
     style = "adwaita-dark";
   };
   

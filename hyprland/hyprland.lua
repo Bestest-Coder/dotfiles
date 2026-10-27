@@ -28,7 +28,7 @@ hl.config({
         decoration = {blur = {enabled = false}},
         input = {
             kb_options = "caps:escape",
-            touchpad = { disable_while_typing = true},
+            --touchpad = { disable_while_typing = true},
         },
         cursor = { no_hardware_cursors = 1},
         binds = {

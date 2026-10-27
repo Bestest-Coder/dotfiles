@@ -53,7 +53,6 @@ in
   fonts.packages = with pkgs; [
     font-awesome
     liberation_ttf
-    #(nerdfonts.override { fonts = ["Terminus"]; })
     nerd-fonts.terminess-ttf
   ];
 
@@ -122,8 +121,8 @@ in
 
   hardware.raspberry-pi."4" = {
     xhci.enable = false;
-    dwc2.enable = true;
-    dwc2.dr_mode = "host";
+    #dwc2.enable = true;
+    #dwc2.dr_mode = "host";
     # overlays = {
     #   cpu-revision.enable = true;
     #   audremap.enable = true;
@@ -136,6 +135,14 @@ in
     #   cpi-bluetooth.enable = true;
     # };
   };
+
+  hardware.raspberry-pi.configtxt.deviceTreeOverlays.pi4 = [
+    { dwc2 = {
+        enable = true;
+        dr_mode = "host";
+      };
+    }
+  ];
 
   hardware.deviceTree = {
     enable = true;
